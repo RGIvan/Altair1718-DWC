@@ -1,0 +1,21 @@
+Se pide desarrollar una aplicacion en Java con Hibernate para manipular los datos almacenados en una base de datos en MySQL:
+
+- La BD debe ser inventada por el usuario (la buscare hasta la extenuacion en Internet).
+
+Debe contener, al menos, relaciones de tipo 1:N, N:M y claves autonumericas.
+
+- Se debe documentar la base de datos y el c�digo Java para poder entender todos los pasos.
+
+- El alumno debe realizar las operaciones apropiadas sobre los objetos de la aplicacion (select, insert, update y delete)
+
+- Se deben implementar con anotaciones. Cuidado con el plugin de JBoss que no es del todo fiable.
+
+- Cree Querys sobre algunos objetos para mostrar los datos de la BD (si es posible, utilice los metodos vistos en clase como uniqueResult() y paginacion).
+
+- Cree Criteria con posibles consultas en HQL sobre los objetos.
+
+- Demuestre que con Hibernate es posible crear consultas Nativas directamente sobre la base de datos.
+
+- Añada validaciones a los campos y muestre los mensajes de error oportunos para cada campo en la ejecucion del codigo.
+
+- Se valorara la diversidad de tipos en los campos de las tablas.
