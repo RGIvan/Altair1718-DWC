@@ -12,6 +12,8 @@
         <property name="hibernate.show_sql">true</property>
         
         <mapping class="es.altair.hibernate.bean.Cliente"/>
+        <mapping class="es.altair.hibernate.bean.Tienda"/>
+        <mapping class="es.altair.hibernate.bean.Venta"/>
         <mapping class="es.altair.hibernate.bean.Producto"/>
     </session-factory>
 </hibernate-configuration>

@@ -19,19 +19,23 @@ public class App
     	
     	Tienda t1 = new Tienda("tienda S.L", "C/ tienda1");
     	
-//    	Cliente c1 = new Cliente("Pepe", "García", 123456789, "pepe@gmail.com", t1);
-//    	Cliente c2 = new Cliente("Paco", "García", 123456789, "paco@gmail.com", t1);
-//    	Cliente c3 = new Cliente("Marta", "García", 123456789, "marta@gmail.com", t1);
-//    	
-//    	Set<Cliente> clientes = new HashSet<Cliente>();
-//    	
-//    	clientes.add(c1);
-//    	clientes.add(c2);
-//    	clientes.add(c3);
-//    	t1.setClientes(clientes);
+    	Cliente c1 = new Cliente("Pepe", "García", 123456789, "pepe@gmail.com", t1);
+    	Cliente c2 = new Cliente("Paco", "García", 123456789, "paco@gmail.com", t1);
+    	Cliente c3 = new Cliente("Marta", "García", 123456789, "marta@gmail.com", t1);
+    	
+    	Set<Cliente> clientes = new HashSet<Cliente>();
+    	
+    	clientes.add(c1);
+    	clientes.add(c2);
+    	clientes.add(c3);
+    	t1.setClientes(clientes);
     	
     	System.out.println("----- GUARDAR TIENDA ------");
     	
     	tDAO.guardar(t1);
+    	
+    	System.out.println("----- GUARDAR CLIENTE ------");
+    	
+    	cDAO.guardar(c1);
     }
 }
