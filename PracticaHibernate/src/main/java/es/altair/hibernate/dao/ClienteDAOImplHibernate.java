@@ -25,4 +25,22 @@ public class ClienteDAOImplHibernate implements ClienteDAO {
 			sf.close();
 		}
 	}
+
+	public void borrar(Cliente c1) {
+		SessionFactory sf = new Configuration().configure().buildSessionFactory();
+		Session sesion = sf.openSession();
+		
+		try {
+			sesion.beginTransaction();
+			
+			sesion.delete(c1);
+			
+			sesion.getTransaction().commit();
+		} catch (Exception ex) {
+			
+		} finally {
+			sesion.close();
+			sf.close();
+		}
+	}
 }
