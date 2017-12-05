@@ -20,7 +20,7 @@ public class Equipo implements Serializable {
 	private int idEquipo;
 	private String nombre;
 	private String ciudad;
-	private int numSocios;
+	private int numSocio;
 
 	@OneToMany(mappedBy="equipo", cascade=CascadeType.ALL)
 	private Set<Jugador> jugadores;
