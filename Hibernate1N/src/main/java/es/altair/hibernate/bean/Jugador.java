@@ -72,5 +72,4 @@ public class Jugador implements Serializable {
 		return "Jugador [idJugador=" + idJugador + ", nombre=" + nombre + ", posicion=" + posicion + ", equipo="
 				+ equipo + "]";
 	}
-
 }

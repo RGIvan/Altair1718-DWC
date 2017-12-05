@@ -86,7 +86,7 @@ public class Cliente implements Serializable {
 	public void setTienda(Tienda tienda) {
 		this.tienda = tienda;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "Cliente [idCliente=" + idCliente + ", nombre=" + nombre + ", apellidos=" + apellidos + ", telefono="
