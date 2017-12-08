@@ -29,7 +29,7 @@ public class TiendaDAOImplHibernate implements TiendaDAO {
 
 	public List<Tienda> listar() {
 		List<Tienda> tiendas = new ArrayList<Tienda>();
-		
+
 		SessionFactory sf = new Configuration().configure().buildSessionFactory();
 		Session sesion = sf.openSession();
 
@@ -43,7 +43,7 @@ public class TiendaDAOImplHibernate implements TiendaDAO {
 			sesion.close();
 			sf.close();
 		}
-		
+
 		return tiendas;
 	}
 }

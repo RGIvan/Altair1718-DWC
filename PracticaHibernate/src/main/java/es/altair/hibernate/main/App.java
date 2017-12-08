@@ -1,7 +1,6 @@
 package es.altair.hibernate.main;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import es.altair.hibernate.bean.Tienda;
@@ -76,7 +75,7 @@ public class App {
 
 				case 3:
 					tiendas = tDAO.listar();
-					
+
 					for (Tienda ts : tiendas) {
 						System.out.println(ts);
 					}
