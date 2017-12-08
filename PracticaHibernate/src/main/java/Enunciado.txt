@@ -16,3 +16,4 @@
 
 - Se valorara la diversidad de tipos en los campos de las tablas.
 
+Objeto, Criteria, CreateQuery, CreateSQLquery
