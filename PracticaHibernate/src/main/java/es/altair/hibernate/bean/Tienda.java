@@ -68,7 +68,7 @@ public class Tienda implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Tienda [idTienda=" + idTienda + ", nombre=" + nombre + ", direccion=" + direccion + ", clientes="
-				+ clientes + "]";
+		System.out.println("");
+		return "Nombre: " + nombre + "\nDirección: " + direccion + "\n";
 	}
 }

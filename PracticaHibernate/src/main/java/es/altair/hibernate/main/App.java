@@ -1,5 +1,9 @@
 package es.altair.hibernate.main;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
 import es.altair.hibernate.bean.Tienda;
 import es.altair.hibernate.dao.ClienteDAO;
 import es.altair.hibernate.dao.ClienteDAOImplHibernate;
@@ -10,6 +14,7 @@ public class App {
 
 	public static ClienteDAO cDAO = new ClienteDAOImplHibernate();
 	public static TiendaDAO tDAO = new TiendaDAOImplHibernate();
+	public static List<Tienda> tiendas = new ArrayList<Tienda>();
 
 	public static void main(String[] args) {
 
@@ -70,7 +75,11 @@ public class App {
 					break;
 
 				case 3:
+					tiendas = tDAO.listar();
 					
+					for (Tienda ts : tiendas) {
+						System.out.println(ts);
+					}
 				}
 
 			} catch (NumberFormatException e) {
