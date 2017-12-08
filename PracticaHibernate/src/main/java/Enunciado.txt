@@ -1,6 +1,6 @@
 - Debe contener, al menos, relaciones de tipo 1:N, N:M y claves autonumericas.
 
-- Se debe documentar la base de datos y el c�digo Java para poder entender todos los pasos.
+- Se debe documentar la base de datos y el código Java para poder entender todos los pasos.
 
 - El alumno debe realizar las operaciones apropiadas sobre los objetos de la aplicacion (select, insert, update y delete)
 
@@ -15,3 +15,4 @@
 - Añada validaciones a los campos y muestre los mensajes de error oportunos para cada campo en la ejecucion del codigo.
 
 - Se valorara la diversidad de tipos en los campos de las tablas.
+
