@@ -58,19 +58,18 @@ public class EquipoDAOImplHibernate implements EquipoDAO {
 
 	public Equipo obtener(int i) {
 		Equipo eq = null;
-		
+
 		SessionFactory sf = new Configuration().configure().buildSessionFactory();
 		Session sesion = sf.openSession();
 
 		try {
 			sesion.beginTransaction();
 
-//			eq = (Equipo) sesion.createQuery("FROM Equipo WHERE idEquipo=" + i)
-//					.uniqueResult();
-			
-			eq = (Equipo) sesion.createQuery("FROM Equipo WHERE idEquipo=:id")
-					.setParameter("id", i).uniqueResult();
-			
+			// eq = (Equipo) sesion.createQuery("FROM Equipo WHERE idEquipo=" + i)
+			// .uniqueResult();
+
+			eq = (Equipo) sesion.createQuery("FROM Equipo WHERE idEquipo=:id").setParameter("id", i).uniqueResult();
+
 			sesion.getTransaction().commit();
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -78,27 +77,25 @@ public class EquipoDAOImplHibernate implements EquipoDAO {
 			sesion.close();
 			sf.close();
 		}
-		
+
 		return eq;
 	}
 
 	public Equipo obtenerCS(String ciudad, int numSocios) {
-Equipo eq = null;
-		
+		Equipo eq = null;
+
 		SessionFactory sf = new Configuration().configure().buildSessionFactory();
 		Session sesion = sf.openSession();
 
 		try {
 			sesion.beginTransaction();
 
-//			eq = (Equipo) sesion.createQuery("FROM Equipo WHERE idEquipo=" + i)
-//					.uniqueResult();
-			
+			// eq = (Equipo) sesion.createQuery("FROM Equipo WHERE idEquipo=" + i)
+			// .uniqueResult();
+
 			eq = (Equipo) sesion.createQuery("FROM Equipo WHERE ciudad=:ci AND numSocios=:ns")
-					.setParameter("ci", ciudad)
-					.setParameter("ns", numSocios)
-					.uniqueResult();
-			
+					.setParameter("ci", ciudad).setParameter("ns", numSocios).uniqueResult();
+
 			sesion.getTransaction().commit();
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -106,7 +103,7 @@ Equipo eq = null;
 			sesion.close();
 			sf.close();
 		}
-		
+
 		return eq;
 	}
 
@@ -118,10 +115,8 @@ Equipo eq = null;
 
 		try {
 			sesion.beginTransaction();
-			equipos = sesion.createCriteria(Equipo.class)
-					.add(Restrictions.gt("numSocios", num))
-					.addOrder(Order.desc("numSocios"))
-					.list();
+			equipos = sesion.createCriteria(Equipo.class).add(Restrictions.gt("numSocios", num))
+					.addOrder(Order.desc("numSocios")).list();
 			sesion.getTransaction().commit();
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -139,9 +134,9 @@ Equipo eq = null;
 
 		try {
 			sesion.beginTransaction();
-			
+
 			sesion.save(eq);
-			
+
 			sesion.getTransaction().commit();
 		} catch (ConstraintViolationException e) {
 			sesion.getTransaction().rollback();
@@ -155,5 +150,4 @@ Equipo eq = null;
 			sf.close();
 		}
 	}
-
 }

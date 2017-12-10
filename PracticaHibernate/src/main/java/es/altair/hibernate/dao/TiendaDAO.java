@@ -8,4 +8,6 @@ public interface TiendaDAO {
 	public void guardar(Tienda t);
 	
 	public List<Tienda> listar();
+	
+	public Tienda obtenerNombre(String n);
 }

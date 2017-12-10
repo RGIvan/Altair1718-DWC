@@ -18,6 +18,7 @@ public class App {
 	public static void main(String[] args) {
 
 		boolean salir = true;
+		String nTienda;
 
 		do {
 
@@ -41,9 +42,9 @@ public class App {
 				System.out.print("Seleccione una de las opciones: ");
 				String var = Leer.dato();
 
-				int opcion = Integer.parseInt(var);
+				int menu = Integer.parseInt(var);
 
-				switch (opcion) {
+				switch (menu) {
 
 				case 0:
 					salir = false;
@@ -71,8 +72,98 @@ public class App {
 					tDAO.guardar(t);
 
 				case 2:
-					break;
+					
+					System.out.println("");
+					System.out.println("Introduzca el nombre de la tienda.");
+					
+					nTienda = Leer.dato();
+					
+					tDAO.obtenerNombre(nTienda);
+					
+					System.out.println("╔══════════════════════════════════════════════════════════════╗");
+					System.out.println("                BIENVENID@ A LA TIENDA: " + nTienda+ "          ");                            
+					System.out.println("╠══════════════════════════════════════════════════════════════╣");
+					System.out.println("║                                                              ║");
+					System.out.println("║  1.- Clientes.                                               ║");
+					System.out.println("║                                                              ║");
+					System.out.println("║  2.- Productos.                                              ║");
+					System.out.println("║                                                              ║");
+					System.out.println("║  3.- Ventas.                                                 ║");
+					System.out.println("║                                                              ║");
+					System.out.println("║  0) Salir.                                                   ║");
+					System.out.println("║                                                              ║");
+					System.out.println("╚══════════════════════════════════════════════════════════════╝");
+					
+					System.out.println("");
+					System.out.print("Seleccione una de las opciones: ");
+					String dato = Leer.dato();
 
+					int submenu = Integer.parseInt(dato);
+					
+					switch (submenu) {
+					
+					case 0:
+						App.main(null);
+						System.out.println("");
+					
+					case 1:
+						System.out.println("╔══════════════════════════════════════════════════════════════╗");
+						System.out.println("               	         MENÚ CLIENTES                          ");                            
+						System.out.println("╠══════════════════════════════════════════════════════════════╣");
+						System.out.println("║                                                              ║");
+						System.out.println("║  1.- Guardar un cliente.                                     ║");
+						System.out.println("║                                                              ║");
+						System.out.println("║  2.- Listar clientes.                                        ║");
+						System.out.println("║                                                              ║");
+						System.out.println("║  3.- Actualizar datos de un cliente.                         ║");
+						System.out.println("║                                                              ║");
+						System.out.println("║  0) Volver.                                                  ║");
+						System.out.println("║                                                              ║");
+						System.out.println("╚══════════════════════════════════════════════════════════════╝");
+						
+						System.out.println("");
+						System.out.print("Seleccione una de las opciones: ");
+						String cliente = Leer.dato();
+						
+					case 2:
+						System.out.println("╔══════════════════════════════════════════════════════════════╗");
+						System.out.println("               	        MENÚ PRODUCTOS                          ");                            
+						System.out.println("╠══════════════════════════════════════════════════════════════╣");
+						System.out.println("║                                                              ║");
+						System.out.println("║  1.- Clientes.                                               ║");
+						System.out.println("║                                                              ║");
+						System.out.println("║  2.- Productos.                                              ║");
+						System.out.println("║                                                              ║");
+						System.out.println("║  3.- Ventas.                                                 ║");
+						System.out.println("║                                                              ║");
+						System.out.println("║  0) Volver.                                                  ║");
+						System.out.println("║                                                              ║");
+						System.out.println("╚══════════════════════════════════════════════════════════════╝");
+						
+						System.out.println("");
+						System.out.print("Seleccione una de las opciones: ");
+						String producto = Leer.dato();
+						
+					case 3:
+						System.out.println("╔══════════════════════════════════════════════════════════════╗");
+						System.out.println("               	        MENÚ VENTAS                             ");                            
+						System.out.println("╠══════════════════════════════════════════════════════════════╣");
+						System.out.println("║                                                              ║");
+						System.out.println("║  1.- Clientes.                                               ║");
+						System.out.println("║                                                              ║");
+						System.out.println("║  2.- Productos.                                              ║");
+						System.out.println("║                                                              ║");
+						System.out.println("║  3.- Ventas.                                                 ║");
+						System.out.println("║                                                              ║");
+						System.out.println("║  0) Volver.                                                  ║");
+						System.out.println("║                                                              ║");
+						System.out.println("╚══════════════════════════════════════════════════════════════╝");
+						
+						System.out.println("");
+						System.out.print("Seleccione una de las opciones: ");
+						String venta = Leer.dato();
+					}
+					
 				case 3:
 					tiendas = tDAO.listar();
 
