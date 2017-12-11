@@ -102,48 +102,60 @@ public class App {
 
 					case 1:
 
-						UIManager.put("OptionPane.minimumSize", new Dimension(350, 150));
-						String c = JOptionPane.showInputDialog(null,
-								"1. Guardar cliente \n" + "2. Listar clientes \n" + "3. Borrar clientes \n"
-										+ "4. Actualizar datos de un cliente \n" + "0) Volver \n" + "\n"
-										+ "Introduce un número: ",
-								"                                   Menú cliente", JOptionPane.NO_OPTION);
+						do {
 
-						int clientes = Integer.parseInt(c);
+							UIManager.put("OptionPane.minimumSize", new Dimension(350, 150));
+							String c = JOptionPane.showInputDialog(null,
+									"1. Guardar cliente \n" + "2. Listar clientes \n" + "3. Borrar clientes \n"
+											+ "4. Actualizar datos de un cliente \n" + "0) Volver \n" + "\n"
+											+ "Introduce un número: ",
+									"                                   Menú cliente", JOptionPane.NO_OPTION);
 
-						switch (clientes) {
-						case 0:
-							App.main(null);
+							int clientes = Integer.parseInt(c);
 
-						case 1:
+							try {
 
-							UIManager.put("OptionPane.minimumSize", new Dimension(100, 100));
-							String nombre = JOptionPane.showInputDialog(null, "Introduzca un nombre.", "",
-									JOptionPane.QUESTION_MESSAGE);
+								switch (clientes) {
 
-							UIManager.put("OptionPane.minimumSize", new Dimension(100, 100));
-							String apellidos = JOptionPane.showInputDialog(null, "Introduzca los apellidos.", "",
-									JOptionPane.QUESTION_MESSAGE);
+								case 0:
+									App.main(null);
 
-							UIManager.put("OptionPane.minimumSize", new Dimension(100, 100));
-							int numTel = Integer.parseInt(JOptionPane.showInputDialog(null,
-									"Introduzca un número de teléfono.", "", JOptionPane.QUESTION_MESSAGE));
+								case 1:
 
-							UIManager.put("OptionPane.minimumSize", new Dimension(100, 100));
-							String email = JOptionPane.showInputDialog(null, "Introduzca un email.", "",
-									JOptionPane.QUESTION_MESSAGE);
+									UIManager.put("OptionPane.minimumSize", new Dimension(100, 100));
+									String nombre = JOptionPane.showInputDialog(null, "Introduzca un nombre.", "",
+											JOptionPane.QUESTION_MESSAGE);
 
-							c1 = new Cliente(nombre, apellidos, numTel, email, t);
+									UIManager.put("OptionPane.minimumSize", new Dimension(100, 100));
+									String apellidos = JOptionPane.showInputDialog(null, "Introduzca los apellidos.",
+											"", JOptionPane.QUESTION_MESSAGE);
 
-							Set<Cliente> cliente = new HashSet<Cliente>();
+									UIManager.put("OptionPane.minimumSize", new Dimension(100, 100));
+									int numTel = Integer.parseInt(JOptionPane.showInputDialog(null,
+											"Introduzca un número de teléfono.", "", JOptionPane.QUESTION_MESSAGE));
 
-							cliente.add(c1);
+									UIManager.put("OptionPane.minimumSize", new Dimension(100, 100));
+									String email = JOptionPane.showInputDialog(null, "Introduzca un email.", "",
+											JOptionPane.QUESTION_MESSAGE);
 
-							t.setClientes(cliente);
-							cDAO.guardarCliente(c1);
-						}
+									c1 = new Cliente(nombre, apellidos, numTel, email, t);
 
-						break;
+									Set<Cliente> cliente = new HashSet<Cliente>();
+
+									cliente.add(c1);
+
+									t.setClientes(cliente);
+									cDAO.guardarCliente(c1);
+									break;
+								}
+
+							} catch (NumberFormatException e) {
+								UIManager.put("OptionPane.minimumSize", new Dimension(100, 100));
+								JOptionPane.showMessageDialog(null, "Introduce un número.", "",
+										JOptionPane.ERROR_MESSAGE);
+							}
+
+						} while (salir == true);
 					}
 
 				case 3:

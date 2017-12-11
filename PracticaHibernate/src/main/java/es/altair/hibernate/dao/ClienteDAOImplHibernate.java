@@ -14,24 +14,6 @@ import es.altair.hibernate.bean.Cliente;
 
 public class ClienteDAOImplHibernate implements ClienteDAO {
 
-	public void guardar(Cliente c) {
-		SessionFactory sf = new Configuration().configure().buildSessionFactory();
-		Session sesion = sf.openSession();
-
-		try {
-			sesion.beginTransaction();
-
-			sesion.save(c);
-
-			sesion.getTransaction().commit();
-		} catch (Exception e) {
-
-		} finally {
-			sesion.close();
-			sf.close();
-		}
-	}
-
 	public void guardarCliente(Cliente c) {
 		SessionFactory sf = new Configuration().configure().buildSessionFactory();
 		Session sesion = sf.openSession();
