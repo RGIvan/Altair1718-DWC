@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Max;
 
 @Entity
 @Table(name="producto")
@@ -17,6 +18,8 @@ public class Producto implements Serializable {
 	
 	@Id
 	private int idProducto;
+	
+	@Max(300)
 	private int cantidad;
 	private Date fechaCad;
 	private double precio;
