@@ -86,8 +86,8 @@ public class App {
 							Tienda t = new Tienda(nt, dir);
 
 							tDAO.guardar(t);
-						} else {
 							
+						} else {
 							App.main(null);
 						}
 						
@@ -152,10 +152,16 @@ public class App {
 
 						UIManager.put("OptionPane.minimumSize", new Dimension(100, 100));
 						int id = Integer.parseInt((JOptionPane.showInputDialog(null, "Introduzca el ID de la tienda.",
-								"", JOptionPane.OK_OPTION)));
+								"", JOptionPane.QUESTION_MESSAGE)));
+						
+						if (id > 0) {
+							Tienda ndir = tDAO.get(id);
+							tDAO.eliminar(ndir);
+							App.main(null);
+						} else {
+							App.main(null);
+						}
 
-						Tienda ndir = tDAO.get(id);
-						tDAO.eliminar(ndir);
 						App.main(null);
 						break;
 					}
