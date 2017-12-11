@@ -37,9 +37,8 @@ public class Producto implements Serializable {
 		this.venta = venta;
 	}
 
-	public Producto(int idProducto, String cantidad, Date fechaCad, double precio, String descripcion) {
+	public Producto(String cantidad, Date fechaCad, double precio, String descripcion) {
 		super();
-		this.idProducto = idProducto;
 		this.cantidad = cantidad;
 		this.fechaCad = fechaCad;
 		this.precio = precio;

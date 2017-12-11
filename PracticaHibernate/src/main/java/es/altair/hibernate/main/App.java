@@ -257,7 +257,32 @@ public class App {
 						App.main(null);
 						break;
 					}
+					
+				case 3:
+					// MENU DE GESTIÓN DE PRODUCTOS
+
+					UIManager.put("OptionPane.minimumSize", new Dimension(350, 150));
+					String mproducto = JOptionPane.showInputDialog(null,
+							"1. Guardar un producto \n" + "2. Listar productos \n"
+									+ "3. Actualizar un producto \n" + "4. Borrar un producto \n" + "0) Salir \n" + "\n"
+									+ "Introduce un número: ",
+							"                                        MENÚ PRODUCTOS", JOptionPane.PLAIN_MESSAGE);
+
+					int producto = Integer.parseInt(mproducto);
+					
+					switch (producto) {
+					case 0:
+						App.main(null);
+						break;
+						
+					case 1:
+						
+						break;
+					}
+					
+					break;
 				}
+					
 
 			} catch (NumberFormatException e) {
 				UIManager.put("OptionPane.minimumSize", new Dimension(100, 100));
