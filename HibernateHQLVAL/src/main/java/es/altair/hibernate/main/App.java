@@ -35,7 +35,7 @@ public class App {
 //		}
 		
 //		System.out.println("OBTENER UN EQUIPO POR ID");
-//		System.out.println(eDAO.obtener(2));
+//		System.out.println(eDAO.obtener(1));
 		
 //		System.out.println("OBTENER UN EQUIPO POR CIUDAD Y SOCIOS");
 //		System.out.println(eDAO.obtenerCS("Sevilla", 50000));

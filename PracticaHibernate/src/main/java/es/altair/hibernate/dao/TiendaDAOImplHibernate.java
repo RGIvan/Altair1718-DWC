@@ -1,7 +1,12 @@
 package es.altair.hibernate.dao;
 
+import java.awt.Dimension;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.swing.JOptionPane;
+import javax.swing.UIManager;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -29,7 +34,6 @@ public class TiendaDAOImplHibernate implements TiendaDAO {
 		}
 	}
 
-	@SuppressWarnings("unchecked")
 	public List<Tienda> listar() {
 		List<Tienda> tiendas = new ArrayList<Tienda>();
 
@@ -41,7 +45,8 @@ public class TiendaDAOImplHibernate implements TiendaDAO {
 			tiendas = sesion.createQuery("FROM Tienda").list();
 			sesion.getTransaction().commit();
 		} catch (Exception e) {
-			System.err.println("No se pudo mostrar la lista.");
+			UIManager.put("OptionPane.minimumSize", new Dimension(100, 100));
+			JOptionPane.showMessageDialog(null, "No se pudo mostrar la lista.", "", JOptionPane.ERROR_MESSAGE);
 		} finally {
 			sesion.close();
 			sf.close();
@@ -50,7 +55,7 @@ public class TiendaDAOImplHibernate implements TiendaDAO {
 		return tiendas;
 	}
 
-	public Tienda obtenerNombre(String n) {
+	public Tienda obtener(int i) {
 
 		Tienda t = null;
 
@@ -60,12 +65,15 @@ public class TiendaDAOImplHibernate implements TiendaDAO {
 		try {
 			sesion.beginTransaction();
 
-			t = (Tienda) sesion.createQuery("FROM Tienda WHERE nombre=:nombre").setParameter("nombre", n)
+			t = (Tienda) sesion.createQuery("FROM Tienda WHERE idTienda=:id").setParameter("id", i)
 					.uniqueResult();
+
 			sesion.getTransaction().commit();
 
 		} catch (Exception e) {
-			System.err.println("El nombre no existe en la BBDD.");
+			UIManager.put("OptionPane.minimumSize", new Dimension(100, 100));
+			JOptionPane.showMessageDialog(null, "El ID o el nombre no coinciden o no existen en la BBDD.", "",
+					JOptionPane.ERROR_MESSAGE);
 			App.main(null);
 
 		} finally {

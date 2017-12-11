@@ -90,8 +90,8 @@ public class EquipoDAOImplHibernate implements EquipoDAO {
 		try {
 			sesion.beginTransaction();
 
-			// eq = (Equipo) sesion.createQuery("FROM Equipo WHERE idEquipo=" + i)
-			// .uniqueResult();
+//			 eq = (Equipo) sesion.createQuery("FROM Equipo WHERE idEquipo=" + i)
+//			 .uniqueResult();
 
 			eq = (Equipo) sesion.createQuery("FROM Equipo WHERE ciudad=:ci AND numSocios=:ns")
 					.setParameter("ci", ciudad).setParameter("ns", numSocios).uniqueResult();

@@ -9,5 +9,5 @@ public interface TiendaDAO {
 	
 	public List<Tienda> listar();
 	
-	public Tienda obtenerNombre(String n);
+	public Tienda obtener(int i);
 }

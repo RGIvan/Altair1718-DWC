@@ -8,6 +8,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.Email;
 
 @Entity
 @Table(name="clientes")
@@ -18,7 +22,10 @@ public class Cliente implements Serializable {
 	private int idCliente;
 	private String nombre;
 	private String apellidos;
+	
+	@Digits(fraction = 9, integer = 9)
 	private int telefono;
+	
 	private String email;
 	
 	@ManyToOne
@@ -89,7 +96,7 @@ public class Cliente implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Cliente [idCliente=" + idCliente + ", nombre=" + nombre + ", apellidos=" + apellidos + ", telefono="
-				+ telefono + ", email=" + email + ", tienda=" + tienda + "]";
+		return "Cliente [nombre=" + nombre + ", apellidos=" + apellidos + ", telefono=" + telefono + ", email=" + email
+				+ "]";
 	}
 }
