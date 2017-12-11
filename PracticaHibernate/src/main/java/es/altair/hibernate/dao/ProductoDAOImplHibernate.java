@@ -25,9 +25,10 @@ public class ProductoDAOImplHibernate implements ProductoDAO {
 		try {
 			sesion.beginTransaction();
 
+			SQLQuery query = sesion.createSQLQuery(
+					"INSERT INTO PRODUCTO (cantidad, fecha, precio, descripcion) VALUES (:cantidad, :fecha , :precio, :descripcion)").setParameter(position, val)
 			
-
-			
+			query.executeUpdate();
 
 			UIManager.put("OptionPane.minimumSize", new Dimension(100, 100));
 			JOptionPane.showMessageDialog(null, "Los datos se han guardado satisfactoriamente.", "",

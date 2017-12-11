@@ -17,13 +17,21 @@ public class Producto implements Serializable {
 	
 	@Id
 	private int idProducto;
-	private String cantidad;
+	private int cantidad;
 	private Date fechaCad;
 	private double precio;
 	private String descripcion;
 	
 	@ManyToMany(cascade=CascadeType.ALL, mappedBy="producto")
 	private Set<Venta> venta = new HashSet<Venta>();
+	
+	public Producto(int cantidad, Date fechaCad, double precio, String descripcion) {
+		super();
+		this.cantidad = cantidad;
+		this.fechaCad = fechaCad;
+		this.precio = precio;
+		this.descripcion = descripcion;
+	}
 	
 	public Producto() {
 		super();
@@ -37,28 +45,12 @@ public class Producto implements Serializable {
 		this.venta = venta;
 	}
 
-	public Producto(String cantidad, Date fechaCad, double precio, String descripcion) {
-		super();
-		this.cantidad = cantidad;
-		this.fechaCad = fechaCad;
-		this.precio = precio;
-		this.descripcion = descripcion;
-	}
-	
 	public int getIdProducto() {
 		return idProducto;
 	}
 
 	public void setIdProducto(int idProducto) {
 		this.idProducto = idProducto;
-	}
-
-	public String getCantidad() {
-		return cantidad;
-	}
-
-	public void setCantidad(String cantidad) {
-		this.cantidad = cantidad;
 	}
 
 	public Date getFechaCad() {
