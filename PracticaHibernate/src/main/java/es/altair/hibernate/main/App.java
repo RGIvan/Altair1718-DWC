@@ -8,6 +8,8 @@ import java.util.Set;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
+import org.jboss.jandex.Main;
+
 import es.altair.hibernate.bean.Cliente;
 import es.altair.hibernate.bean.Tienda;
 import es.altair.hibernate.dao.ClienteDAO;
@@ -20,8 +22,6 @@ public class App {
 	public static ClienteDAO cDAO = new ClienteDAOImplHibernate();
 	public static TiendaDAO tDAO = new TiendaDAOImplHibernate();
 	public static List<Tienda> tiendas = new ArrayList<Tienda>();
-	public static Tienda t = new Tienda();
-	public static Cliente c1 = new Cliente();
 
 	public static void main(String[] args) {
 
@@ -33,11 +33,11 @@ public class App {
 
 				// MENÚ DE BIENVENIDA
 
-				UIManager.put("OptionPane.minimumSize", new Dimension(350, 150));
+				UIManager.put("OptionPane.minimumSize", new Dimension(390, 150));
 				String var = JOptionPane.showInputDialog(null,
-						"1. Crear una tienda \n" + "2. Ingresar en una tienda \n" + "3. Listar tiendas \n"
-								+ "0) Salir \n" + "\n" + "Introduce un número: ",
-						"             Bienvenid@ a su programa de gestión de tiendas", JOptionPane.NO_OPTION);
+						"1. Tiendas \n" + "2. Clientes \n" + "3. Productos \n" + "4. Ventas \n" + "0) Salir \n" + "\n"
+								+ "Introduce un número: ",
+						"             BIENVENID@ A SU PROGRAMA DE GESTIÓN DE TIENDAS", JOptionPane.PLAIN_MESSAGE);
 
 				int menu = Integer.parseInt(var);
 
@@ -55,118 +55,175 @@ public class App {
 
 				case 1:
 
-					// CREACIÓN DE TIENDA
-
-					UIManager.put("OptionPane.minimumSize", new Dimension(100, 100));
-					String tienda = JOptionPane.showInputDialog(null, "Introduzca el nombre de la tienda.", "",
-							JOptionPane.QUESTION_MESSAGE);
-
-					UIManager.put("OptionPane.minimumSize", new Dimension(100, 100));
-					String direccion = JOptionPane.showInputDialog(null, "Introduzca la dirección de la tienda.", "",
-							JOptionPane.QUESTION_MESSAGE);
-
-					t = new Tienda(tienda, direccion);
-
-					tDAO.guardar(t);
-					break;
-
-				case 2:
-
-					// MENÚ DE LA TIENDA
-
-					// UIManager.put("OptionPane.minimumSize", new Dimension(350, 150));
-					// String dato = JOptionPane.showInputDialog(null, "1. Guardar un cliente \n" +
-					// "2. Listar clientes \n"
-					// + "3. Actualizar datos de un cliente \n" + "4. Guardar un producto \n"
-					// + "5. Listar productos \n" + "6. Actualizar datos de un producto \n"
-					// + "7. Comprobar la fecha de un producto \n" + "8. Comprobar las ventas de un
-					// producto \n"
-					// + "9. Comprobar la fecha de todos los productos \n"
-					// + "10. Comprobar las ventas de todos los productos \n" + "0) Volver \n" +
-					// "\n"
-					// + "Introduce un número: ", " Bienvenid@ a " + nTienda,
-					// JOptionPane.NO_OPTION);
-					// int submenu = Integer.parseInt(dato);
+					// MENU DE GESTIÓN DE TIENDA
 
 					UIManager.put("OptionPane.minimumSize", new Dimension(350, 150));
-					String dato = JOptionPane.showInputDialog(null,
-							"1. Clientes \n" + "2. Productos \n" + "3. Ventas \n" + "0) Volver \n" + "\n"
-									+ "Introduce un número: ",
-							"                               Bienvenid@ a su tienda", JOptionPane.NO_OPTION);
-					int submenu = Integer.parseInt(dato);
+					String mtienda = JOptionPane.showInputDialog(null,
+							"1. Crear una tienda \n" + "2. Listar tiendas \n" + "3. Actualizar una tienda \n"
+									+ "4. Borrar una tienda \n" + "0) Salir \n" + "\n" + "Introduce un número: ",
+							"                                           MENÚ TIENDAS", JOptionPane.PLAIN_MESSAGE);
 
-					switch (submenu) {
+					int tienda = Integer.parseInt(mtienda);
+
+					switch (tienda) {
 
 					case 0:
+
 						App.main(null);
+						break;
+					case 1:
+
+						UIManager.put("OptionPane.minimumSize", new Dimension(100, 100));
+						String nt = JOptionPane.showInputDialog(null, "Introduzca el nombre de la tienda.", "",
+								JOptionPane.QUESTION_MESSAGE);
+						
+						if (nt != null) {
+							
+							UIManager.put("OptionPane.minimumSize", new Dimension(100, 100));
+							String dir = JOptionPane.showInputDialog(null, "Introduzca la dirección de la tienda.", "",
+									JOptionPane.OK_OPTION);
+							
+							Tienda t = new Tienda(nt, dir);
+
+							tDAO.guardar(t);
+						} else {
+							
+							App.main(null);
+						}
+						
+						App.main(null);
+						break;
+					case 2:
+						tiendas = tDAO.listar();
+
+						for (Tienda ts : tiendas) {
+							UIManager.put("OptionPane.minimumSize", new Dimension(200, 125));
+							JOptionPane.showMessageDialog(null, ts, "          LISTADO DE TIENDAS",
+									JOptionPane.INFORMATION_MESSAGE);
+						}
+						App.main(null);
+						break;
+					case 3:
+
+						Object[] options = { "Nombre", "Dirección" };
+
+						int elegir = JOptionPane.showOptionDialog(null, "¿Nombre o dirección?", "Elige una opción",
+								JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
+
+						if (elegir == JOptionPane.YES_OPTION) {
+
+							UIManager.put("OptionPane.minimumSize", new Dimension(100, 100));
+							String name = (JOptionPane.showInputDialog(null, "Introduzca un nuevo nombre.", "",
+									JOptionPane.QUESTION_MESSAGE));
+
+							UIManager.put("OptionPane.minimumSize", new Dimension(100, 100));
+							int id = Integer.parseInt((JOptionPane.showInputDialog(null,
+									"Introduzca el ID de la tienda.", "", JOptionPane.QUESTION_MESSAGE)));
+
+							Tienda nname = tDAO.get(id);
+							nname.setNombre(name);
+							tDAO.actualizar(nname);
+
+							UIManager.put("OptionPane.minimumSize", new Dimension(100, 100));
+							JOptionPane.showMessageDialog(null, "El nombre de la tienda ha sido actualizado.", "",
+									JOptionPane.INFORMATION_MESSAGE);
+
+						} else {
+
+							UIManager.put("OptionPane.minimumSize", new Dimension(100, 100));
+							String direccion = (JOptionPane.showInputDialog(null, "Introduzca una nueva dirección.", "",
+									JOptionPane.QUESTION_MESSAGE));
+
+							UIManager.put("OptionPane.minimumSize", new Dimension(100, 100));
+							int id = Integer.parseInt((JOptionPane.showInputDialog(null,
+									"Introduzca el ID de la tienda.", "", JOptionPane.QUESTION_MESSAGE)));
+
+							Tienda ndir = tDAO.get(id);
+							ndir.setDireccion(direccion);
+							tDAO.actualizar(ndir);
+
+							UIManager.put("OptionPane.minimumSize", new Dimension(100, 100));
+							JOptionPane.showMessageDialog(null, "La dirección ha sido actualizada.", "",
+									JOptionPane.INFORMATION_MESSAGE);
+						}
+						App.main(null);
+						break;
+					case 4:
+
+						UIManager.put("OptionPane.minimumSize", new Dimension(100, 100));
+						int id = Integer.parseInt((JOptionPane.showInputDialog(null, "Introduzca el ID de la tienda.",
+								"", JOptionPane.OK_OPTION)));
+
+						Tienda ndir = tDAO.get(id);
+						tDAO.eliminar(ndir);
+						App.main(null);
+						break;
+					}
+
+				case 2:
+					
+					// MENU DE GESTIÓN DE CLIENTES
+
+					UIManager.put("OptionPane.minimumSize", new Dimension(350, 150));
+					String mcliente = JOptionPane.showInputDialog(null,
+							"1. Guardar un cliente \n"
+									+ "2. Listar clientes ordenados \n"
+									+ "por nombre y apellidos \n"
+									+ "3. Actualizar un cliente \n" + "4. Borrar un cliente \n" + "0) Salir \n" + "\n"
+									+ "Introduce un número: ",
+							"                                        MENÚ CLIENTES", JOptionPane.PLAIN_MESSAGE);
+
+					int cliente = Integer.parseInt(mcliente);
+
+					switch (cliente) {
+
+					case 0:
+
+						App.main(null);
+						break;
 
 					case 1:
 
-						do {
+						UIManager.put("OptionPane.minimumSize", new Dimension(100, 100));
+						String nombre = JOptionPane.showInputDialog(null, "Introduzca el nombre.", "",
+								JOptionPane.OK_OPTION);
 
-							UIManager.put("OptionPane.minimumSize", new Dimension(350, 150));
-							String c = JOptionPane.showInputDialog(null,
-									"1. Guardar cliente \n" + "2. Listar clientes \n" + "3. Borrar clientes \n"
-											+ "4. Actualizar datos de un cliente \n" + "0) Volver \n" + "\n"
-											+ "Introduce un número: ",
-									"                                   Menú cliente", JOptionPane.NO_OPTION);
+						UIManager.put("OptionPane.minimumSize", new Dimension(100, 100));
+						String apellidos = JOptionPane.showInputDialog(null, "Introduzca los apellidos.", "",
+								JOptionPane.OK_OPTION);
 
-							int clientes = Integer.parseInt(c);
+						UIManager.put("OptionPane.minimumSize", new Dimension(100, 100));
+						int numTel = Integer.parseInt(JOptionPane.showInputDialog(null,
+								"Introduzca el número de teléfono.", "", JOptionPane.OK_OPTION));
 
-							try {
+						UIManager.put("OptionPane.minimumSize", new Dimension(100, 100));
+						String email = JOptionPane.showInputDialog(null, "Introduzca un e-mail.", "",
+								JOptionPane.OK_OPTION);
 
-								switch (clientes) {
+						UIManager.put("OptionPane.minimumSize", new Dimension(100, 100));
+						int id = Integer.parseInt(JOptionPane.showInputDialog(null,
+								"Introduzca el ID de la tienda para asignar al cliente.", "",
+								JOptionPane.OK_OPTION));
 
-								case 0:
-									App.main(null);
+						Tienda t = tDAO.get(id);
 
-								case 1:
+						Cliente c = new Cliente(nombre, apellidos, numTel, email, t);
 
-									UIManager.put("OptionPane.minimumSize", new Dimension(100, 100));
-									String nombre = JOptionPane.showInputDialog(null, "Introduzca un nombre.", "",
-											JOptionPane.QUESTION_MESSAGE);
+						cDAO.guardarCliente(c);
 
-									UIManager.put("OptionPane.minimumSize", new Dimension(100, 100));
-									String apellidos = JOptionPane.showInputDialog(null, "Introduzca los apellidos.",
-											"", JOptionPane.QUESTION_MESSAGE);
+						App.main(null);
+						break;
 
-									UIManager.put("OptionPane.minimumSize", new Dimension(100, 100));
-									int numTel = Integer.parseInt(JOptionPane.showInputDialog(null,
-											"Introduzca un número de teléfono.", "", JOptionPane.QUESTION_MESSAGE));
+					case 2:
+						UIManager.put("OptionPane.minimumSize", new Dimension(100, 100));
+						int pag = Integer.parseInt(JOptionPane.showInputDialog(null,
+								"Introduzca un número para mostrar mediante paginación.", "", JOptionPane.OK_OPTION));
 
-									UIManager.put("OptionPane.minimumSize", new Dimension(100, 100));
-									String email = JOptionPane.showInputDialog(null, "Introduzca un email.", "",
-											JOptionPane.QUESTION_MESSAGE);
+						cDAO.mostrarPaginacion(pag);
 
-									c1 = new Cliente(nombre, apellidos, numTel, email, t);
-
-									Set<Cliente> cliente = new HashSet<Cliente>();
-
-									cliente.add(c1);
-
-									t.setClientes(cliente);
-									cDAO.guardarCliente(c1);
-									break;
-								}
-
-							} catch (NumberFormatException e) {
-								UIManager.put("OptionPane.minimumSize", new Dimension(100, 100));
-								JOptionPane.showMessageDialog(null, "Introduce un número.", "",
-										JOptionPane.ERROR_MESSAGE);
-							}
-
-						} while (salir == true);
+						App.main(null);
+						break;
 					}
-
-				case 3:
-					tiendas = tDAO.listar();
-
-					for (Tienda ts : tiendas) {
-						UIManager.put("OptionPane.minimumSize", new Dimension(200, 125));
-						JOptionPane.showMessageDialog(null, ts, "          LISTADO DE TIENDAS",
-								JOptionPane.INFORMATION_MESSAGE);
-					}
-					break;
 				}
 
 			} catch (NumberFormatException e) {

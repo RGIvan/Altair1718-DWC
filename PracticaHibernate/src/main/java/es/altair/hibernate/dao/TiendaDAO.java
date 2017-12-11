@@ -9,5 +9,9 @@ public interface TiendaDAO {
 	
 	public List<Tienda> listar();
 	
-	public Tienda obtener(int i);
+	public void actualizar(Tienda t);
+	
+	public Tienda get(int i);
+	
+	public void eliminar(Tienda t);
 }

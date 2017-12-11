@@ -6,6 +6,8 @@ import java.util.List;
 
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
+import javax.validation.ConstraintViolation;
+import javax.validation.ConstraintViolationException;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -25,9 +27,21 @@ public class TiendaDAOImplHibernate implements TiendaDAO {
 
 			sesion.save(t);
 
-			sesion.getTransaction().commit();
-		} catch (Exception e) {
+			UIManager.put("OptionPane.minimumSize", new Dimension(100, 100));
+			JOptionPane.showMessageDialog(null, "La tienda ha sido creada satisfactoriamente.", "",
+					JOptionPane.INFORMATION_MESSAGE);
 
+			sesion.getTransaction().commit();
+		} catch (ConstraintViolationException e) {
+			sesion.getTransaction().rollback();
+			for (ConstraintViolation cv : e.getConstraintViolations()) {
+				UIManager.put("OptionPane.minimumSize", new Dimension(300, 125));
+				JOptionPane.showMessageDialog(null, "Campo: " + cv.getPropertyPath(), "                         CAMPO",
+						JOptionPane.ERROR_MESSAGE);
+				UIManager.put("OptionPane.minimumSize", new Dimension(300, 125));
+				JOptionPane.showMessageDialog(null, "Error: " + cv.getMessage(),
+						"                         DESCRIPCIÓN DEL ERROR", JOptionPane.ERROR_MESSAGE);
+			}
 		} finally {
 			sesion.close();
 			sf.close();
@@ -55,8 +69,27 @@ public class TiendaDAOImplHibernate implements TiendaDAO {
 		return tiendas;
 	}
 
-	public Tienda obtener(int i) {
+	public void actualizar(Tienda t) {
 
+		SessionFactory sf = new Configuration().configure().buildSessionFactory();
+		Session sesion = sf.openSession();
+
+		try {
+			sesion.beginTransaction();
+
+			sesion.update(t);
+
+			sesion.getTransaction().commit();
+		} catch (Exception e) {
+			UIManager.put("OptionPane.minimumSize", new Dimension(100, 100));
+			JOptionPane.showMessageDialog(null, "No se pudo actualizar los datos.", "", JOptionPane.ERROR_MESSAGE);
+		} finally {
+			sesion.close();
+			sf.close();
+		}
+	}
+
+	public Tienda get(int i) {
 		Tienda t = null;
 
 		SessionFactory sf = new Configuration().configure().buildSessionFactory();
@@ -65,16 +98,10 @@ public class TiendaDAOImplHibernate implements TiendaDAO {
 		try {
 			sesion.beginTransaction();
 
-			t = (Tienda) sesion.createQuery("FROM Tienda WHERE idTienda=:id").setParameter("id", i)
-					.uniqueResult();
+			t = sesion.get(Tienda.class, i);
 
 			sesion.getTransaction().commit();
-
-		} catch (Exception e) {
-			UIManager.put("OptionPane.minimumSize", new Dimension(100, 100));
-			JOptionPane.showMessageDialog(null, "El ID o el nombre no coinciden o no existen en la BBDD.", "",
-					JOptionPane.ERROR_MESSAGE);
-			App.main(null);
+		} catch (Exception ex) {
 
 		} finally {
 			sesion.close();
@@ -82,5 +109,27 @@ public class TiendaDAOImplHibernate implements TiendaDAO {
 		}
 
 		return t;
+	}
+
+	public void eliminar(Tienda t) {
+		SessionFactory sf = new Configuration().configure().buildSessionFactory();
+		Session sesion = sf.openSession();
+
+		try {
+			sesion.beginTransaction();
+
+			sesion.delete(t);
+
+			UIManager.put("OptionPane.minimumSize", new Dimension(100, 100));
+			JOptionPane.showMessageDialog(null, "La tienda ha sido eliminada satisfactoriamente.", "",
+					JOptionPane.INFORMATION_MESSAGE);
+
+			sesion.getTransaction().commit();
+		} catch (Exception ex) {
+
+		} finally {
+			sesion.close();
+			sf.close();
+		}
 	}
 }

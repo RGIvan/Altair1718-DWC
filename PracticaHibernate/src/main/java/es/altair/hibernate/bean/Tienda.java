@@ -9,18 +9,23 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name="tiendas")
+@Table(name = "tiendas")
 public class Tienda implements Serializable {
-	
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idTienda;
-	private String nombre;
-	private String direccion;
 	
-	@OneToMany(mappedBy="tienda", cascade=CascadeType.ALL)
+	@NotNull
+	private String nombre;
+	
+	@NotNull
+	private String direccion;
+
+	@OneToMany(mappedBy = "tienda", cascade = CascadeType.ALL)
 	private Set<Cliente> clientes;
 
 	public Tienda() {
@@ -68,7 +73,6 @@ public class Tienda implements Serializable {
 
 	@Override
 	public String toString() {
-		System.out.println("");
 		return "Nombre: " + nombre + "\nDirección: " + direccion + "\nID de la tienda: " + idTienda + "\n";
 	}
 }

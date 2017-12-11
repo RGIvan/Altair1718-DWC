@@ -6,4 +6,5 @@ public interface ClienteDAO {
 	
 	public void guardarCliente(Cliente c);
 	
+	public void mostrarPaginacion(int pagina);
 }

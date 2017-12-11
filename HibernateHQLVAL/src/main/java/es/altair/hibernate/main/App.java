@@ -52,10 +52,10 @@ public class App {
 //			System.out.println(equipo.getNombre() + ", " + equipo.getNumSocios());
 //		}
 		
-//		System.out.println("LISTADO PAGINADO DE JUGADORES");
-//		jDAO.mostrarJugadoresPaginacion(3);
+		System.out.println("LISTADO PAGINADO DE JUGADORES");
+		jDAO.mostrarJugadoresPaginacion(3);
 		
-		Equipo eq = new Equipo("EquipoVAL", "Sevilla", 1000000);
-		eDAO.guardar(eq);
+//		Equipo eq = new Equipo("EquipoVAL", "Sevilla", 1000000);
+//		eDAO.guardar(eq);
 	}
 }

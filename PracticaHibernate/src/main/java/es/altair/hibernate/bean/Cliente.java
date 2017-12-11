@@ -1,6 +1,8 @@
 package es.altair.hibernate.bean;
 
 import java.io.Serializable;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -9,29 +11,34 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Digits;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Email;
 
 @Entity
-@Table(name="clientes")
+@Table(name = "clientes")
 public class Cliente implements Serializable {
-	
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idCliente;
+	@NotNull
 	private String nombre;
+	@NotNull
 	private String apellidos;
-	
+
 	@Digits(fraction = 9, integer = 9)
 	private int telefono;
-	
+
+	@Email
+	@NotNull
 	private String email;
-	
-	@ManyToOne
-	@JoinColumn(name="idTienda")
+
+	@NotNull
+	@ManyToOne(cascade = { CascadeType.ALL })
+	@JoinColumn(name = "idTienda")
 	private Tienda tienda;
-	
+
 	public Cliente() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -96,7 +103,6 @@ public class Cliente implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Cliente [nombre=" + nombre + ", apellidos=" + apellidos + ", telefono=" + telefono + ", email=" + email
-				+ "]";
+		return "Nombre: " + nombre + "\nApellidos: " + apellidos + "\nTeléfono: " + telefono + "\nEmail: " + email;
 	}
 }

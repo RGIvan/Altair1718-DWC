@@ -29,20 +29,20 @@ public class App
         jugadores.add(j3);
         e1.setJugadores(jugadores);
         
-        // SAVE Equipo
-        //eDAO.save(e1);
+//          SAVE Equipo
+        eDAO.save(e1);
         
-        // SAVE Jugador
-        Equipo e2 = eDAO.get(8);
+//         SAVE Jugador
+        Equipo e2 = eDAO.get(1);
         System.out.println(e2);
         Jugador j4 = new Jugador("j4", "Defensa", e2);
         jDAO.save(j4);
         
         // UPDATE Jugador
-//        Jugador j44 = jDAO.get(21);        
-//        j44.setNombre("j44");
-//        System.out.println(j44);
-        //jDAO.update(j44);
+        Jugador j44 = jDAO.get(21);        
+        j44.setNombre("j44");
+        System.out.println(j44);
+        jDAO.update(j44);
         
         // DELETE Jugador
         //jDAO.delete(j44);
