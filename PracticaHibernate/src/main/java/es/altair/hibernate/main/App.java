@@ -290,6 +290,8 @@ public class App {
 						DateFormat outputFormat = new SimpleDateFormat("dd.MM.yy");
 						Date date = inputFormat.parse(fechaCad);
 						String formattedDate = outputFormat.format(date);
+						
+						JOptionPane.showMessageDialog(null, formattedDate);
 
 						UIManager.put("OptionPane.minimumSize", new Dimension(100, 100));
 						int precio = Integer.parseInt(JOptionPane.showInputDialog(null,
