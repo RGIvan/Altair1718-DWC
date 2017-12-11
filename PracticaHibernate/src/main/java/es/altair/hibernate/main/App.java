@@ -81,7 +81,7 @@ public class App {
 							
 							UIManager.put("OptionPane.minimumSize", new Dimension(100, 100));
 							String dir = JOptionPane.showInputDialog(null, "Introduzca la dirección de la tienda.", "",
-									JOptionPane.OK_OPTION);
+									JOptionPane.QUESTION_MESSAGE);
 							
 							Tienda t = new Tienda(nt, dir);
 
