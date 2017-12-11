@@ -1,7 +1,11 @@
 package es.altair.hibernate.main;
 
 import java.awt.Dimension;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
@@ -252,40 +256,60 @@ public class App {
 						UIManager.put("OptionPane.minimumSize", new Dimension(100, 100));
 						int idCliente = Integer.parseInt((JOptionPane.showInputDialog(null,
 								"Introduzca el ID del cliente.", "", JOptionPane.QUESTION_MESSAGE)));
-						
+
 						cDAO.eliminar(idCliente);
 						App.main(null);
 						break;
 					}
-					
+
 				case 3:
 					// MENU DE GESTIÓN DE PRODUCTOS
 
 					UIManager.put("OptionPane.minimumSize", new Dimension(350, 150));
 					String mproducto = JOptionPane.showInputDialog(null,
-							"1. Guardar un producto \n" + "2. Listar productos \n"
-									+ "3. Actualizar un producto \n" + "4. Borrar un producto \n" + "0) Salir \n" + "\n"
-									+ "Introduce un número: ",
+							"1. Guardar un producto \n" + "2. Listar productos \n" + "3. Actualizar un producto \n"
+									+ "4. Borrar un producto \n" + "0) Salir \n" + "\n" + "Introduce un número: ",
 							"                                        MENÚ PRODUCTOS", JOptionPane.PLAIN_MESSAGE);
 
 					int producto = Integer.parseInt(mproducto);
-					
+
 					switch (producto) {
 					case 0:
 						App.main(null);
 						break;
-						
+
 					case 1:
-						
+						UIManager.put("OptionPane.minimumSize", new Dimension(100, 100));
+						String cantidad = JOptionPane.showInputDialog(null, "Introduzca una cantidad.", "",
+								JOptionPane.QUESTION_MESSAGE);
+
+						UIManager.put("OptionPane.minimumSize", new Dimension(100, 100));
+						String fechaCad = JOptionPane.showInputDialog("Inserta una fecha (MM/dd/yy)");
+
+						DateFormat inputFormat = new SimpleDateFormat("MM/dd/yy");
+						DateFormat outputFormat = new SimpleDateFormat("dd.MM.yy");
+						Date date = inputFormat.parse(fechaCad);
+						String formattedDate = outputFormat.format(date);
+
+						UIManager.put("OptionPane.minimumSize", new Dimension(100, 100));
+						int precio = Integer.parseInt(JOptionPane.showInputDialog(null,
+								"Introduzca un precio.", "", JOptionPane.QUESTION_MESSAGE));
+
+						UIManager.put("OptionPane.minimumSize", new Dimension(100, 100));
+						String email = JOptionPane.showInputDialog(null, "Introduzca una descripción.", "",
+								JOptionPane.QUESTION_MESSAGE);
 						break;
 					}
 					break;
 				}
-					
 
 			} catch (NumberFormatException e) {
 				UIManager.put("OptionPane.minimumSize", new Dimension(100, 100));
 				JOptionPane.showMessageDialog(null, "Introduce un número.", "", JOptionPane.ERROR_MESSAGE);
+				
+			} catch (ParseException e) {
+				UIManager.put("OptionPane.minimumSize", new Dimension(100, 100));
+				JOptionPane.showMessageDialog(null, "La fecha no tiene un formato correcto.", "", JOptionPane.ERROR_MESSAGE);
 			}
 
 		} while (salir == true);
