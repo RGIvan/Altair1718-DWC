@@ -1,27 +1,51 @@
 package es.altair.hibernate.bean;
 
+import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
-public class Producto {
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="producto")
+public class Producto implements Serializable {
+	
+	@Id
 	private int idProducto;
 	private String cantidad;
 	private Date fechaCad;
 	private double precio;
 	private String descripcion;
 	
+	@ManyToMany(cascade=CascadeType.ALL, mappedBy="producto")
+	private Set<Venta> venta = new HashSet<Venta>();
+	
 	public Producto() {
 		super();
-		// TODO Auto-generated constructor stub
+	}
+	
+	public Set<Venta> getVenta() {
+		return venta;
 	}
 
-	public Producto(String cantidad, Date fechaCad, double precio, String descripcion) {
+	public void setVenta(Set<Venta> venta) {
+		this.venta = venta;
+	}
+
+	public Producto(int idProducto, String cantidad, Date fechaCad, double precio, String descripcion) {
 		super();
+		this.idProducto = idProducto;
 		this.cantidad = cantidad;
 		this.fechaCad = fechaCad;
 		this.precio = precio;
 		this.descripcion = descripcion;
 	}
-
+	
 	public int getIdProducto() {
 		return idProducto;
 	}

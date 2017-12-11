@@ -2,13 +2,9 @@ package es.altair.hibernate.main;
 
 import java.awt.Dimension;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
-
-import org.jboss.jandex.Main;
 
 import es.altair.hibernate.bean.Cliente;
 import es.altair.hibernate.bean.Tienda;
