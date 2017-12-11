@@ -18,7 +18,7 @@ import es.altair.hibernate.main.App;
 
 public class ProductoDAOImplHibernate implements ProductoDAO {
 
-	public void guardarProducto(String cantidad, Date fecha, double precio, String descripcion) {
+	public void guardarProducto(int cantidad, Date fecha, double precio, String descripcion) {
 		SessionFactory sf = new Configuration().configure().buildSessionFactory();
 		Session sesion = sf.openSession();
 

@@ -4,5 +4,5 @@ import java.util.Date;
 
 public interface ProductoDAO {
 	
-	public void guardarProducto(String cantidad, Date fecha, double precio, String descripcion);
+	public void guardarProducto(int cantidad, Date fecha, double precio, String descripcion);
 }
