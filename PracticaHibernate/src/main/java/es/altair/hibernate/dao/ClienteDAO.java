@@ -7,4 +7,12 @@ public interface ClienteDAO {
 	public void guardarCliente(Cliente c);
 	
 	public void mostrarPaginacion(int pagina);
+	
+	public void actualizarEmail(String email, int idCliente);
+	
+	public void actualizarTel(int numTel, int idCliente);
+	
+	public Cliente obtener(int i);
+	
+	public void eliminar(int i);
 }

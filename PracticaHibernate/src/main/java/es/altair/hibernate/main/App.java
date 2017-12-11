@@ -76,21 +76,14 @@ public class App {
 						UIManager.put("OptionPane.minimumSize", new Dimension(100, 100));
 						String nt = JOptionPane.showInputDialog(null, "Introduzca el nombre de la tienda.", "",
 								JOptionPane.QUESTION_MESSAGE);
-						
-						if (nt != null) {
-							
-							UIManager.put("OptionPane.minimumSize", new Dimension(100, 100));
-							String dir = JOptionPane.showInputDialog(null, "Introduzca la dirección de la tienda.", "",
-									JOptionPane.QUESTION_MESSAGE);
-							
-							Tienda t = new Tienda(nt, dir);
 
-							tDAO.guardar(t);
-							
-						} else {
-							App.main(null);
-						}
-						
+						UIManager.put("OptionPane.minimumSize", new Dimension(100, 100));
+						String dir = JOptionPane.showInputDialog(null, "Introduzca la dirección de la tienda.", "",
+								JOptionPane.QUESTION_MESSAGE);
+
+						Tienda t = new Tienda(nt, dir);
+
+						tDAO.guardar(t);
 						App.main(null);
 						break;
 					case 2:
@@ -153,28 +146,20 @@ public class App {
 						UIManager.put("OptionPane.minimumSize", new Dimension(100, 100));
 						int id = Integer.parseInt((JOptionPane.showInputDialog(null, "Introduzca el ID de la tienda.",
 								"", JOptionPane.QUESTION_MESSAGE)));
-						
-						if (id > 0) {
-							Tienda ndir = tDAO.get(id);
-							tDAO.eliminar(ndir);
-							App.main(null);
-						} else {
-							App.main(null);
-						}
 
+						Tienda ndir = tDAO.get(id);
+						tDAO.eliminar(ndir);
 						App.main(null);
 						break;
 					}
 
 				case 2:
-					
+
 					// MENU DE GESTIÓN DE CLIENTES
 
 					UIManager.put("OptionPane.minimumSize", new Dimension(350, 150));
 					String mcliente = JOptionPane.showInputDialog(null,
-							"1. Guardar un cliente \n"
-									+ "2. Listar clientes ordenados \n"
-									+ "por nombre y apellidos \n"
+							"1. Guardar un cliente \n" + "2. Listar clientes ordenados \n" + "por nombre y apellidos \n"
 									+ "3. Actualizar un cliente \n" + "4. Borrar un cliente \n" + "0) Salir \n" + "\n"
 									+ "Introduce un número: ",
 							"                                        MENÚ CLIENTES", JOptionPane.PLAIN_MESSAGE);
@@ -192,24 +177,24 @@ public class App {
 
 						UIManager.put("OptionPane.minimumSize", new Dimension(100, 100));
 						String nombre = JOptionPane.showInputDialog(null, "Introduzca el nombre.", "",
-								JOptionPane.OK_OPTION);
+								JOptionPane.QUESTION_MESSAGE);
 
 						UIManager.put("OptionPane.minimumSize", new Dimension(100, 100));
 						String apellidos = JOptionPane.showInputDialog(null, "Introduzca los apellidos.", "",
-								JOptionPane.OK_OPTION);
+								JOptionPane.QUESTION_MESSAGE);
 
 						UIManager.put("OptionPane.minimumSize", new Dimension(100, 100));
 						int numTel = Integer.parseInt(JOptionPane.showInputDialog(null,
-								"Introduzca el número de teléfono.", "", JOptionPane.OK_OPTION));
+								"Introduzca el número de teléfono.", "", JOptionPane.QUESTION_MESSAGE));
 
 						UIManager.put("OptionPane.minimumSize", new Dimension(100, 100));
 						String email = JOptionPane.showInputDialog(null, "Introduzca un e-mail.", "",
-								JOptionPane.OK_OPTION);
+								JOptionPane.QUESTION_MESSAGE);
 
 						UIManager.put("OptionPane.minimumSize", new Dimension(100, 100));
 						int id = Integer.parseInt(JOptionPane.showInputDialog(null,
 								"Introduzca el ID de la tienda para asignar al cliente.", "",
-								JOptionPane.OK_OPTION));
+								JOptionPane.QUESTION_MESSAGE));
 
 						Tienda t = tDAO.get(id);
 
@@ -223,10 +208,56 @@ public class App {
 					case 2:
 						UIManager.put("OptionPane.minimumSize", new Dimension(100, 100));
 						int pag = Integer.parseInt(JOptionPane.showInputDialog(null,
-								"Introduzca un número para mostrar mediante paginación.", "", JOptionPane.OK_OPTION));
+								"Introduzca un número para mostrar mediante paginación.", "",
+								JOptionPane.QUESTION_MESSAGE));
 
 						cDAO.mostrarPaginacion(pag);
 
+						App.main(null);
+						break;
+
+					case 3:
+
+						Object[] options = { "Teléfono", "E-mail" };
+
+						int elegir = JOptionPane.showOptionDialog(null, "¿Teléfono o e-mail?", "Elige una opción",
+								JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
+
+						if (elegir == JOptionPane.YES_OPTION) {
+
+							UIManager.put("OptionPane.minimumSize", new Dimension(100, 100));
+							String num = (JOptionPane.showInputDialog(null, "Introduzca un nuevo teléfono.", "",
+									JOptionPane.QUESTION_MESSAGE));
+
+							int tel = Integer.parseInt(num);
+
+							UIManager.put("OptionPane.minimumSize", new Dimension(100, 100));
+							int idCliente = Integer.parseInt((JOptionPane.showInputDialog(null,
+									"Introduzca el ID del cliente.", "", JOptionPane.QUESTION_MESSAGE)));
+
+							cDAO.actualizarTel(tel, idCliente);
+
+						} else {
+
+							UIManager.put("OptionPane.minimumSize", new Dimension(100, 100));
+							String nemail = (JOptionPane.showInputDialog(null, "Introduzca un nuevo e-mail.", "",
+									JOptionPane.QUESTION_MESSAGE));
+
+							UIManager.put("OptionPane.minimumSize", new Dimension(100, 100));
+							int idCliente = Integer.parseInt((JOptionPane.showInputDialog(null,
+									"Introduzca el ID del cliente.", "", JOptionPane.QUESTION_MESSAGE)));
+
+							cDAO.actualizarEmail(nemail, idCliente);
+						}
+						App.main(null);
+						break;
+
+					case 4:
+						UIManager.put("OptionPane.minimumSize", new Dimension(100, 100));
+						int idCliente = Integer.parseInt((JOptionPane.showInputDialog(null,
+								"Introduzca el ID del cliente.", "", JOptionPane.QUESTION_MESSAGE)));
+						
+						cDAO.eliminar(idCliente);
 						App.main(null);
 						break;
 					}
