@@ -14,13 +14,19 @@ import es.altair.hibernate.bean.Cliente;
 import es.altair.hibernate.bean.Tienda;
 import es.altair.hibernate.dao.ClienteDAO;
 import es.altair.hibernate.dao.ClienteDAOImplHibernate;
+import es.altair.hibernate.dao.ProductoDAO;
+import es.altair.hibernate.dao.ProductoDAOImplHibernate;
 import es.altair.hibernate.dao.TiendaDAO;
 import es.altair.hibernate.dao.TiendaDAOImplHibernate;
+import es.altair.hibernate.dao.VentaDAO;
+import es.altair.hibernate.dao.VentaDAOImplHibernate;
 
 public class App {
 
 	public static ClienteDAO cDAO = new ClienteDAOImplHibernate();
 	public static TiendaDAO tDAO = new TiendaDAOImplHibernate();
+	public static ProductoDAO pDAO = new ProductoDAOImplHibernate();
+	public static VentaDAO vDAO = new VentaDAOImplHibernate();
 	public static List<Tienda> tiendas = new ArrayList<Tienda>();
 
 	public static void main(String[] args) {
@@ -280,26 +286,25 @@ public class App {
 
 					case 1:
 						UIManager.put("OptionPane.minimumSize", new Dimension(100, 100));
-						String cantidad = JOptionPane.showInputDialog(null, "Introduzca una cantidad.", "",
-								JOptionPane.QUESTION_MESSAGE);
+						int cantidad = Integer.parseInt(JOptionPane.showInputDialog(null, "Introduzca una cantidad.",
+								"", JOptionPane.QUESTION_MESSAGE));
 
 						UIManager.put("OptionPane.minimumSize", new Dimension(100, 100));
-						String fechaCad = JOptionPane.showInputDialog("Inserta una fecha (MM/dd/yy)");
+						String fechaCad = JOptionPane.showInputDialog("Inserta una fecha (dd/MM/yy)");
 
-						DateFormat inputFormat = new SimpleDateFormat("MM/dd/yy");
-						DateFormat outputFormat = new SimpleDateFormat("dd.MM.yy");
+						DateFormat inputFormat = new SimpleDateFormat("dd/MM/yy");
 						Date date = inputFormat.parse(fechaCad);
-						String formattedDate = outputFormat.format(date);
-						
-						JOptionPane.showMessageDialog(null, formattedDate);
 
 						UIManager.put("OptionPane.minimumSize", new Dimension(100, 100));
-						int precio = Integer.parseInt(JOptionPane.showInputDialog(null,
-								"Introduzca un precio.", "", JOptionPane.QUESTION_MESSAGE));
+						double precio = Double.parseDouble((JOptionPane.showInputDialog(null, "Introduzca un precio.",
+								"", JOptionPane.QUESTION_MESSAGE)));
 
 						UIManager.put("OptionPane.minimumSize", new Dimension(100, 100));
-						String email = JOptionPane.showInputDialog(null, "Introduzca una descripción.", "",
+						String descripcion = JOptionPane.showInputDialog(null, "Introduzca una descripción.", "",
 								JOptionPane.QUESTION_MESSAGE);
+
+						pDAO.guardarProducto(cantidad, date, precio, descripcion);
+
 						break;
 					}
 					break;
@@ -308,10 +313,11 @@ public class App {
 			} catch (NumberFormatException e) {
 				UIManager.put("OptionPane.minimumSize", new Dimension(100, 100));
 				JOptionPane.showMessageDialog(null, "Introduce un número.", "", JOptionPane.ERROR_MESSAGE);
-				
+
 			} catch (ParseException e) {
 				UIManager.put("OptionPane.minimumSize", new Dimension(100, 100));
-				JOptionPane.showMessageDialog(null, "La fecha no tiene un formato correcto.", "", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(null, "La fecha no tiene un formato correcto.", "",
+						JOptionPane.ERROR_MESSAGE);
 			}
 
 		} while (salir == true);

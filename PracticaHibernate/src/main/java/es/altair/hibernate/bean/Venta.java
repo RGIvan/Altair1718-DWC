@@ -10,11 +10,15 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 public class Venta implements Serializable {
 	
 	@Id
 	private int idVenta;
+	
+	@Temporal(TemporalType.DATE)
 	private Date fechaVenta;
 	private int cantidadVenta;
 	

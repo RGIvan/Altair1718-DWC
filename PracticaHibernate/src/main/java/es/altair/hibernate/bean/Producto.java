@@ -10,6 +10,8 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.Max;
 
 @Entity
@@ -21,6 +23,8 @@ public class Producto implements Serializable {
 	
 	@Max(300)
 	private int cantidad;
+	
+	@Temporal(TemporalType.DATE)
 	private Date fechaCad;
 	private double precio;
 	private String descripcion;
