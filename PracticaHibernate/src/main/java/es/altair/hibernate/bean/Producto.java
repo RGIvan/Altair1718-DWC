@@ -15,7 +15,7 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.Max;
 
 @Entity
-@Table(name="producto")
+@Table(name="productos")
 public class Producto implements Serializable {
 	
 	@Id

@@ -1,10 +1,10 @@
-CREATE DATABASE  IF NOT EXISTS `hibernatepractica` /*!40100 DEFAULT CHARACTER SET utf8 */;
-USE `hibernatepractica`;
--- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
+CREATE DATABASE  IF NOT EXISTS `ivanroalesgarcia` /*!40100 DEFAULT CHARACTER SET utf8 */;
+USE `ivanroalesgarcia`;
+-- MySQL dump 10.13  Distrib 5.7.16, for Win64 (x86_64)
 --
--- Host: localhost    Database: hibernatepractica
+-- Host: localhost    Database: ivanroalesgarcia
 -- ------------------------------------------------------
--- Server version	5.7.19-log
+-- Server version	5.7.16-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -33,7 +33,7 @@ CREATE TABLE `clientes` (
   `idTienda` int(11) DEFAULT NULL,
   PRIMARY KEY (`idCliente`),
   KEY `idTienda_idx` (`idTienda`),
-  CONSTRAINT `idTienda` FOREIGN KEY (`idTienda`) REFERENCES `tiendas` (`idtienda`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `idTienda` FOREIGN KEY (`idTienda`) REFERENCES `tiendas` (`idTienda`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -56,7 +56,7 @@ DROP TABLE IF EXISTS `productos`;
 CREATE TABLE `productos` (
   `idProducto` int(11) NOT NULL AUTO_INCREMENT,
   `cantidad` int(11) DEFAULT NULL,
-  `fechaCad` datetime DEFAULT NULL,
+  `fechaCad` date DEFAULT NULL,
   `precio` double DEFAULT NULL,
   `descripcion` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`idProducto`)
@@ -80,10 +80,10 @@ DROP TABLE IF EXISTS `tiendas`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `tiendas` (
-  `idtienda` int(11) NOT NULL AUTO_INCREMENT,
+  `idTienda` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(45) DEFAULT NULL,
   `direccion` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`idtienda`)
+  PRIMARY KEY (`idTienda`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -107,8 +107,8 @@ CREATE TABLE `ventas` (
   `idVenta` int(11) NOT NULL AUTO_INCREMENT,
   `idProducto` int(11) DEFAULT NULL,
   `idCliente` int(11) DEFAULT NULL,
-  `fechaVenta` varchar(45) DEFAULT NULL,
-  `cantidadVenta` varchar(45) DEFAULT NULL,
+  `fechaVenta` date DEFAULT NULL,
+  `cantidadVenta` int(11) DEFAULT NULL,
   PRIMARY KEY (`idVenta`),
   KEY `idProducto_idx` (`idProducto`),
   KEY `idCliente_idx` (`idCliente`),
@@ -135,4 +135,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-11-30  9:08:22
+-- Dump completed on 2017-12-12  2:31:03

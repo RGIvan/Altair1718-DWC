@@ -26,7 +26,7 @@ public class ProductoDAOImplHibernate implements ProductoDAO {
 			sesion.beginTransaction();
 
 			SQLQuery query = (SQLQuery) sesion.createSQLQuery(
-					"INSERT INTO PRODUCTO (cantidad, fecha, precio, descripcion) VALUES (:cantidad, :fecha , :precio, :descripcion)")
+					"INSERT INTO PRODUCTOS (cantidad, fechaCad, precio, descripcion) VALUES (:cantidad, :fecha , :precio, :descripcion)")
 					.setParameter("cantidad", cantidad).setParameter("fecha", fecha).setParameter("precio", precio)
 					.setParameter("descripcion", descripcion);
 			query.executeUpdate();
@@ -50,7 +50,7 @@ public class ProductoDAOImplHibernate implements ProductoDAO {
 
 		catch (Exception exx) {
 			UIManager.put("OptionPane.minimumSize", new Dimension(100, 100));
-			JOptionPane.showMessageDialog(null, "No se pudieron actualizar los datos.", "", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "No se pudieron guardar los datos.", "", JOptionPane.ERROR_MESSAGE);
 			App.main(null);
 
 		} finally {
