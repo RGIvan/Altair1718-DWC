@@ -1,5 +1,8 @@
 package es.altair.hibernate.dao;
 
-public interface VentaDAO {
+import es.altair.hibernate.bean.Venta;
 
+public interface VentaDAO {
+	
+	public void guardarVenta(Venta v);
 }

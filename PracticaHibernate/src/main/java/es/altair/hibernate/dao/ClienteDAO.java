@@ -12,7 +12,7 @@ public interface ClienteDAO {
 	
 	public void actualizarTel(int numTel, int idCliente);
 	
-	public Cliente obtener(int i);
+	public Cliente get(int i);
 	
 	public void eliminar(int i);
 }

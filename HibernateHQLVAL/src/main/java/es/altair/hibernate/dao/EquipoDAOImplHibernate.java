@@ -116,7 +116,7 @@ public class EquipoDAOImplHibernate implements EquipoDAO {
 		try {
 			sesion.beginTransaction();
 			equipos = sesion.createCriteria(Equipo.class).add(Restrictions.gt("numSocios", num))
-					.addOrder(Order.desc("numSocios")).list();
+					.addOrder(Order.asc("numSocios")).list();
 			sesion.getTransaction().commit();
 		} catch (Exception e) {
 			// TODO: handle exception

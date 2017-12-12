@@ -40,7 +40,13 @@ public class ClienteDAOImplHibernate implements ClienteDAO {
 				JOptionPane.showMessageDialog(null, "Error: " + cv.getMessage(),
 						"                         DESCRIPCIÓN DEL ERROR", JOptionPane.ERROR_MESSAGE);
 			}
-		} finally {
+		} catch (Exception e) {
+			UIManager.put("OptionPane.minimumSize", new Dimension(100, 100));
+			JOptionPane.showMessageDialog(null, "No se pudieron guardar los datos.", "", JOptionPane.ERROR_MESSAGE);
+			App.main(null);
+		}
+		
+		finally {
 			sesion.close();
 			sf.close();
 		}
@@ -71,7 +77,9 @@ public class ClienteDAOImplHibernate implements ClienteDAO {
 
 			sesion.getTransaction().commit();
 		} catch (Exception e) {
-			// TODO: handle exception
+			UIManager.put("OptionPane.minimumSize", new Dimension(100, 100));
+			JOptionPane.showMessageDialog(null, "Error en la paginación de los datos.", "", JOptionPane.ERROR_MESSAGE);
+			App.main(null);
 		} finally {
 			sesion.close();
 			sf.close();
@@ -159,7 +167,7 @@ public class ClienteDAOImplHibernate implements ClienteDAO {
 		}
 	}
 
-	public Cliente obtener(int i) {
+	public Cliente get(int i) {
 		Cliente c = null;
 
 		SessionFactory sf = new Configuration().configure().buildSessionFactory();
@@ -173,7 +181,9 @@ public class ClienteDAOImplHibernate implements ClienteDAO {
 
 			sesion.getTransaction().commit();
 		} catch (Exception e) {
-			// TODO: handle exception
+			UIManager.put("OptionPane.minimumSize", new Dimension(100, 100));
+			JOptionPane.showMessageDialog(null, "Error al seleccionar el ID.", "", JOptionPane.ERROR_MESSAGE);
+			App.main(null);
 		} finally {
 			sesion.close();
 			sf.close();
@@ -208,7 +218,6 @@ public class ClienteDAOImplHibernate implements ClienteDAO {
 		} finally {
 			sesion.close();
 			sf.close();
-
 		}
 	}
 }
