@@ -26,7 +26,7 @@ public class ClienteDAOImplHibernate implements ClienteDAO {
 
 			sesion.save(c);
 
-			JOptionPane.showMessageDialog(null, "El cliente se ha guardado satisfactoriamente.", "",
+			JOptionPane.showMessageDialog(null, "El cliente se ha guardado correctamente.", "",
 					JOptionPane.INFORMATION_MESSAGE);
 
 			sesion.getTransaction().commit();

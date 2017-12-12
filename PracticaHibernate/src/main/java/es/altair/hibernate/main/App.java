@@ -269,6 +269,7 @@ public class App {
 					}
 
 				case 3:
+					
 					// MENU DE GESTIÓN DE PRODUCTOS
 
 					UIManager.put("OptionPane.minimumSize", new Dimension(350, 150));
@@ -285,26 +286,33 @@ public class App {
 						break;
 
 					case 1:
+						
 						UIManager.put("OptionPane.minimumSize", new Dimension(100, 100));
 						int cantidad = Integer.parseInt(JOptionPane.showInputDialog(null, "Introduzca una cantidad.",
 								"", JOptionPane.QUESTION_MESSAGE));
 
 						UIManager.put("OptionPane.minimumSize", new Dimension(100, 100));
-						String fechaCad = JOptionPane.showInputDialog(null, "Inserta una fecha (dd/MM/yy)", "", JOptionPane.QUESTION_MESSAGE); 
+						String fechaCad = JOptionPane.showInputDialog(null, "Inserta una fecha (dd/MM/yyyy)", "", JOptionPane.QUESTION_MESSAGE); 
 
-						DateFormat inputFormat = new SimpleDateFormat("dd/MM/yy");
+						DateFormat inputFormat = new SimpleDateFormat("dd/MM/yyyy");
 						Date date = inputFormat.parse(fechaCad);
 
 						UIManager.put("OptionPane.minimumSize", new Dimension(100, 100));
-						double precio = Double.parseDouble((JOptionPane.showInputDialog(null, "Introduzca un precio.",
+						double precio = Double.parseDouble((JOptionPane.showInputDialog(null, "Introduzca un precio (sin IVA).",
 								"", JOptionPane.QUESTION_MESSAGE)));
+						
+						double total = (double) (precio + (precio * 0.21));
 
 						UIManager.put("OptionPane.minimumSize", new Dimension(100, 100));
 						String descripcion = JOptionPane.showInputDialog(null, "Introduzca una descripción.", "",
 								JOptionPane.QUESTION_MESSAGE);
 
-						pDAO.guardarProducto(cantidad, date, precio, descripcion);
+						pDAO.guardarProducto(cantidad, date, total, descripcion);
 						break;
+						
+					case 2:
+						
+						
 					}
 					break;
 				}

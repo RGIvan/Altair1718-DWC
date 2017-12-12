@@ -28,7 +28,7 @@ public class TiendaDAOImplHibernate implements TiendaDAO {
 			sesion.save(t);
 
 			UIManager.put("OptionPane.minimumSize", new Dimension(100, 100));
-			JOptionPane.showMessageDialog(null, "La tienda ha sido creada satisfactoriamente.", "",
+			JOptionPane.showMessageDialog(null, "La tienda ha sido creada correctamente.", "",
 					JOptionPane.INFORMATION_MESSAGE);
 
 			sesion.getTransaction().commit();
@@ -121,7 +121,7 @@ public class TiendaDAOImplHibernate implements TiendaDAO {
 			sesion.delete(t);
 
 			UIManager.put("OptionPane.minimumSize", new Dimension(100, 100));
-			JOptionPane.showMessageDialog(null, "La tienda ha sido eliminada satisfactoriamente.", "",
+			JOptionPane.showMessageDialog(null, "La tienda ha sido eliminada correctamente.", "",
 					JOptionPane.INFORMATION_MESSAGE);
 
 			sesion.getTransaction().commit();
