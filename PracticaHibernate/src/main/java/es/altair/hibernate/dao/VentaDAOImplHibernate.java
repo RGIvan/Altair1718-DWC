@@ -7,6 +7,7 @@ import javax.swing.UIManager;
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -39,16 +40,46 @@ public class VentaDAOImplHibernate implements VentaDAO {
 				JOptionPane.showMessageDialog(null, "Error: " + cv.getMessage(),
 						"                         DESCRIPCIÓN DEL ERROR", JOptionPane.ERROR_MESSAGE);
 			}
-			
+
 		} catch (Exception e) {
 			UIManager.put("OptionPane.minimumSize", new Dimension(100, 100));
 			JOptionPane.showMessageDialog(null, "No se pudieron guardar los datos.", "", JOptionPane.ERROR_MESSAGE);
 			App.main(null);
 		}
-		
+
 		finally {
 			sesion.close();
 			sf.close();
 		}
+	}
+
+	public void eliminar(int idVenta) {
+		SessionFactory sf = new Configuration().configure().buildSessionFactory();
+		Session sesion = sf.openSession();
+
+		try {
+			sesion.beginTransaction();
+
+			Query query = sesion.createQuery("DELETE FROM Venta WHERE idVenta=:idVenta").setParameter("idVenta",
+					idVenta);
+
+			query.executeUpdate();
+
+			UIManager.put("OptionPane.minimumSize", new Dimension(100, 100));
+			JOptionPane.showMessageDialog(null, "La venta ha sido eliminada.", "", JOptionPane.INFORMATION_MESSAGE);
+
+			sesion.getTransaction().commit();
+		}
+
+		catch (Exception exx) {
+			UIManager.put("OptionPane.minimumSize", new Dimension(100, 100));
+			JOptionPane.showMessageDialog(null, "No se pudo borrar la venta.", "", JOptionPane.ERROR_MESSAGE);
+			App.main(null);
+
+		} finally {
+			sesion.close();
+			sf.close();
+		}
+
 	}
 }

@@ -11,6 +11,8 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
+import org.jboss.jandex.Main;
+
 import es.altair.hibernate.bean.Cliente;
 import es.altair.hibernate.bean.Producto;
 import es.altair.hibernate.bean.Tienda;
@@ -316,6 +318,7 @@ public class App {
 								JOptionPane.QUESTION_MESSAGE);
 
 						pDAO.guardarProducto(cantidad, date, total, descripcion);
+						App.main(null);
 						break;
 
 					case 2:
@@ -331,6 +334,7 @@ public class App {
 											+ productos.getCantidad(),
 									"LISTADO DE PRODUCTOS POR CANTIDAD", JOptionPane.INFORMATION_MESSAGE);
 						}
+						App.main(null);
 						break;
 					case 3:
 
@@ -428,6 +432,15 @@ public class App {
 						Venta v = new Venta(date, cantidad, cli, pro);
 
 						vDAO.guardarVenta(v);
+						App.main(null);
+						break;
+					case 2:
+						UIManager.put("OptionPane.minimumSize", new Dimension(100, 100));
+						int idVenta = Integer.parseInt((JOptionPane.showInputDialog(null,
+								"Introduzca el ID de la venta.", "", JOptionPane.QUESTION_MESSAGE)));
+						
+						vDAO.eliminar(idVenta);
+						
 						App.main(null);
 						break;
 					}
