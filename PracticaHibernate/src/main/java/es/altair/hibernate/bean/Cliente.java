@@ -1,6 +1,8 @@
 package es.altair.hibernate.bean;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -9,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
@@ -38,6 +41,9 @@ public class Cliente implements Serializable {
 	@ManyToOne(cascade = { CascadeType.ALL })
 	@JoinColumn(name = "idTienda")
 	private Tienda tienda;
+	
+	@OneToMany(mappedBy = "cliente")
+	private Set<Venta> venta = new HashSet<Venta>();
 
 	public Cliente() {
 		super();
@@ -99,6 +105,14 @@ public class Cliente implements Serializable {
 
 	public void setTienda(Tienda tienda) {
 		this.tienda = tienda;
+	}
+	
+	public Set<Venta> getVenta() {
+		return venta;
+	}
+
+	public void setVenta(Set<Venta> venta) {
+		this.venta = venta;
 	}
 
 	@Override

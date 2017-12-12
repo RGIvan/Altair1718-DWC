@@ -416,13 +416,19 @@ public class App {
 								"", JOptionPane.QUESTION_MESSAGE));
 						
 						UIManager.put("OptionPane.minimumSize", new Dimension(100, 100));
-						int idVenta = Integer.parseInt((JOptionPane.showInputDialog(null,
-								"Introduzca un ID de venta.", "", JOptionPane.QUESTION_MESSAGE)));
+						int idProducto = Integer.parseInt((JOptionPane.showInputDialog(null,
+								"Introduzca el ID del producto.", "", JOptionPane.QUESTION_MESSAGE)));
+						Producto pro = pDAO.get(idProducto);
 						
-						Venta v = new Venta(idVenta, date, cantidad);
+						UIManager.put("OptionPane.minimumSize", new Dimension(100, 100));
+						int idCliente = Integer.parseInt((JOptionPane.showInputDialog(null,
+								"Introduzca el ID del cliente.", "", JOptionPane.QUESTION_MESSAGE)));
+						Cliente cli = cDAO.get(idCliente);
+						
+						Venta v = new Venta(date, cantidad, cli, pro);
 						
 						vDAO.guardarVenta(v);
-						
+						App.main(null);
 						break;
 					}
 
