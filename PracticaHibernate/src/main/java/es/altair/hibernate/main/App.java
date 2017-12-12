@@ -43,11 +43,11 @@ public class App {
 
 				// MENÚ DE BIENVENIDA
 
-				UIManager.put("OptionPane.minimumSize", new Dimension(390, 150));
+				UIManager.put("OptionPane.minimumSize", new Dimension(450, 150));
 				String var = JOptionPane.showInputDialog(null,
 						"1. Tiendas \n" + "2. Clientes \n" + "3. Productos \n" + "4. Ventas \n" + "\n"
 								+ "Introduce un número: ",
-						"             BIENVENID@ A SU PROGRAMA DE GESTIÓN DE TIENDAS", JOptionPane.PLAIN_MESSAGE);
+						"BIENVENID@ A SU PROGRAMA DE GESTIÓN DE TIENDAS", JOptionPane.PLAIN_MESSAGE);
 
 				if (var == null) {
 
@@ -69,7 +69,7 @@ public class App {
 					String mtienda = JOptionPane.showInputDialog(null,
 							"1. Crear una tienda \n" + "2. Listar tiendas \n" + "3. Actualizar una tienda \n"
 									+ "4. Borrar una tienda \n" + "\n" + "Introduce un número: ",
-							"                                           MENÚ TIENDAS", JOptionPane.PLAIN_MESSAGE);
+							"MENÚ TIENDAS", JOptionPane.PLAIN_MESSAGE);
 
 					if (mtienda == null) {
 						App.main(null);
@@ -171,7 +171,7 @@ public class App {
 							"1. Guardar un cliente \n" + "2. Listar clientes ordenados \n" + "por nombre y apellidos \n"
 									+ "3. Actualizar un cliente \n" + "4. Borrar un cliente \n" + "\n"
 									+ "Introduce un número: ",
-							"                                        MENÚ CLIENTES", JOptionPane.PLAIN_MESSAGE);
+							"MENÚ CLIENTES", JOptionPane.PLAIN_MESSAGE);
 
 					if (mcliente == null) {
 						App.main(null);
@@ -280,7 +280,7 @@ public class App {
 							"1. Guardar un producto \n" + "2. Listar productos por cantidad \n"
 									+ "3. Actualizar un producto \n" + "4. Borrar un producto \n" + "\n"
 									+ "Introduce un número: ",
-							"                                        MENÚ PRODUCTOS", JOptionPane.PLAIN_MESSAGE);
+							"MENÚ PRODUCTOS", JOptionPane.PLAIN_MESSAGE);
 
 					if (mproducto == null) {
 						App.main(null);
@@ -299,8 +299,8 @@ public class App {
 								"", JOptionPane.QUESTION_MESSAGE));
 
 						UIManager.put("OptionPane.minimumSize", new Dimension(100, 100));
-						String fechaCad = JOptionPane.showInputDialog(null, "Inserte una fecha de caducidad (dd/MM/yyyy)", "",
-								JOptionPane.QUESTION_MESSAGE);
+						String fechaCad = JOptionPane.showInputDialog(null,
+								"Inserte una fecha de caducidad (dd/MM/yyyy)", "", JOptionPane.QUESTION_MESSAGE);
 
 						DateFormat inputFormat = new SimpleDateFormat("dd/MM/yyyy");
 						Date date = inputFormat.parse(fechaCad);
@@ -329,7 +329,7 @@ public class App {
 							JOptionPane.showMessageDialog(null,
 									"Descripción: " + productos.getDescripcion() + "\nCantidad: "
 											+ productos.getCantidad(),
-									"         LISTADO DE PRODUCTOS POR CANTIDAD", JOptionPane.INFORMATION_MESSAGE);
+									"LISTADO DE PRODUCTOS POR CANTIDAD", JOptionPane.INFORMATION_MESSAGE);
 						}
 						break;
 					case 3:
@@ -390,9 +390,8 @@ public class App {
 
 					UIManager.put("OptionPane.minimumSize", new Dimension(350, 150));
 					String mventa = JOptionPane.showInputDialog(null,
-							"1. Crear una venta \n" + "2. Listar ventas \n" + "3. Actualizar una venta \n"
-									+ "4. Borrar una venta \n" + "\n" + "Introduce un número: ",
-							"                                        MENÚ VENTAS", JOptionPane.PLAIN_MESSAGE);
+							"1. Crear una venta \n" + "2. Borrar una venta \n" + "\n" + "Introduce un número: ",
+							"MENÚ VENTAS", JOptionPane.PLAIN_MESSAGE);
 
 					if (mventa == null) {
 						App.main(null);
@@ -403,30 +402,31 @@ public class App {
 					switch (venta) {
 
 					case 1:
-						
+
 						UIManager.put("OptionPane.minimumSize", new Dimension(100, 100));
-						String fechaCad = JOptionPane.showInputDialog(null, "Inserte la fecha de la venta (dd/MM/yyyy)", "",
-								JOptionPane.QUESTION_MESSAGE);
+						String fechaCad = JOptionPane.showInputDialog(null, "Inserte la fecha de la venta (dd/MM/yyyy)",
+								"", JOptionPane.QUESTION_MESSAGE);
 
 						DateFormat inputFormat = new SimpleDateFormat("dd/MM/yyyy");
 						Date date = inputFormat.parse(fechaCad);
-						
+
 						UIManager.put("OptionPane.minimumSize", new Dimension(100, 100));
-						int cantidad = Integer.parseInt(JOptionPane.showInputDialog(null, "Introduzca una cantidad de las ventas del producto.",
-								"", JOptionPane.QUESTION_MESSAGE));
-						
+						int cantidad = Integer.parseInt(
+								JOptionPane.showInputDialog(null, "Introduzca una cantidad de las ventas del producto.",
+										"", JOptionPane.QUESTION_MESSAGE));
+
 						UIManager.put("OptionPane.minimumSize", new Dimension(100, 100));
 						int idProducto = Integer.parseInt((JOptionPane.showInputDialog(null,
 								"Introduzca el ID del producto.", "", JOptionPane.QUESTION_MESSAGE)));
 						Producto pro = pDAO.get(idProducto);
-						
+
 						UIManager.put("OptionPane.minimumSize", new Dimension(100, 100));
 						int idCliente = Integer.parseInt((JOptionPane.showInputDialog(null,
 								"Introduzca el ID del cliente.", "", JOptionPane.QUESTION_MESSAGE)));
 						Cliente cli = cDAO.get(idCliente);
-						
+
 						Venta v = new Venta(date, cantidad, cli, pro);
-						
+
 						vDAO.guardarVenta(v);
 						App.main(null);
 						break;
