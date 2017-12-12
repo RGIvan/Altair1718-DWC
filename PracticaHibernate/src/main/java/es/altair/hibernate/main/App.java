@@ -290,7 +290,7 @@ public class App {
 								"", JOptionPane.QUESTION_MESSAGE));
 
 						UIManager.put("OptionPane.minimumSize", new Dimension(100, 100));
-						String fechaCad = JOptionPane.showInputDialog("Inserta una fecha (dd/MM/yy)");
+						String fechaCad = JOptionPane.showInputDialog("Inserta una fecha (dd/MM/yy)"); 
 
 						DateFormat inputFormat = new SimpleDateFormat("dd/MM/yy");
 						Date date = inputFormat.parse(fechaCad);
