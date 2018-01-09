@@ -37,8 +37,8 @@ public class LibroDAOImplHibernate implements LibroDAO {
 		try {
 			sesion.beginTransaction();
 
-			image = (byte[]) sesion.createQuery("Select l.portada From Libro l Where l.idLibro=:id").setParameter("id", idLibro)
-					.uniqueResult();
+			image = (byte[]) sesion.createQuery("Select l.portada From Libro l Where l.idLibro=:id")
+					.setParameter("id", idLibro).uniqueResult();
 
 			sesion.getTransaction().commit();
 		} catch (Exception e) {
@@ -47,5 +47,21 @@ public class LibroDAOImplHibernate implements LibroDAO {
 			sesion.close();
 		}
 		return image;
+	}
+
+	public void borrar(String uuid) {
+		Session sesion = SessionProvider.getSession();
+		try {
+			sesion.beginTransaction();
+
+			sesion.createQuery("DELETE FROM Libro WHERE uuid=:clave").setParameter("clave", uuid).executeUpdate();
+
+			sesion.getTransaction().commit();
+		} catch (Exception e) {
+			// TODO: handle exception
+		} finally {
+			sesion.close();
+			// sf.close();
+		}
 	}
 }
