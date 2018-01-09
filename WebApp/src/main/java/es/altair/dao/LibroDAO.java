@@ -10,4 +10,6 @@ public interface LibroDAO {
 	List<Libro> listar (Usuario u);
 	
 	byte[] obtenerPortadaPorId(int idLibro);
+	
+	void borrar(String uuid);
 }
