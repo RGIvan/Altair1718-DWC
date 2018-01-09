@@ -30,7 +30,8 @@
 					}
 				%>
 				<hr>
-				<form action="../RegistrarUsuario" class="form-horizontal" method="post">
+				<form action="../RegistrarUsuario" class="form-horizontal"
+					method="post">
 					<div class="form-group">
 						<label class="col-md-6 control-label" for="login">Login</label>
 						<div class="col-md-6">
@@ -41,8 +42,8 @@
 					<div class="form-group">
 						<label class="col-md-6 control-label" for="password">Password</label>
 						<div class="col-md-6">
-							<input type="password" id="password" name="password" placeholder="Password"
-								class="form-control input-md" required>
+							<input type="password" id="password" name="password"
+								placeholder="Password" class="form-control input-md" required>
 						</div>
 					</div>
 					<div class="form-group">
@@ -61,8 +62,7 @@
 					</div>
 					<div class="form-group">
 						<div class="col-md-6">
-							<input type="submit" value="Enviar"
-								class="btn btn-primary">
+							<input type="submit" value="Enviar" class="btn btn-primary">
 						</div>
 					</div>
 				</form>
