@@ -78,11 +78,11 @@
 										</p>
 									</div>
 									<div class="modal-footer">
-										<button type="button" class="btn btn-primary"
-											onclick="location.href='../borrarLibro?'" data-dismiss="modal">No</button>
 										<button type="button" class="btn btn-secondary"
-											data-dismiss="modal">Sí</button>
-									</div>
+											data-dismiss="modal">No</button>
+										<button type="button" class="btn btn-primary"
+											onclick="location.href='../BorrarLibro?uuid=<%=l.getUuid()%>'">Sí</button>
+</div>
 								</div>
 							</div>
 						</div>
