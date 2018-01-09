@@ -52,14 +52,16 @@
 					<td><img alt="Portada"
 						src="image.jsp?imag=<%=l.getIdLibro()%>" class="img-thumbnail"
 						width="50" height="50"></td>
-					<td>Portada</td>
 					<td>
-						<button type="button" class="btn btn-info" data-toggle="modal"
-							data-target="#borrarLibro<%=l.getIdLibro()%>"
-							class="fa fa-pencil-square-o" aria-hidden="true">Borrar</button>
+						<button type="button" class="btn btn-info"
+							onclick="location.href='jsp/editarLibro.jsp'">
+							<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+							Actualizar
+						</button> <!-- Button trigger modal -->
 						<button type="button" class="btn btn-warning" data-toggle="modal"
-							data-target="#borrarLibro<%=l.getIdLibro()%>" class="fa fa-times"
-							aria-hidden="true">Actualizar</button>
+							data-target="#borrarLibro<%=l.getIdLibro()%>">
+							<i class="fa fa-times" aria-hidden="true"></i> Borrar
+						</button>
 						<div class="modal" tabindex="-1" role="dialog"
 							id="borrarLibro<%=l.getIdLibro()%>">
 							<div class="modal-dialog" role="document">
@@ -82,7 +84,7 @@
 											data-dismiss="modal">No</button>
 										<button type="button" class="btn btn-primary"
 											onclick="location.href='../BorrarLibro?uuid=<%=l.getUuid()%>'">Sí</button>
-</div>
+									</div>
 								</div>
 							</div>
 						</div>
