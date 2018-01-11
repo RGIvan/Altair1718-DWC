@@ -12,4 +12,6 @@ public interface LibroDAO {
 	byte[] obtenerPortadaPorId(int idLibro);
 	
 	void borrar(String uuid);
+	
+	Libro ObtenerLibroPorUUID(String uuid);
 }

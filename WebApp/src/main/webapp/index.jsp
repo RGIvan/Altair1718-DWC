@@ -2,7 +2,8 @@
 <head>
 <title>Web App</title>
 <!-- Required meta tags -->
-<meta charset="utf-8">
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="UTF-8"%>
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 

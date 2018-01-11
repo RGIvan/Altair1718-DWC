@@ -4,7 +4,7 @@
 <%@page import="java.util.List"%>
 <%@page import="es.altair.dao.LibroDAOImplHibernate"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -21,21 +21,29 @@
 
 		<%
 			if (session.getAttribute("usuLogeado") == null || session.isNew()) {
-				response.sendRedirect("../index.jsp?mensaje=Inicie sesión");
+				response.sendRedirect("../index.jsp?mensaje=Inicie sesiÃ³n");
 			} else {
 				LibroDAO lDAO = new LibroDAOImplHibernate();
 				List<Libro> libros = lDAO.listar((Usuario) session.getAttribute("usuLogeado"));
 		%>
 
-		<a href="../CerrarSesion">Cerrar Sesión</a>
-
+		<div class="row">
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item"><a href="../index.jsp">Bienvenido
+						<%=((Usuario) session.getAttribute("usuLogeado")).getNombre()%>
+				</a></li>
+				<li class="breadcrumb-item">Principal Usuario</li>
+				<li class="breadcrumb-item active"><a href="../CerrarSesion">Cerrar
+						SesiÃ³n</a></li>
+			</ol>
+		</div>
 		<div class="row col-md-8 col-md-offset-2">
 			<table class="table table-striped">
 				<thead>
 					<a href="anadirLibro.jsp" class="btn btn-primary btn-xs pull-right"><b>+</b>
-						Añadir Libro</a>
+						AÃ±adir Libro</a>
 					<tr>
-						<th>Título</th>
+						<th>TÃ­tulo</th>
 						<th>Autor</th>
 						<th>ISBN</th>
 						<th>Portada</th>
@@ -54,10 +62,11 @@
 						width="50" height="50"></td>
 					<td>
 						<button type="button" class="btn btn-info"
-							onclick="location.href='jsp/editarLibro.jsp'">
+							onclick="location.href='editarLibro.jsp?uuid=<%=l.getUuid()%>'">
 							<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
 							Actualizar
-						</button> <!-- Button trigger modal -->
+						</button>
+						 <!-- Button trigger modal -->
 						<button type="button" class="btn btn-warning" data-toggle="modal"
 							data-target="#borrarLibro<%=l.getIdLibro()%>">
 							<i class="fa fa-times" aria-hidden="true"></i> Borrar
@@ -75,7 +84,7 @@
 									</div>
 									<div class="modal-body">
 										<p>
-											¿Desea borrar el libro
+											Â¿Desea borrar el libro
 											<%=l.getTitulo()%>?
 										</p>
 									</div>
@@ -83,7 +92,7 @@
 										<button type="button" class="btn btn-secondary"
 											data-dismiss="modal">No</button>
 										<button type="button" class="btn btn-primary"
-											onclick="location.href='../BorrarLibro?uuid=<%=l.getUuid()%>'">Sí</button>
+											onclick="location.href='../BorrarLibro?uuid=<%=l.getUuid()%>'">SÃ­</button>
 									</div>
 								</div>
 							</div>

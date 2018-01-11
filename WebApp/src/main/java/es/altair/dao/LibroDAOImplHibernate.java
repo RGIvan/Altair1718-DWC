@@ -64,4 +64,25 @@ public class LibroDAOImplHibernate implements LibroDAO {
 			// sf.close();
 		}
 	}
+
+	public Libro ObtenerLibroPorUUID(String uuid) {
+
+		Libro l = new Libro();
+
+		Session sesion = SessionProvider.getSession();
+		try {
+			sesion.beginTransaction();
+
+			l = (Libro) sesion.createQuery("FROM Libro l WHERE l.uuid=:clave").setParameter("clave", uuid)
+					.uniqueResult();
+
+			sesion.getTransaction().commit();
+		} catch (Exception e) {
+			// TODO: handle exception
+		} finally {
+			sesion.close();
+			// sf.close();
+		}
+		return l;
+	}
 }
