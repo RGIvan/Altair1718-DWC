@@ -30,7 +30,7 @@
 				<li class="breadcrumb-item"><a href="../index.jsp">Bienvenido
 						<%=((Usuario) session.getAttribute("usuLogeado")).getNombre()%>
 				</a></li>
-				<li class="breadcrumb-item"><a href="principalUsu.jsp">Pincipal
+				<li class="breadcrumb-item"><a href="principalUsu.jsp">Principal
 						Usuario</a></li>
 				<li class="breadcrumb-item">Añadir Libro</li>
 				<li class="breadcrumb-item active"><a href="../CerrarSesion">Cerrar
@@ -43,7 +43,7 @@
 				<div class="form-area">
 					<form action="../AnadirLibro" method="post" role="form"
 						enctype="multipart/form-data">
-						<h3>Editar Libro</h3>
+						<h3>Añadir Libro</h3>
 						<div class="form-group">
 							<label for="titulo">Título</label> <input type="text"
 								name="titulo" id="titulo" class="form-control">

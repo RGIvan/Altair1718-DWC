@@ -31,7 +31,7 @@
 				<li class="breadcrumb-item"><a href="../index.jsp">Bienvenido
 						<%=((Usuario) session.getAttribute("usuLogeado")).getNombre()%>
 				</a></li>
-				<li class="breadcrumb-item"><a href="principalUsu.jsp">Pincipal
+				<li class="breadcrumb-item"><a href="principalUsu.jsp">Principal
 						Usuario</a></li>
 				<li class="breadcrumb-item">Editar Libro</li>
 				<li class="breadcrumb-item active"><a href="../CerrarSesion">Cerrar

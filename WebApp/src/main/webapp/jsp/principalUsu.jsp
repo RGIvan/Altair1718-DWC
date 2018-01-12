@@ -33,7 +33,7 @@
 					<%=((Usuario)session.getAttribute("usuLogeado")).getNombre()%>
 					</a>
 				</li>	
-				<li class="breadcrumb-item">Pincipal Usuario</li>
+				<li class="breadcrumb-item">Principal Usuario</li>
 				<li class="breadcrumb-item active"><a href="../CerrarSesion">Cerrar Sesión</a></li>		
 			</ol>
 		</div>
@@ -62,12 +62,12 @@
 						src="image.jsp?imag=<%=l.getIdLibro()%>" class="img-thumbnail"
 						width="50" height="50"></td>
 					<td>
-						<button type="button" class="btn btn-default"
+						<button type="button" class="btn btn-primary"
 							onclick="location.href='editarLibro.jsp?uuid=<%=l.getUuid()%>'">
 							<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
 							Actualizar
 						</button> <!-- Button trigger modal -->
-						<button type="button" class="btn btn-warning" data-toggle="modal"
+						<button type="button" class="btn btn-info" data-toggle="modal"
 							data-target="#borrarLibro<%=l.getIdLibro()%>">
 							<i class="fa fa-times" aria-hidden="true"></i> Borrar
 						</button> <!-- Modal -->
