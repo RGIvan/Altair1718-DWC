@@ -9,7 +9,6 @@
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <link rel="stylesheet" href="fonts/font-awesome.min.css">
 <link rel="stylesheet" href="css/body.css">
-<script type="text/javascript" src="js/dash.js"></script>
 <link
 	href="http://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
 	rel="stylesheet">
@@ -30,31 +29,10 @@
 			</div>
 			<!-- Top Menu Items -->
 			<ul class="nav navbar-right top-nav">
-				<li>
-					<form class="navbar-form" role="search">
-						<div class="input-group add-on">
-							<input class="form-control" style="top: 5px;"
-								placeholder="Buscar..." name="buscar" type="text">
-							<div class="input-group-btn">
-								<button style="height: 34px; left: 1px; top: 4.5px;"
-									class="btn btn-default" type="submit">
-									<i class="glyphicon glyphicon-search"></i>
-								</button>
-							</div>
-						</div>
-					</form>
-				</li>
-				<li class="dropdown"><a href="#" class="dropdown-toggle"
-					data-toggle="dropdown">Tu cuenta <b class="fa fa-angle-down"></b></a>
-					<ul class="dropdown-menu">
-						<li><a href="#"><i class="fa fa-fw fa-user"></i>Editar
-								Perfil</a></li>
-						<li><a href="#"><i class="fa fa-fw fa-cog"></i> Cambiar
-								Contraseña</a></li>
-						<li class="divider"></li>
-						<li><a href="#"><i class="fa fa-fw fa-power-off"></i>
-								Regístrate</a></li>
-					</ul></li>
+				<li class="btn btn-toolbar"><a href="#"><b
+						class="fa fa-sign-in"></b> Iniciar sesión</a>
+				<li class="btn btn-toolbar"><a href="#"><b
+						class="fa fa-power-off"></b> Regístrate</a>
 			</ul>
 			<!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
 			<div class="collapse navbar-collapse navbar-ex1-collapse">
