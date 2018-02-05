@@ -51,8 +51,7 @@ public class Registrar extends HttpServlet {
 		String msg = "";
 
 		filas = uDAO.insertar(usu);
-
-		if (filas == 0) {
+		if (filas == 1) {
 
 			msg = "¡Usuario registrado con éxito!";
 

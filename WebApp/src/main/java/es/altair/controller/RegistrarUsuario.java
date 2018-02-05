@@ -65,7 +65,6 @@ public class RegistrarUsuario extends HttpServlet {
 			response.sendRedirect("jsp/registrar.jsp?mensaje="+msg);
 		}
 		
-		
 	}
 
 }
