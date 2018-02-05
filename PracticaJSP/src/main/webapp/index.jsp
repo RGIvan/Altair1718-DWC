@@ -55,7 +55,7 @@
 			<div class="container">
 				<div class="row main">
 					<div class="main-login main-center">
-						<form role="form" method="POST" action="ValidarUsuario">
+						<form role="form" method="POST" action="index.jsp">
 							<%
 								String error = request.getParameter("mensaje");
 								if (error != null) {
@@ -123,11 +123,9 @@
 							</div>
 
 							<div class="form-group ">
-								<a target="_blank" type="button" id="button"
-									class="btn btn-primary btn-lg btn-block login-button"
-									onclick="location.href='#ModalRegister"> Regístrate</a>
+								<input type="submit" value="Regístrate" id="button"
+									class="btn btn-primary btn-lg btn-block login-button">
 							</div>
-
 						</form>
 					</div>
 				</div>
@@ -141,7 +139,7 @@
 			<div class="container">
 				<div class="row main">
 					<div class="main-login main-center">
-						<form class="" method="post" action="#">
+						<form method="POST" action="#">
 							<div>
 								<button type="button" id="close" data-dismiss="modal"
 									class="fa fa-close"></button>
@@ -170,9 +168,10 @@
 								</div>
 							</div>
 							<div class="form-group ">
-								<a target="_blank" type="button" id="button"
-									class="btn btn-primary btn-lg btn-block login-button"
-									onclick="location.href='#ModalSession'"> Inicia Sesión</a>
+								<div class="form-group ">
+									<input type="submit" value="Inicia Sesión" id="button"
+										class="btn btn-primary btn-lg btn-block login-button">
+								</div>
 							</div>
 						</form>
 					</div>

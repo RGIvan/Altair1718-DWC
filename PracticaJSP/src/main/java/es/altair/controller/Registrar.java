@@ -47,7 +47,7 @@ public class Registrar extends HttpServlet {
 
 		UsuarioDAO uDAO = new UsuarioDAOImplHibernate();
 
-		int filas = 0;
+		int filas = 1;
 		String msg = "";
 
 		filas = uDAO.insertar(usu);
