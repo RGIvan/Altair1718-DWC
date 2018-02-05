@@ -19,34 +19,33 @@
 <body>
 	<div id="throbber" style="display: none; min-height: 120px;"></div>
 	<div id="noty-holder"></div>
-		<!-- Navigation -->
-		<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-			<!-- Brand and toggle get grouped for better mobile display -->
-			<div class="navbar-header">
-				<a class="navbar-brand" href="index.jsp"><img
-					src="images/Joystick.png" width="70" height="70" alt="Logo">
-				</a>
-			</div>
-			<!-- Top Menu Items -->
-			<ul class="nav navbar-right top-nav">
-				<li class="btn btn-toolbar"><a data-toggle="modal"
-					data-target="#modalSession"><b class="fa fa-sign-in"></b>
-						Iniciar sesión</a>
-				<li class="btn btn-toolbar"><a data-toggle="modal"
-					data-target="#modalRegister"><b class="fa fa-power-off"></b>
-						Regístrate</a>
+	<!-- Navigation -->
+	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+		<!-- Brand and toggle get grouped for better mobile display -->
+		<div class="navbar-header">
+			<a class="navbar-brand" href="index.jsp"><img
+				src="images/Joystick.png" width="70" height="70" alt="Logo"> </a>
+		</div>
+		<!-- Top Menu Items -->
+		<ul class="nav navbar-right top-nav">
+			<li class="btn btn-toolbar"><a data-toggle="modal"
+				data-target="#modalSession"><b class="fa fa-sign-in"></b>
+					Iniciar sesión</a>
+			<li class="btn btn-toolbar"><a data-toggle="modal"
+				data-target="#modalRegister"><b class="fa fa-power-off"></b>
+					Regístrate</a>
+		</ul>
+		<!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+		<div class="collapse navbar-collapse navbar-ex1-collapse">
+			<ul class="nav navbar-nav side-nav">
+				<li><a href="#" data-toggle="collapse"><i
+						class="fa fa-fw fa-dashboard"></i> Biblioteca general</a></li>
+				<li><a href="#"><i class="fa fa-fw fa fa-question-circle"></i>
+						Contacto</a></li>
 			</ul>
-			<!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
-			<div class="collapse navbar-collapse navbar-ex1-collapse">
-				<ul class="nav navbar-nav side-nav">
-					<li><a href="#" data-toggle="collapse"><i
-							class="fa fa-fw fa-dashboard"></i> Biblioteca general</a></li>
-					<li><a href="#"><i class="fa fa-fw fa fa-question-circle"></i>
-							Contacto</a></li>
-				</ul>
-			</div>
-			<!-- /.navbar-collapse -->
-		</nav>
+		</div>
+		<!-- /.navbar-collapse -->
+	</nav>
 
 	<!-- /.Modal -->
 
@@ -56,7 +55,20 @@
 			<div class="container">
 				<div class="row main">
 					<div class="main-login main-center">
-						<form class="" method="post" action="#">
+						<form role="form" method="POST" action="ValidarUsuario">
+							<%
+								String error = request.getParameter("mensaje");
+								if (error != null) {
+							%>
+							<div class="alert alert-warning alert-dismissable">
+								<button type="button" class="close" data-dismiss="alert"
+									aria-hidden="true">x</button>
+								<strong>Info!</strong>
+								<%=error%>
+							</div>
+							<%
+								}
+							%>
 							<div>
 								<button type="button" id="close" data-dismiss="modal"
 									class="fa fa-close"></button>
@@ -111,10 +123,11 @@
 							</div>
 
 							<div class="form-group ">
-								<a href="" target="_blank"
-									type="button" id="button"
-									class="btn btn-primary btn-lg btn-block login-button">Regístrate</a>
+								<a target="_blank" type="button" id="button"
+									class="btn btn-primary btn-lg btn-block login-button"
+									onclick="location.href='#ModalRegister"> Regístrate</a>
 							</div>
+
 						</form>
 					</div>
 				</div>
@@ -157,9 +170,9 @@
 								</div>
 							</div>
 							<div class="form-group ">
-								<a href="" target="_blank"
-									type="button" id="button"
-									class="btn btn-primary btn-lg btn-block login-button">Inicia sesión</a>
+								<a target="_blank" type="button" id="button"
+									class="btn btn-primary btn-lg btn-block login-button"
+									onclick="location.href='#ModalSession'"> Inicia Sesión</a>
 							</div>
 						</form>
 					</div>

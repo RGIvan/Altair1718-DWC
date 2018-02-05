@@ -9,5 +9,5 @@ public interface UsuarioDAO {
 	int insertar(Usuario usu);
 
 	boolean validarEmail(Usuario usu);
-
+	
 }
