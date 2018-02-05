@@ -22,7 +22,7 @@ public class UsuarioDAOImplHibernate implements UsuarioDAO {
 			sesion.beginTransaction();
 
 			filas = sesion
-					.createSQLQuery("INSERT INTO usuario (user, password, email, tipo)"
+					.createSQLQuery("INSERT INTO usuario (nombre, contraseña, email, tipo)"
 							+ "values (:l, AES_ENCRYPT(:p, :passphrase), :n, :e, :t)")
 					.setParameter("l", usu.getNombre()).setParameter("p", usu.getContraseña())
 					.setParameter("passphrase", pass).setParameter("e", usu.getEmail()).setParameter("t", usu.getTipo())
