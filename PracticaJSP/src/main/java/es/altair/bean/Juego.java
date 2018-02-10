@@ -18,6 +18,7 @@ public class Juego implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idJuego;
+	private String nombre;
 	private String consola;
 	private int año;
 	private String genero;
@@ -33,14 +34,23 @@ public class Juego implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Juego(String consola, int año, String genero, String estado, String compañia, byte[] portada) {
+	public Juego(String nombre, String consola, int año, String genero, String estado, String compañia, byte[] portada) {
 		super();
+		this.nombre = nombre;
 		this.consola = consola;
 		this.año = año;
 		this.genero = genero;
 		this.estado = estado;
 		this.compañia = compañia;
 		this.portada = portada;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 
 	public int getIdJuego() {
