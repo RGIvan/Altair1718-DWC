@@ -45,6 +45,14 @@ public class Juego implements Serializable {
 		this.portada = portada;
 	}
 
+	public Set<JuegoUsuario> getJuegousuario() {
+		return juegousuario;
+	}
+
+	public void setJuegousuario(Set<JuegoUsuario> juegousuario) {
+		this.juegousuario = juegousuario;
+	}
+
 	public String getNombre() {
 		return nombre;
 	}

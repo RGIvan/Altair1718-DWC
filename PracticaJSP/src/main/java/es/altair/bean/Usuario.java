@@ -53,6 +53,14 @@ public class Usuario implements Serializable {
 		return nombre;
 	}
 
+	public Set<JuegoUsuario> getJuegousuario() {
+		return juegousuario;
+	}
+
+	public void setJuegousuario(Set<JuegoUsuario> juegousuario) {
+		this.juegousuario = juegousuario;
+	}
+
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
