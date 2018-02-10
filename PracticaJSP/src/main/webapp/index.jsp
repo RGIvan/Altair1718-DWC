@@ -55,7 +55,7 @@
 			<div class="container">
 				<div class="row main">
 					<div class="main-login main-center">
-						<form role="form" method="POST" action="index.jsp">
+						<form role="form" method="POST" action="RegistrarUsuario">
 							<%
 								String error = request.getParameter("mensaje");
 								if (error != null) {

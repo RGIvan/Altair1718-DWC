@@ -37,8 +37,7 @@ public class RegistrarUsuario extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String nombre = request.getParameter("nombre");
 		String contraseña = request.getParameter("contraseña");
 		String email = request.getParameter("email");
