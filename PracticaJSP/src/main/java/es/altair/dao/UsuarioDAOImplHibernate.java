@@ -5,17 +5,18 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
 import es.altair.bean.Usuario;
+import es.altair.util.SessionProvider;
 
 public class UsuarioDAOImplHibernate implements UsuarioDAO {
 
 	private String pass = "Usuario123$%";
 
+	@SuppressWarnings("deprecation")
 	public int insertar(Usuario usu) {
 
 		int filas = 0;
 
-		SessionFactory sf = new Configuration().configure().buildSessionFactory();
-		Session sesion = sf.openSession();
+		Session sesion = SessionProvider.getSession();
 
 		try {
 			
