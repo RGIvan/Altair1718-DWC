@@ -4,14 +4,13 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
-import es.altair.bean.JuegoUsuario;
 
 @Entity
 @Table(name="usuario")
@@ -24,9 +23,9 @@ public class Usuario implements Serializable {
 	private String contraseña;
 	private String email;
 	private int tipo;
-	
-	@OneToMany(mappedBy = "usuario")
-	private Set<JuegoUsuario> juegousuario = new HashSet<JuegoUsuario>();
+
+	@OneToMany(mappedBy="usuario", cascade=CascadeType.ALL)
+	private Set<Juego> juego = new HashSet<Juego>();
 	
 	public Usuario() {
 		super();
@@ -51,14 +50,6 @@ public class Usuario implements Serializable {
 
 	public String getNombre() {
 		return nombre;
-	}
-
-	public Set<JuegoUsuario> getJuegousuario() {
-		return juegousuario;
-	}
-
-	public void setJuegousuario(Set<JuegoUsuario> juegousuario) {
-		this.juegousuario = juegousuario;
 	}
 
 	public void setNombre(String nombre) {
@@ -87,5 +78,19 @@ public class Usuario implements Serializable {
 
 	public void setTipo(int tipo) {
 		this.tipo = tipo;
+	}
+	
+	public Set<Juego> getJuego() {
+		return juego;
+	}
+
+	public void setJuego(Set<Juego> juego) {
+		this.juego = juego;
+	}
+
+	@Override
+	public String toString() {
+		return "Usuario [idUsuario=" + idUsuario + ", nombre=" + nombre + ", contraseña=" + contraseña + ", email="
+				+ email + ", tipo=" + tipo + ", juego=" + juego + "]";
 	}
 }

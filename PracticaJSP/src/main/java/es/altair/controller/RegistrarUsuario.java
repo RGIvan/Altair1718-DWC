@@ -11,7 +11,7 @@ import es.altair.dao.UsuarioDAO;
 import es.altair.dao.UsuarioDAOImplHibernate;
 
 /**
- * Servlet implementation class Registrar
+ * Servlet implementation class RegistrarUsuario
  */
 public class RegistrarUsuario extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -38,6 +38,7 @@ public class RegistrarUsuario extends HttpServlet {
 	 *      response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		String nombre = request.getParameter("nombre");
 		String contraseña = request.getParameter("contraseña");
 		String email = request.getParameter("email");

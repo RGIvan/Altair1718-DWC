@@ -55,7 +55,7 @@
 			<div class="container">
 				<div class="row main">
 					<div class="main-login main-center">
-						<form role="form" method="POST" action="RegistrarUsuario">
+						<form role="form" method="post" action="RegistrarUsuario">
 							<%
 								String error = request.getParameter("mensaje");
 								if (error != null) {
@@ -79,8 +79,8 @@
 									<div class="input-group">
 										<span class="input-group-addon"><i
 											class="fa fa-users fa" aria-hidden="true"></i></span> <input
-											type="text" class="form-control" name="username"
-											id="username" placeholder="Introduce tu nombre" />
+											type="text" class="form-control" name="nombre"
+											id="username" placeholder="Introduce tu nombre" required/>
 									</div>
 								</div>
 							</div>
@@ -91,8 +91,8 @@
 									<div class="input-group">
 										<span class="input-group-addon"><i
 											class="fa fa-lock fa-lg" aria-hidden="true"></i></span> <input
-											type="password" class="form-control" name="password"
-											id="password" placeholder="Introduce tu contraseña" />
+											type="password" class="form-control" name="contraseña"
+											id="password" placeholder="Introduce tu contraseña" required/>
 									</div>
 								</div>
 							</div>
@@ -105,7 +105,7 @@
 										<span class="input-group-addon"><i
 											class="fa fa-lock fa-lg" aria-hidden="true"></i></span> <input
 											type="password" class="form-control" name="confirm"
-											id="confirm" placeholder="Confirma tu contraseña" />
+											id="confirm" placeholder="Confirma tu contraseña" required/>
 									</div>
 								</div>
 							</div>
@@ -116,8 +116,8 @@
 									<div class="input-group">
 										<span class="input-group-addon"><i
 											class="fa fa-envelope fa" aria-hidden="true"></i></span> <input
-											type="text" class="form-control" name="email" id="email"
-											placeholder="Introduce tu e-mail" />
+											type="email" class="form-control" name="email" id="email"
+											placeholder="Introduce tu e-mail" required/>
 									</div>
 								</div>
 							</div>

@@ -1,14 +1,14 @@
 package es.altair.bean;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.Arrays;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -26,15 +26,16 @@ public class Juego implements Serializable {
 	private String compañia;
 	private byte[] portada;
 	
-	@OneToMany(mappedBy = "juego")
-	private Set<JuegoUsuario> juegousuario = new HashSet<JuegoUsuario>();
-	
+	@ManyToOne
+	@JoinColumn(name="idUsuario")
+	private Usuario usuario;
+
 	public Juego() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Juego(String nombre, String consola, int año, String genero, String estado, String compañia, byte[] portada) {
+	public Juego(String nombre, String consola, int año, String genero, String estado, String compañia, byte[] portada, Usuario usuario) {
 		super();
 		this.nombre = nombre;
 		this.consola = consola;
@@ -43,14 +44,7 @@ public class Juego implements Serializable {
 		this.estado = estado;
 		this.compañia = compañia;
 		this.portada = portada;
-	}
-
-	public Set<JuegoUsuario> getJuegousuario() {
-		return juegousuario;
-	}
-
-	public void setJuegousuario(Set<JuegoUsuario> juegousuario) {
-		this.juegousuario = juegousuario;
+		this.usuario = usuario;
 	}
 
 	public String getNombre() {
@@ -115,5 +109,20 @@ public class Juego implements Serializable {
 
 	public void setPortada(byte[] portada) {
 		this.portada = portada;
+	}
+	
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
+	@Override
+	public String toString() {
+		return "Juego [idJuego=" + idJuego + ", nombre=" + nombre + ", consola=" + consola
+				+ ", año=" + año + ", genero=" + genero + ", estado=" + estado + ", compañia=" + compañia + ", portada="
+				+ Arrays.toString(portada) + ", usuario=" + usuario + "]";
 	}
 }

@@ -12,6 +12,5 @@
         
         <mapping class="es.altair.bean.Usuario"/>
 		<mapping class="es.altair.bean.Juego"/>
-		<mapping class="es.altair.bean.JuegoUsuario"/>
     </session-factory>
 </hibernate-configuration>

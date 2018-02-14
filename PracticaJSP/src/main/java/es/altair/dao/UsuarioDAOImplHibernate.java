@@ -1,8 +1,6 @@
 package es.altair.dao;
 
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
 
 import es.altair.bean.Usuario;
 import es.altair.util.SessionProvider;
@@ -19,12 +17,12 @@ public class UsuarioDAOImplHibernate implements UsuarioDAO {
 		Session sesion = SessionProvider.getSession();
 
 		try {
-			
+
 			sesion.beginTransaction();
 
 			filas = sesion
 					.createSQLQuery("INSERT INTO usuario (nombre, contraseña, email, tipo)"
-							+ "values (:n, AES_ENCRYPT(:p, :passphrase), :e, :t)")
+							+ " values (:n, AES_ENCRYPT(:p, :passphrase), :e, :t)")
 					.setParameter("n", usu.getNombre()).setParameter("p", usu.getContraseña())
 					.setParameter("passphrase", pass).setParameter("e", usu.getEmail()).setParameter("t", usu.getTipo())
 					.executeUpdate();
