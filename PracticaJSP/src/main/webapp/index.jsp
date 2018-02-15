@@ -46,6 +46,32 @@
 		</div>
 		<!-- /.navbar-collapse -->
 	</nav>
+	
+	<!-- Messages Modal -->
+
+	<div id="message" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+			<!-- Modal content-->
+			<div class="container">
+				<div class="row main">
+					<div class="main-login main-center"></div>
+					<%
+						String error = request.getParameter("mensaje");
+						if (error != null) {
+					%>
+					<div class="alert alert-warning alert-dismissable">
+						<button type="button" class="close" data-dismiss="alert"
+							aria-hidden="true">x</button>
+						<strong>Info!</strong>
+						<%=error%>
+					</div>
+					<%
+						}
+					%>
+				</div>
+			</div>
+		</div>
+	</div>
 
 	<!-- /.Modal -->
 
@@ -55,20 +81,78 @@
 			<div class="container">
 				<div class="row main">
 					<div class="main-login main-center">
-						<form role="form" method="post" action="RegistrarUsuario">
-							<%
-								String error = request.getParameter("mensaje");
-								if (error != null) {
-							%>
-							<div class="alert alert-warning alert-dismissable">
-								<button type="button" class="close" data-dismiss="alert"
-									aria-hidden="true">x</button>
-								<strong>Info!</strong>
-								<%=error%>
+						<form role="form" method="POST" action="RegistrarUsuario">
+							<div>
+								<button type="button" id="close" data-dismiss="modal"
+									class="fa fa-close"></button>
 							</div>
-							<%
-								}
-							%>
+							<div class="form-group">
+								<label for="username" class="cols-sm-2 control-label">Usuario</label>
+								<div class="cols-sm-10">
+									<div class="input-group">
+										<span class="input-group-addon"><i
+											class="fa fa-users fa" aria-hidden="true"></i></span> <input
+											type="text" class="form-control" name="nombre" id="username"
+											placeholder="Introduce tu nombre" required />
+									</div>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label for="password" class="cols-sm-2 control-label">Contraseña</label>
+								<div class="cols-sm-10">
+									<div class="input-group">
+										<span class="input-group-addon"><i
+											class="fa fa-lock fa-lg" aria-hidden="true"></i></span> <input
+											type="password" class="form-control" name="contraseña"
+											id="password" placeholder="Introduce tu contraseña" required />
+									</div>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label for="confirm" class="cols-sm-2 control-label">Confirmar
+									Contraseña</label>
+								<div class="cols-sm-10">
+									<div class="input-group">
+										<span class="input-group-addon"><i
+											class="fa fa-lock fa-lg" aria-hidden="true"></i></span> <input
+											type="password" class="form-control" name="confirm"
+											id="confirm" placeholder="Confirma tu contraseña" required />
+									</div>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label for="email" class="cols-sm-2 control-label">E-mail</label>
+								<div class="cols-sm-10">
+									<div class="input-group">
+										<span class="input-group-addon"><i
+											class="fa fa-envelope fa" aria-hidden="true"></i></span> <input
+											type="email" class="form-control" name="email" id="email"
+											placeholder="Introduce tu e-mail" required />
+									</div>
+								</div>
+							</div>
+
+							<div class="form-group ">
+								<input type="submit" value="Regístrate" id="button"
+									class="btn btn-primary btn-lg btn-block login-button">
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="modalSession" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+			<!-- Modal content-->
+			<div class="container">
+				<div class="row main">
+					<div class="main-login main-center">
+						<form method="POST" action="LoginUsuario">
 							<div>
 								<button type="button" id="close" data-dismiss="modal"
 									class="fa fa-close"></button>
@@ -93,77 +177,6 @@
 											class="fa fa-lock fa-lg" aria-hidden="true"></i></span> <input
 											type="password" class="form-control" name="contraseña"
 											id="password" placeholder="Introduce tu contraseña" required/>
-									</div>
-								</div>
-							</div>
-
-							<div class="form-group">
-								<label for="confirm" class="cols-sm-2 control-label">Confirmar
-									Contraseña</label>
-								<div class="cols-sm-10">
-									<div class="input-group">
-										<span class="input-group-addon"><i
-											class="fa fa-lock fa-lg" aria-hidden="true"></i></span> <input
-											type="password" class="form-control" name="confirm"
-											id="confirm" placeholder="Confirma tu contraseña" required/>
-									</div>
-								</div>
-							</div>
-
-							<div class="form-group">
-								<label for="email" class="cols-sm-2 control-label">E-mail</label>
-								<div class="cols-sm-10">
-									<div class="input-group">
-										<span class="input-group-addon"><i
-											class="fa fa-envelope fa" aria-hidden="true"></i></span> <input
-											type="email" class="form-control" name="email" id="email"
-											placeholder="Introduce tu e-mail" required/>
-									</div>
-								</div>
-							</div>
-
-							<div class="form-group ">
-								<input type="submit" value="Regístrate" id="button"
-									class="btn btn-primary btn-lg btn-block login-button">
-							</div>
-						</form>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<div id="modalSession" class="modal fade" role="dialog">
-		<div class="modal-dialog">
-			<!-- Modal content-->
-			<div class="container">
-				<div class="row main">
-					<div class="main-login main-center">
-						<form method="POST" action="#">
-							<div>
-								<button type="button" id="close" data-dismiss="modal"
-									class="fa fa-close"></button>
-							</div>
-							<div class="form-group">
-								<label for="username" class="cols-sm-2 control-label">Usuario</label>
-								<div class="cols-sm-10">
-									<div class="input-group">
-										<span class="input-group-addon"><i
-											class="fa fa-users fa" aria-hidden="true"></i></span> <input
-											type="text" class="form-control" name="username"
-											id="username" placeholder="Introduce tu nombre" />
-									</div>
-								</div>
-							</div>
-
-							<div class="form-group">
-								<label for="password" class="cols-sm-2 control-label">Contraseña</label>
-								<div class="cols-sm-10">
-									<div class="input-group">
-										<span class="input-group-addon"><i
-											class="fa fa-lock fa-lg" aria-hidden="true"></i></span> <input
-											type="password" class="form-control" name="password"
-											id="password" placeholder="Introduce tu contraseña" />
 									</div>
 								</div>
 							</div>

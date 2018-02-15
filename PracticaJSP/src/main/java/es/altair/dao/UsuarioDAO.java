@@ -5,4 +5,8 @@ import es.altair.bean.Usuario;
 public interface UsuarioDAO {
 
 	int insertar(Usuario usu);
+
+	Usuario comprobarUsuario(String usuario, String contraseña);
+
+	boolean validarEmail(Usuario usu);
 }
