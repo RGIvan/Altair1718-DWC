@@ -15,60 +15,56 @@ import es.altair.dao.UsuarioDAOImplHibernate;
  */
 public class RegistrarUsuario extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public RegistrarUsuario() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
 
 	/**
-	 * @see HttpServlet#HttpServlet()
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	public RegistrarUsuario() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doPost(request, response);
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String login = request.getParameter("login");
 		String password = request.getParameter("password");
 		String nombre = request.getParameter("nombre");
 		String email = request.getParameter("email");
-
+		
 		Usuario usu = new Usuario(login, password, nombre, email, 0);
-
+		
 		UsuarioDAO uDAO = new UsuarioDAOImplHibernate();
-
+		
 		int filas = 0;
-		String msg = "";
-
+		String msg = "";		
+		
 		if (uDAO.validarEmail(usu)) {
 			filas = uDAO.insertar(usu);
 			if (filas == 1) {
-
-				msg = "¡El usuario ha sido registrado!";
-
-				response.sendRedirect("index.jsp?mensaje=" + msg);
+				msg = "Usuario Registrado";
 				
-			} else {
+				response.sendRedirect("index.jsp?mensaje="+msg);
+			}
+			else {
+				msg = "Error al Registrar al Usuario";
 				
-				msg = "¡Error al registrar el usuario!";
-
-				response.sendRedirect("jsp/index.jsp?mensaje=" + msg);
+				response.sendRedirect("jsp/registrar.jsp?mensaje="+msg);
 			}
 		} else {
-			msg = "El email ya existe. Inténtelo con otro diferente.";
-
-			response.sendRedirect("jsp/index.jsp?mensaje=" + msg);
+			msg = "Email ya registrado. Inténtelo con otro email";
+			
+			response.sendRedirect("jsp/registrar.jsp?mensaje="+msg);
 		}
+		
 	}
+
 }

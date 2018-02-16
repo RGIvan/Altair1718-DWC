@@ -40,6 +40,7 @@ public class RegistrarUsuario extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
+
 		String nombre = request.getParameter("nombre");
 		String contraseña = request.getParameter("contraseña");
 		String email = request.getParameter("email");
@@ -49,7 +50,8 @@ public class RegistrarUsuario extends HttpServlet {
 		UsuarioDAO uDAO = new UsuarioDAOImplHibernate();
 
 		int filas = 0;
-		String msg = "";
+		String texto = "";
+		String msg = new String(texto.getBytes(), "UTF-8");
 
 		if (uDAO.validarEmail(usu)) {
 			filas = uDAO.insertar(usu);
@@ -66,7 +68,7 @@ public class RegistrarUsuario extends HttpServlet {
 				response.sendRedirect("index.jsp?mensaje=" + msg);
 			}
 		} else {
-			msg = "Email ya registrado. Inténtelo con otro email";
+			msg = "El email ya está registrado. Inténtelo con otro email.";
 
 			response.sendRedirect("index.jsp?mensaje=" + msg);
 		}
