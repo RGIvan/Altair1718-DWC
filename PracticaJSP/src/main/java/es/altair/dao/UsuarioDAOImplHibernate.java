@@ -16,9 +16,7 @@ public class UsuarioDAOImplHibernate implements UsuarioDAO {
 
 		int filas = 0;
 
-		SessionFactory sf = new Configuration().configure().buildSessionFactory();
-		Session sesion = sf.openSession();
-
+		Session sesion = SessionProvider.getSession();
 		try {
 
 			sesion.beginTransaction();
@@ -43,8 +41,7 @@ public class UsuarioDAOImplHibernate implements UsuarioDAO {
 
 		Usuario usu = null;
 
-		SessionFactory sf = new Configuration().configure().buildSessionFactory();
-		Session sesion = sf.openSession();
+		Session sesion = SessionProvider.getSession();
 
 		try {
 			sesion.beginTransaction();
@@ -69,8 +66,7 @@ public class UsuarioDAOImplHibernate implements UsuarioDAO {
 
 		boolean correcto = true;
 
-		SessionFactory sf = new Configuration().configure().buildSessionFactory();
-		Session sesion = sf.openSession();
+		Session sesion = SessionProvider.getSession();
 
 		try {
 			sesion.beginTransaction();

@@ -96,3 +96,8 @@
 .navbar-brand {
 	padding: 5px 80px;
 }
+
+.container {
+	margin-top: 100px;
+	margin-right: 100px;
+}

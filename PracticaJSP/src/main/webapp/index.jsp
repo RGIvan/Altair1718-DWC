@@ -46,32 +46,6 @@
 		</div>
 		<!-- /.navbar-collapse -->
 	</nav>
-	
-	<!-- Messages Modal -->
-
-	<div id="message" class="modal fade" role="dialog">
-		<div class="modal-dialog">
-			<!-- Modal content-->
-			<div class="container">
-				<div class="row main">
-					<div class="main-login main-center"></div>
-					<%
-						String error = request.getParameter("mensaje");
-						if (error != null) {
-					%>
-					<div class="alert alert-warning alert-dismissable">
-						<button type="button" class="close" data-dismiss="alert"
-							aria-hidden="true">x</button>
-						<strong>Info!</strong>
-						<%=error%>
-					</div>
-					<%
-						}
-					%>
-				</div>
-			</div>
-		</div>
-	</div>
 
 	<!-- /.Modal -->
 
@@ -163,8 +137,8 @@
 									<div class="input-group">
 										<span class="input-group-addon"><i
 											class="fa fa-users fa" aria-hidden="true"></i></span> <input
-											type="text" class="form-control" name="nombre"
-											id="username" placeholder="Introduce tu nombre" required/>
+											type="text" class="form-control" name="nombre" id="username"
+											placeholder="Introduce tu nombre" required />
 									</div>
 								</div>
 							</div>
@@ -176,7 +150,7 @@
 										<span class="input-group-addon"><i
 											class="fa fa-lock fa-lg" aria-hidden="true"></i></span> <input
 											type="password" class="form-control" name="contraseña"
-											id="password" placeholder="Introduce tu contraseña" required/>
+											id="password" placeholder="Introduce tu contraseña" required />
 									</div>
 								</div>
 							</div>
@@ -192,6 +166,31 @@
 			</div>
 		</div>
 	</div>
+
+	<!-- Message Error -->
+
+
+	<%
+		String error = request.getParameter("mensaje");
+		if (error != null) {
+	%>
+	<div class="container">
+		<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6">
+			<div class="row justify-content-center">
+				<div class="alert alert-warning alert-dismissable fade in"
+					id="error">
+					<button type="button" class="close" data-dismiss="alert"
+						aria-hidden="true">x</button>
+					<strong>Info!</strong>
+					<%=error%>
+				</div>
+			</div>
+		</div>
+	</div>
+	<%
+		}
+	%>
+
 
 	<script src="js/jquery-3.2.1.slim.min.js"></script>
 	<script src="js/popper.min.js"></script>
