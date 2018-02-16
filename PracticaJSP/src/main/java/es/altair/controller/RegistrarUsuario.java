@@ -50,8 +50,7 @@ public class RegistrarUsuario extends HttpServlet {
 		UsuarioDAO uDAO = new UsuarioDAOImplHibernate();
 
 		int filas = 0;
-		String texto = "";
-		String msg = new String(texto.getBytes(), "UTF-8");
+		String msg = "";
 
 		if (uDAO.validarEmail(usu)) {
 			filas = uDAO.insertar(usu);
