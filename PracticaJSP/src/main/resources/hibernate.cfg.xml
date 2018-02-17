@@ -13,5 +13,6 @@
         
         <mapping class="es.altair.bean.Usuario"/>
 		<mapping class="es.altair.bean.Juego"/>
+		<mapping class="es.altair.bean.Estado"/>
     </session-factory>
 </hibernate-configuration>

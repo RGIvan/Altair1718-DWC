@@ -22,7 +22,6 @@ public class Juego implements Serializable {
 	private String consola;
 	private int año;
 	private String genero;
-	private String estado;
 	private String compañia;
 	private byte[] portada;
 	
@@ -35,13 +34,12 @@ public class Juego implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Juego(String nombre, String consola, int año, String genero, String estado, String compañia, byte[] portada, Usuario usuario) {
+	public Juego(String nombre, String consola, int año, String genero, String compañia, byte[] portada, Usuario usuario) {
 		super();
 		this.nombre = nombre;
 		this.consola = consola;
 		this.año = año;
 		this.genero = genero;
-		this.estado = estado;
 		this.compañia = compañia;
 		this.portada = portada;
 		this.usuario = usuario;
@@ -87,14 +85,6 @@ public class Juego implements Serializable {
 		this.genero = genero;
 	}
 
-	public String getEstado() {
-		return estado;
-	}
-
-	public void setEstado(String estado) {
-		this.estado = estado;
-	}
-
 	public String getCompañia() {
 		return compañia;
 	}
@@ -122,7 +112,7 @@ public class Juego implements Serializable {
 	@Override
 	public String toString() {
 		return "Juego [idJuego=" + idJuego + ", nombre=" + nombre + ", consola=" + consola
-				+ ", año=" + año + ", genero=" + genero + ", estado=" + estado + ", compañia=" + compañia + ", portada="
+				+ ", año=" + año + ", genero=" + genero + ", compañia=" + compañia + ", portada="
 				+ Arrays.toString(portada) + ", usuario=" + usuario + "]";
 	}
 }

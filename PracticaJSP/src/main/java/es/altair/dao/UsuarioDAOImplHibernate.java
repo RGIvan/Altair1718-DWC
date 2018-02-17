@@ -83,4 +83,26 @@ public class UsuarioDAOImplHibernate implements UsuarioDAO {
 		}
 		return correcto;
 	}
+
+	public boolean validarUsuario(Usuario usu) {
+		
+		boolean correcto = true;
+
+		Session sesion = SessionProvider.getSession();
+
+		try {
+			sesion.beginTransaction();
+
+			if ((Usuario) sesion.createQuery("FROM Usuario WHERE nombre=:n").setParameter("n", usu.getNombre())
+					.uniqueResult() != null)
+				correcto = false;
+
+			sesion.getTransaction().commit();
+		} catch (Exception e) {
+			// TODO: handle exception
+		} finally {
+			sesion.close();
+		}
+		return correcto;
+	}
 }

@@ -9,4 +9,6 @@ public interface UsuarioDAO {
 	Usuario comprobarUsuario(String usuario, String contraseña);
 
 	boolean validarEmail(Usuario usu);
+
+	boolean validarUsuario(Usuario usu);
 }

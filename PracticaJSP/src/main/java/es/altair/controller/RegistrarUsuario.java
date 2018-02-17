@@ -40,7 +40,6 @@ public class RegistrarUsuario extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-
 		String nombre = request.getParameter("nombre");
 		String contraseña = request.getParameter("contraseña");
 		String email = request.getParameter("email");
@@ -52,23 +51,29 @@ public class RegistrarUsuario extends HttpServlet {
 		int filas = 0;
 		String msg = "";
 
-		if (uDAO.validarEmail(usu)) {
-			filas = uDAO.insertar(usu);
-			if (filas == 1) {
+		if (uDAO.validarUsuario(usu)) {
+			if (uDAO.validarEmail(usu)) {
+				filas = uDAO.insertar(usu);
+				if (filas == 1) {
 
-				msg = "¡Usuario registrado con éxito!";
+					msg = "Usuario registrado.";
 
-				response.sendRedirect("index.jsp?mensaje=" + msg);
+					response.sendRedirect("index.jsp?mensaje=" + msg);
 
+				} else {
+
+					msg = "¡El usuario no ha sido registrado!";
+
+					response.sendRedirect("index.jsp?mensaje=" + msg);
+				}
 			} else {
-
-				msg = "¡El usuario no ha sido registrado!";
+				msg = "El email ya existe. Prueba otra vez.";
 
 				response.sendRedirect("index.jsp?mensaje=" + msg);
 			}
 		} else {
-			msg = "El email ya está registrado. Inténtelo con otro email.";
-
+			msg = "Ya existe un usuario con el mismo nombre.";
+			
 			response.sendRedirect("index.jsp?mensaje=" + msg);
 		}
 	}

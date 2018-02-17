@@ -39,7 +39,7 @@
 		<div class="collapse navbar-collapse navbar-ex1-collapse">
 			<ul class="nav navbar-nav side-nav">
 				<li><a href="#" data-toggle="collapse"><i
-						class="fa fa-fw fa-dashboard"></i> Biblioteca general</a></li>
+						class="fa fa-fw fa-dashboard"></i> Colección de juegos</a></li>
 				<li><a href="#"><i class="fa fa-fw fa fa-question-circle"></i>
 						Contacto</a></li>
 			</ul>
@@ -79,20 +79,7 @@
 										<span class="input-group-addon"><i
 											class="fa fa-lock fa-lg" aria-hidden="true"></i></span> <input
 											type="password" class="form-control" name="contraseña"
-											id="password" placeholder="Introduce tu contraseña" required />
-									</div>
-								</div>
-							</div>
-
-							<div class="form-group">
-								<label for="confirm" class="cols-sm-2 control-label">Confirmar
-									Contraseña</label>
-								<div class="cols-sm-10">
-									<div class="input-group">
-										<span class="input-group-addon"><i
-											class="fa fa-lock fa-lg" aria-hidden="true"></i></span> <input
-											type="password" class="form-control" name="confirm"
-											id="confirm" placeholder="Confirma tu contraseña" required />
+											id="password" maxlength="9" placeholder="Introduce tu contraseña" required />
 									</div>
 								</div>
 							</div>
