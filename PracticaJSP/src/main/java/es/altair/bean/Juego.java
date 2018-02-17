@@ -2,13 +2,17 @@ package es.altair.bean;
 
 import java.io.Serializable;
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -24,9 +28,12 @@ public class Juego implements Serializable {
 	private String genero;
 	private String compañia;
 	private byte[] portada;
-	
+
+	@OneToMany(mappedBy = "juego", cascade = CascadeType.ALL)
+	private Set<Estado> estado = new HashSet<Estado>();
+
 	@ManyToOne
-	@JoinColumn(name="idUsuario")
+	@JoinColumn(name = "idUsuario")
 	private Usuario usuario;
 
 	public Juego() {
@@ -34,7 +41,8 @@ public class Juego implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Juego(String nombre, String consola, int año, String genero, String compañia, byte[] portada, Usuario usuario) {
+	public Juego(String nombre, String consola, int año, String genero, String compañia, byte[] portada,
+			Usuario usuario) {
 		super();
 		this.nombre = nombre;
 		this.consola = consola;
@@ -100,7 +108,7 @@ public class Juego implements Serializable {
 	public void setPortada(byte[] portada) {
 		this.portada = portada;
 	}
-	
+
 	public Usuario getUsuario() {
 		return usuario;
 	}
@@ -111,8 +119,8 @@ public class Juego implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Juego [idJuego=" + idJuego + ", nombre=" + nombre + ", consola=" + consola
-				+ ", año=" + año + ", genero=" + genero + ", compañia=" + compañia + ", portada="
-				+ Arrays.toString(portada) + ", usuario=" + usuario + "]";
+		return "Juego [idJuego=" + idJuego + ", nombre=" + nombre + ", consola=" + consola + ", año=" + año
+				+ ", genero=" + genero + ", compañia=" + compañia + ", portada=" + Arrays.toString(portada)
+				+ ", estado=" + estado + ", usuario=" + usuario + "]";
 	}
 }

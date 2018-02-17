@@ -1,6 +1,8 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta charset="ISO-8859-1">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to.fit=no">
 <meta name="keywords" content="html5, dwc, altair">
@@ -17,37 +19,63 @@
 <title>Inicio</title>
 </head>
 <body>
-	<div id="throbber" style="display: none; min-height: 120px;"></div>
-	<div id="noty-holder"></div>
-	<!-- Navigation -->
+	
+	<!-- Header -->
+
+	<div id="header">
+		<img src="images/backloggery.gif" alt="The Backloggery">
+	</div>
+	
+	<!-- Aquí empieza el nav -->
+
 	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-		<!-- Brand and toggle get grouped for better mobile display -->
-		<div class="navbar-header">
-			<a class="navbar-brand" href="index.jsp"><img
-				src="images/Joystick.png" width="70" height="70" alt="Logo"> </a>
+
+	<div class="navbar-header">
+		<a class="navbar-brand" href="index.jsp"><img
+			src="images/Joystick.png" width="70" height="70" alt="Logo"> </a>
+	</div>
+
+	<!-- Message Error -->
+
+	<%
+		String error = request.getParameter("mensaje");
+		if (error != null) {
+	%>
+
+	<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6" id="message">
+		<div class="row justify-content-center">
+			<div class="alert alert-warning alert-dismissable fade in" id="error">
+				<button type="button" class="close" data-dismiss="alert"
+					aria-hidden="true">x</button>
+				<strong>Info!</strong>
+				<%=error%>
+			</div>
 		</div>
-		<!-- Top Menu Items -->
-		<ul class="nav navbar-right top-nav">
-			<li class="btn btn-toolbar"><a data-toggle="modal"
-				data-target="#modalSession"><b class="fa fa-sign-in"></b>
-					Iniciar sesión</a>
-			<li class="btn btn-toolbar"><a data-toggle="modal"
-				data-target="#modalRegister"><b class="fa fa-power-off"></b>
-					Regístrate</a>
+	</div>
+	<%
+		}
+	%>
+
+	<!-- Top Nav -->
+
+	<ul class="nav navbar-right top-nav">
+		<li class="btn btn-toolbar"><a data-toggle="modal"
+			data-target="#modalSession"><b class="fa fa-sign-in"></b> Iniciar
+				sesión</a>
+		<li class="btn btn-toolbar"><a data-toggle="modal"
+			data-target="#modalRegister"><b class="fa fa-power-off"></b>
+				Regístrate</a>
+	</ul>
+
+	<div class="collapse navbar-collapse navbar-ex1-collapse">
+		<ul class="nav navbar-nav side-nav">
+			<li><a href="#" data-toggle="collapse"><i
+					class="fa fa-fw fa-dashboard"></i> Colección de juegos</a></li>
 		</ul>
-		<!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
-		<div class="collapse navbar-collapse navbar-ex1-collapse">
-			<ul class="nav navbar-nav side-nav">
-				<li><a href="#" data-toggle="collapse"><i
-						class="fa fa-fw fa-dashboard"></i> Colección de juegos</a></li>
-				<li><a href="#"><i class="fa fa-fw fa fa-question-circle"></i>
-						Contacto</a></li>
-			</ul>
-		</div>
-		<!-- /.navbar-collapse -->
+	</div>
 	</nav>
 
-	<!-- /.Modal -->
+	<!-- Modal Registro -->
 
 	<div id="modalRegister" class="modal fade" role="dialog">
 		<div class="modal-dialog">
@@ -79,7 +107,8 @@
 										<span class="input-group-addon"><i
 											class="fa fa-lock fa-lg" aria-hidden="true"></i></span> <input
 											type="password" class="form-control" name="contraseña"
-											id="password" maxlength="9" placeholder="Introduce tu contraseña" required />
+											id="password" maxlength="9"
+											placeholder="Introduce tu contraseña" required />
 									</div>
 								</div>
 							</div>
@@ -106,6 +135,8 @@
 			</div>
 		</div>
 	</div>
+	
+	<!-- Modal Registro -->
 
 	<div id="modalSession" class="modal fade" role="dialog">
 		<div class="modal-dialog">
@@ -143,7 +174,7 @@
 							</div>
 							<div class="form-group ">
 								<div class="form-group ">
-									<input type="submit" value="Inicia Sesión" id="button"
+									<input type="submit" value="Inicia sesión" id="button"
 										class="btn btn-primary btn-lg btn-block login-button">
 								</div>
 							</div>
@@ -153,31 +184,6 @@
 			</div>
 		</div>
 	</div>
-
-	<!-- Message Error -->
-
-
-	<%
-		String error = request.getParameter("mensaje");
-		if (error != null) {
-	%>
-	<div class="container">
-		<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6">
-			<div class="row justify-content-center">
-				<div class="alert alert-warning alert-dismissable fade in"
-					id="error">
-					<button type="button" class="close" data-dismiss="alert"
-						aria-hidden="true">x</button>
-					<strong>Info!</strong>
-					<%=error%>
-				</div>
-			</div>
-		</div>
-	</div>
-	<%
-		}
-	%>
-
 
 	<script src="js/jquery-3.2.1.slim.min.js"></script>
 	<script src="js/popper.min.js"></script>
