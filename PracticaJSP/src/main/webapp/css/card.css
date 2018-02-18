@@ -52,7 +52,6 @@
 	position: absolute;
 	top: 0;
 	left: 0;
-	background:#ffffff;
 	border-style: inset;
 }
 
@@ -60,26 +59,37 @@
 	-webkit-transform: rotateY(0deg);
 	-ms-transform: rotateY(0deg);
 	z-index: 2;
+	background-image: url("https://media.giphy.com/media/jNCT0DtwX6GFG/giphy.gif");
 }
 
 .backside {
-	background: white;
 	-webkit-transform: rotateY(-180deg);
 	-moz-transform: rotateY(-180deg);
 	-o-transform: rotateY(-180deg);
 	-ms-transform: rotateY(-180deg);
 	transform: rotateY(-180deg);
-	font-family: ‘Lucida Console’, Monaco, monospace;
     text-align: center;
-    font-weight:bold;
+    background-image: url("https://media.giphy.com/media/TxVVB6PfWMjE4/giphy.gif");
 }
 
 .card, .card-img-top {
 	border-radius: 0;
 }
 
-.card-body {
+.card-title {
 	font-family: ‘Lucida Console’, Monaco, monospace;
     text-align: center;
     font-weight:bold;
+    color:white;
+}
+
+.card-text {
+	font-family: ‘Lucida Console’, Monaco, monospace;
+    text-align: center;
+    font-weight:lighter;
+    color: #ccffff;
+}
+
+#card {
+	margin-bottom: 20px;
 }

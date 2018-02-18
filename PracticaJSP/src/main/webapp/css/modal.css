@@ -7,7 +7,7 @@
 .main {
 	position: absolute;
 	float: left;
-	transform: translate(40%, 5%);
+	transform: translate(30%, 35%);
 }
 
 #close {
@@ -67,7 +67,6 @@ input, input::-webkit-input-placeholder {
 .main-center {
 	margin-top: 30px;
 	margin: 0 auto;
-	max-width: 400px;
 	padding: 10px 40px;
 	background: silver;
 	color: white;

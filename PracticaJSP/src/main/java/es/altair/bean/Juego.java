@@ -22,15 +22,12 @@ public class Juego implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idJuego;
-	private String nombre;
+	private String titulo;
 	private String consola;
-	private int año;
+	private int ano;
 	private String genero;
 	private String compañia;
 	private byte[] portada;
-
-	@OneToMany(mappedBy = "juego", cascade = CascadeType.ALL)
-	private Set<Estado> estado = new HashSet<Estado>();
 
 	@ManyToOne
 	@JoinColumn(name = "idUsuario")
@@ -41,24 +38,24 @@ public class Juego implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Juego(String nombre, String consola, int año, String genero, String compañia, byte[] portada,
+	public Juego(String titulo, String consola, int ano, String genero, String compañia, byte[] portada,
 			Usuario usuario) {
 		super();
-		this.nombre = nombre;
+		this.titulo = titulo;
 		this.consola = consola;
-		this.año = año;
+		this.ano = ano;
 		this.genero = genero;
 		this.compañia = compañia;
 		this.portada = portada;
 		this.usuario = usuario;
 	}
 
-	public String getNombre() {
-		return nombre;
+	public String getTitulo() {
+		return titulo;
 	}
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setTitulo(String titulo) {
+		this.titulo= titulo;
 	}
 
 	public int getIdJuego() {
@@ -77,12 +74,12 @@ public class Juego implements Serializable {
 		this.consola = consola;
 	}
 
-	public int getAño() {
-		return año;
+	public int getAno() {
+		return ano;
 	}
 
-	public void setAño(int año) {
-		this.año = año;
+	public void setAno(int ano) {
+		this.ano = ano;
 	}
 
 	public String getGenero() {
@@ -119,8 +116,8 @@ public class Juego implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Juego [idJuego=" + idJuego + ", nombre=" + nombre + ", consola=" + consola + ", año=" + año
+		return "Juego [idJuego=" + idJuego + ", titulo=" + titulo + ", consola=" + consola + ", ano=" + ano
 				+ ", genero=" + genero + ", compañia=" + compañia + ", portada=" + Arrays.toString(portada)
-				+ ", estado=" + estado + ", usuario=" + usuario + "]";
+				+ ", usuario=" + usuario + "]";
 	}
 }

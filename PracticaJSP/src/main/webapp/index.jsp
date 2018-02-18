@@ -69,7 +69,7 @@
 
 	<div class="collapse navbar-collapse navbar-ex1-collapse">
 		<ul class="nav navbar-nav side-nav">
-			<li><a href="#" data-toggle="collapse"><i
+			<li><a data-toggle="modal" data-target="#"><i
 					class="fa fa-fw fa-dashboard"></i> Colección de juegos</a></li>
 		</ul>
 	</div>

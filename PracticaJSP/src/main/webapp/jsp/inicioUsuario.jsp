@@ -1,4 +1,8 @@
 <%@page import="es.altair.bean.Usuario"%>
+<%@page import="es.altair.bean.Juego"%>
+<%@page import="es.altair.dao.JuegoDAOImplHibernate"%>
+<%@page import="java.util.List"%>
+<%@page import="es.altair.dao.JuegoDAO"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -12,7 +16,7 @@
 <link rel="stylesheet" href="../css/bootstrap.min.css">
 <link rel="stylesheet" href="../fonts/font-awesome.min.css">
 <link rel="stylesheet" href="../css/body.css">
-<link rel="stylesheet" href="../css/modal.css">
+<link rel="stylesheet" href="../css/modal_user.css">
 <link rel="stylesheet" href="../css/card.css">
 <link
 	href="http://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
@@ -67,11 +71,13 @@
 		<ul class="nav navbar-nav side-nav">
 			<li><a href="#" data-toggle="collapse"><i
 					class="fa fa-fw fa-dashboard"></i> Colección de juegos</a></li>
-			<li><a href="#"><i class="fa fa fa-plus-square"></i> Crear
-					juego</a></li>
+			<li><a data-toggle="modal" data-target="#modalCrear"><i
+					class="fa fa fa-plus-square"></i> Crear juego</a></li>
 		</ul>
 	</div>
 	</nav>
+
+	<!-- Alfabeto -->
 
 	<ul class="alphabet">
 		<li>A</li>
@@ -102,36 +108,177 @@
 		<li>Z</li>
 	</ul>
 
-	<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6">
-		<div class="row justify-content-center">
-			<div class="image-flip"
-				ontouchstart="this.classList.toggle('hover');">
-				<div class="mainflip">
-					<div class="frontside">
-						<div class="card" style="width: 20rem;">
-							<img class="card-img-top img- fluid"
-								src="https://vignette.wikia.nocookie.net/es.megaman/images/d/de/Caratula_Japones%C3%A1_%28Nintendo_DS%29.jpg/revision/latest?cb=20150716153829"
-								alt="card image">
-							<div class="card-body">
-								<h4 class="card-title">Mega Man</h4>
+	<%
+		if (session.getAttribute("usuLogeado") == null || session.isNew()) {
+			response.sendRedirect("index.jsp?mensaje=No te has logeado.");
+		} else {
+			JuegoDAO jDAO = new JuegoDAOImplHibernate();
+			List<Juego> juego = jDAO.listar((Usuario) session.getAttribute("usuLogeado"));
+	%>
+
+	<!-- Cartas -->
+
+	<div class="row" id="row">
+		<%
+			for (Juego j : juego) {
+		%>
+		<div class="col-xs-3">
+			<div class="card" style="display: inline-block;">
+				<div class="card-block">
+					<div class="image-flip"
+						ontouchstart="this.classList.toggle('hover');">
+						<div class="mainflip">
+							<div class="frontside">
+								<div class="card" style="width: 20rem;">
+									<img class="card-img-top img- fluid"
+										src="image.jsp?imag=<%=j.getIdJuego()%>" alt="card image"
+										width="200" height="150">
+									<div class="card-body">
+										<h4 class="card-title"><%=j.getTitulo()%></h4>
+									</div>
+								</div>
+							</div>
+							<div class="backside">
+								<div class="card" style="width: 20rem;">
+									<div class="card-body" id="card">
+										<h4 class="card-title">Estado</h4>
+										<p class="card-text">
+											<font color="#ffe6cc">Completado</font>
+										</p>
+										<h4 class="card-title">Consola</h4>
+										<p class="card-text"><%=j.getConsola()%></p>
+										<h4 class="card-title">Año</h4>
+										<p class="card-text"><%=j.getAno()%></p>
+										<h4 class="card-title"><%=j.getGenero()%></h4>
+										<p class="card-text">RPG</p>
+										<h4 class="card-title"><%=j.getCompañia()%></h4>
+										<p class="card-text">Capcom</p>
+										<a href="#" class="btn btn-success">Editar</a> <a href="#"
+											class="btn btn-danger">Eliminar</a>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
-					<div class="backside">
-						<div class="card" style="width: 20rem;">
-							<div class="card-body">
-								<h4 class="card-title">Consola</h4>
-								<p class="card-text">SNES</p>
-								<h4 class="card-title">Año</h4>
-								<p class="card-text">1993</p>
-								<h4 class="card-title">Categoría</h4>
-								<p class="card-text">RPG</p>
-								<h4 class="card-title">Desarrolladora</h4>
-								<p class="card-text">Capcom</p>
+				</div>
+			</div>
+		</div>
+		<%
+			}
+		%>
+	</div>
+
+	<%
+		}
+	%>
+
+	<!-- Modal crear Juego -->
+
+	<div id="modalCrear" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+			<!-- Modal content-->
+			<div class="container">
+				<div class="row main">
+					<div class="main-login main-center">
+						<form role="form" method="POST" action="../AnadirJuego"
+							enctype="multipart/form-data">
+							<div>
+								<button type="button" id="close" data-dismiss="modal"
+									class="fa fa-close"></button>
 							</div>
-							<a href="#" class="btn btn-success">Añadir</a> <a href="#"
-								class="btn btn-danger">Eliminar</a>
-						</div>
+							<div class="form-group">
+								<label for="titulo" class="cols-sm-2 control-label">Título</label>
+								<div class="cols-sm-10">
+									<div class="input-group">
+										<span class="input-group-addon"><i class="fa fa-edit"
+											aria-hidden="true"></i></span> <input type="text"
+											class="form-control" name="titulo" id="titulo"
+											placeholder="Introduce el título" required />
+									</div>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label for="consola" class="cols-sm-2 control-label">Consola</label>
+								<div class="cols-sm-10">
+									<div class="cols-sm-10">
+										<div class="input-group">
+											<span class="input-group-addon"><i class="fa fa-edit"
+												aria-hidden="true"></i></span> <input type="text"
+												class="form-control" name="consola" id="consola"
+												placeholder="Introduce la consola" required />
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label for="genero" class="cols-sm-2 control-label">Categoría</label>
+								<div class="cols-sm-10">
+									<div class="input-group">
+										<span class="input-group-addon"><i class="fa fa-edit"
+											aria-hidden="true"></i></span> <input type="text"
+											class="form-control" name="genero" id="genero"
+											placeholder="Introduce el género" required />
+									</div>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label for="año" class="cols-sm-2 control-label">Año</label>
+								<div class="cols-sm-10">
+									<div class="input-group">
+										<span class="input-group-addon"><i class="fa fa-edit"
+											aria-hidden="true"></i></span> <input type="number"
+											class="form-control" name="ano" id="año"
+											placeholder="Introduce el año" required />
+									</div>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label for="categoria" class="cols-sm-2 control-label">Estado</label>
+								<div class="cols-sm-10">
+									<div class="input-group">
+										<span class="input-group-addon"><i class="fa fa-edit"
+											aria-hidden="true"></i></span> <select class="form-control">
+											<option>Completado</option>
+											<option>En proceso</option>
+											<option>No completado</option>
+											<option>Finalizado</option>
+										</select>
+									</div>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label for="compañia" class="cols-sm-2 control-label">Compañía</label>
+								<div class="cols-sm-10">
+									<div class="input-group">
+										<span class="input-group-addon"><i class="fa fa-edit"
+											aria-hidden="true"></i></span> <input type="text"
+											class="form-control" name="compañia" id="compañia"
+											placeholder="Introduce la compañía" required />
+									</div>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label for="portada" class="cols-sm-2 control-label">Portada</label>
+								<div class="cols-sm-10">
+									<div class="input-group">
+										<span class="input-group-addon"><i class="fa fa-image"
+											aria-hidden="true"></i></span> <input type="file"
+											class="form-control" id="portada" name="portada">
+									</div>
+								</div>
+							</div>
+
+							<div class="form-group ">
+								<input type="submit" value="Crear" id="button"
+									class="btn btn-primary btn-lg btn-block login-button">
+							</div>
+						</form>
 					</div>
 				</div>
 			</div>
@@ -142,6 +289,4 @@
 	<script src="../js/popper.min.js"></script>
 	<script src="../js/bootstrap.min.js"></script>
 </body>
-
-
 </html>
