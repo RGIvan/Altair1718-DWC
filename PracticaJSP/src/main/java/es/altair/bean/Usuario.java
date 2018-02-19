@@ -14,14 +14,14 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="usuario")
+@Table(name="usuarios")
 public class Usuario implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int idUsuario;
-	private String nombre;
-	private String contraseña;
+	private String login;
+	private String password;
 	private String email;
 	private int tipo;
 
@@ -33,10 +33,10 @@ public class Usuario implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Usuario(String nombre, String contraseña, String email, int tipo) {
+	public Usuario(String login, String password, String email, int tipo) {
 		super();
-		this.nombre = nombre;
-		this.contraseña = contraseña;
+		this.login = login;
+		this.password = password;
 		this.email = email;
 		this.tipo = tipo;
 	}
@@ -49,20 +49,20 @@ public class Usuario implements Serializable {
 		this.idUsuario = idUsuario;
 	}
 
-	public String getNombre() {
-		return nombre;
+	public String getLogin() {
+		return login;
 	}
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setLogin(String login) {
+		this.login = login;
 	}
 
-	public String getContraseña() {
-		return contraseña;
+	public String getPassword() {
+		return password;
 	}
 
-	public void setContraseña(String contraseña) {
-		this.contraseña = contraseña;
+	public void setContraseña(String password) {
+		this.password = password;
 	}
 
 	public String getEmail() {
@@ -91,7 +91,7 @@ public class Usuario implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Usuario [idUsuario=" + idUsuario + ", nombre=" + nombre + ", contraseña=" + contraseña + ", email="
-				+ email + ", tipo=" + tipo + ", juego=" + juego + "]";
+		return "Usuario [idUsuario=" + idUsuario + ", login=" + login + ", password=" + password + ", email=" + email
+				+ ", tipo=" + tipo + ", juego=" + juego + "]";
 	}
 }

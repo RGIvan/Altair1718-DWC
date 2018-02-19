@@ -21,9 +21,9 @@ public class UsuarioDAOImplHibernate implements UsuarioDAO {
 			sesion.beginTransaction();
 
 			filas = sesion
-					.createSQLQuery("INSERT INTO usuario (nombre, contraseña, email, tipo)"
+					.createSQLQuery("INSERT INTO usuarios (login, password, email, tipo)"
 							+ " values (:n, AES_ENCRYPT(:p, :passphrase), :e, :t)")
-					.setParameter("n", usu.getNombre()).setParameter("p", usu.getContraseña())
+					.setParameter("n", usu.getLogin()).setParameter("p", usu.getPassword())
 					.setParameter("passphrase", pass).setParameter("e", usu.getEmail()).setParameter("t", usu.getTipo())
 					.executeUpdate();
 
@@ -38,7 +38,7 @@ public class UsuarioDAOImplHibernate implements UsuarioDAO {
 	}
 
 	
-	public Usuario comprobarUsuario(String usuario, String contraseña) {
+	public Usuario comprobarUsuario(String login, String password) {
 
 		Usuario usu = null;
 
@@ -50,8 +50,8 @@ public class UsuarioDAOImplHibernate implements UsuarioDAO {
 
 			usu = (Usuario) sesion
 					.createQuery(
-							"SELECT u FROM Usuario u WHERE nombre=:n " + "AND contraseña=AES_ENCRYPT(:p, :passphrase)")
-					.setParameter("n", usuario).setParameter("p", contraseña).setParameter("passphrase", pass)
+							"SELECT u FROM Usuario u WHERE login=:l " + "AND password=AES_ENCRYPT(:p, :passphrase)")
+					.setParameter("l", login).setParameter("p", password).setParameter("passphrase", pass)
 					.uniqueResult();
 
 			sesion.getTransaction().commit();
@@ -99,7 +99,7 @@ public class UsuarioDAOImplHibernate implements UsuarioDAO {
 		try {
 			sesion.beginTransaction();
 
-			if ((Usuario) sesion.createQuery("FROM Usuario WHERE nombre=:n").setParameter("n", usu.getNombre())
+			if ((Usuario) sesion.createQuery("FROM Usuario WHERE login=:n").setParameter("n", usu.getLogin())
 					.uniqueResult() != null)
 				correcto = false;
 
@@ -107,7 +107,6 @@ public class UsuarioDAOImplHibernate implements UsuarioDAO {
 		} catch (Exception e) {
 			// TODO: handle exception
 		} finally {
-			sesion.close();
 			sf.close();
 		}
 		return correcto;

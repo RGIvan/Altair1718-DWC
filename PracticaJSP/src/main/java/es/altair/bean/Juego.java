@@ -17,7 +17,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "juego")
+@Table(name = "juegos")
 public class Juego implements Serializable {
 
 	@Id
@@ -31,7 +31,7 @@ public class Juego implements Serializable {
 	private byte[] portada;
 
 	@ManyToOne
-	@JoinColumn(name = "idUsuario")
+	@JoinColumn(name="idUsuario")
 	private Usuario usuario;
 
 	public Juego() {

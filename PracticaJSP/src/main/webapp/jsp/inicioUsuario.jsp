@@ -26,6 +26,14 @@
 </head>
 <body>
 
+	<%
+		if (session.getAttribute("usuLogeado") == null || session.isNew()) {
+			response.sendRedirect("index.jsp?mensaje=No te has logeado.");
+		} else {
+			JuegoDAO jDAO = new JuegoDAOImplHibernate();
+			List<Juego> juego = jDAO.listar((Usuario) session.getAttribute("usuLogeado"));
+	%>
+
 	<!-- Aquí empieza el nav -->
 
 	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -56,7 +64,7 @@
 
 	<ul class="nav navbar-right top-nav">
 		<li class="btn btn-toolbar"><a data-toggle="modal"
-			data-target="#"><b class="fa fa-user-circle"></b> Bienvenido, <%=((Usuario) session.getAttribute("usuLogeado")).getNombre()%></a>
+			data-target="#"><b class="fa fa-user-circle"></b> Bienvenido, <%=((Usuario) session.getAttribute("usuLogeado")).getLogin()%></a>
 		<li class="dropdown"><a href="#" class="dropdown-toggle"
 			data-toggle="dropdown"> <b class="fa fa-sort-desc"></b></a>
 			<ul class="dropdown-menu">
@@ -108,21 +116,13 @@
 		<li>Z</li>
 	</ul>
 
-	<%
-		if (session.getAttribute("usuLogeado") == null || session.isNew()) {
-			response.sendRedirect("index.jsp?mensaje=No te has logeado.");
-		} else {
-			JuegoDAO jDAO = new JuegoDAOImplHibernate();
-			List<Juego> juego = jDAO.listar((Usuario) session.getAttribute("usuLogeado"));
-	%>
-
 	<!-- Cartas -->
 
 	<div class="row" id="row">
+		<%
+			for (Juego j : juego) {
+		%>
 		<div class="col-xs-3">
-			<%
-				for (Juego j : juego) {
-			%>
 			<div class="card" style="display: inline-block;">
 				<div class="card-block">
 					<div class="image-flip"
@@ -162,15 +162,11 @@
 					</div>
 				</div>
 			</div>
-			<%
-				}
-			%>
 		</div>
+		<%
+			}
+		%>
 	</div>
-
-	<%
-		}
-	%>
 
 	<!-- Modal crear Juego -->
 
@@ -284,6 +280,10 @@
 			</div>
 		</div>
 	</div>
+	
+	<%
+		}
+	%>
 
 	<script src="../js/jquery-3.2.1.slim.min.js"></script>
 	<script src="../js/popper.min.js"></script>

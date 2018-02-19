@@ -40,7 +40,7 @@ public class JuegoDAOImplHibernate implements JuegoDAO {
 		try {
 			sesion.beginTransaction();
 
-			juego = sesion.createQuery("FROM Juego j join fetch j.post WHERE usuario=:usu").setParameter("usu", u).list();
+			juego = sesion.createQuery("FROM Juego j WHERE Usuario=:usu").setParameter("usu", u).list();
 
 			sesion.getTransaction().commit();
 		} catch (Exception e) {

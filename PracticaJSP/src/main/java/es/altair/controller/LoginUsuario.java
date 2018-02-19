@@ -38,12 +38,12 @@ public class LoginUsuario extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String nombre = request.getParameter("nombre");
-		String contraseña = request.getParameter("contraseña");
+		String login = request.getParameter("login");
+		String password = request.getParameter("password");
 		
 		UsuarioDAO uDAO = new UsuarioDAOImplHibernate();
 		
-		Usuario usu = uDAO.comprobarUsuario(nombre, contraseña);
+		Usuario usu = uDAO.comprobarUsuario(login, password);
 		if (usu!=null) {
 			HttpSession sesion = request.getSession();
 			sesion.setAttribute("usuLogeado", usu);
@@ -59,7 +59,6 @@ public class LoginUsuario extends HttpServlet {
 			default:
 				break;
 			}
-			System.out.println(usu);
 		} else {
 			response.sendRedirect("index.jsp?mensaje=El usuario o el pass son incorrectos.");
 		}

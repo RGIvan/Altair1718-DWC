@@ -40,11 +40,11 @@ public class RegistrarUsuario extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		String nombre = request.getParameter("nombre");
-		String contraseña = request.getParameter("contraseña");
+		String login = request.getParameter("login");
+		String password = request.getParameter("password");
 		String email = request.getParameter("email");
 
-		Usuario usu = new Usuario(nombre, contraseña, email, 1);
+		Usuario usu = new Usuario(login, password, email, 1);
 
 		UsuarioDAO uDAO = new UsuarioDAOImplHibernate();
 
@@ -62,7 +62,7 @@ public class RegistrarUsuario extends HttpServlet {
 
 				} else {
 
-					msg = "¡El usuario no ha sido registrado!";
+					msg = "El usuario no ha sido registrado.";
 
 					response.sendRedirect("index.jsp?mensaje=" + msg);
 				}

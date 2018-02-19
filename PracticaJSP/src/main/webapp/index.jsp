@@ -94,7 +94,7 @@
 									<div class="input-group">
 										<span class="input-group-addon"><i
 											class="fa fa-users fa" aria-hidden="true"></i></span> <input
-											type="text" class="form-control" name="nombre" id="username"
+											type="text" class="form-control" name="login" id="username"
 											placeholder="Introduce tu nombre" required />
 									</div>
 								</div>
@@ -106,7 +106,7 @@
 									<div class="input-group">
 										<span class="input-group-addon"><i
 											class="fa fa-lock fa-lg" aria-hidden="true"></i></span> <input
-											type="password" class="form-control" name="contraseña"
+											type="password" class="form-control" name="password"
 											id="password" maxlength="9"
 											placeholder="Introduce tu contraseña" required />
 									</div>
@@ -155,7 +155,7 @@
 									<div class="input-group">
 										<span class="input-group-addon"><i
 											class="fa fa-users fa" aria-hidden="true"></i></span> <input
-											type="text" class="form-control" name="nombre" id="username"
+											type="text" class="form-control" name="login" id="username"
 											placeholder="Introduce tu nombre" required />
 									</div>
 								</div>
@@ -167,7 +167,7 @@
 									<div class="input-group">
 										<span class="input-group-addon"><i
 											class="fa fa-lock fa-lg" aria-hidden="true"></i></span> <input
-											type="password" class="form-control" name="contraseña"
+											type="password" class="form-control" name="password"
 											id="password" placeholder="Introduce tu contraseña" required />
 									</div>
 								</div>
