@@ -30,7 +30,7 @@ public class Juego implements Serializable {
 	private String compañia;
 	private byte[] portada;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name = "idUsuario")
 	private Usuario usuario;
 

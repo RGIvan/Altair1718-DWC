@@ -25,7 +25,7 @@ public class Usuario implements Serializable {
 	private String email;
 	private int tipo;
 
-	@OneToMany(mappedBy = "usuario", cascade = CascadeType.MERGE, fetch=FetchType.LAZY)
+	@OneToMany
 	private Set<Juego> juego = new HashSet<Juego>();
 	
 	public Usuario() {
