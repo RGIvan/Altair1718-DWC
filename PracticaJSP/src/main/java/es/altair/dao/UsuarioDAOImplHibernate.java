@@ -11,7 +11,6 @@ public class UsuarioDAOImplHibernate implements UsuarioDAO {
 
 	private String pass = "Usuario123$%";
 
-	@SuppressWarnings("deprecation")
 	public int insertar(Usuario usu) {
 
 		int filas = 0;
@@ -37,6 +36,7 @@ public class UsuarioDAOImplHibernate implements UsuarioDAO {
 		return filas;
 	}
 
+	
 	public Usuario comprobarUsuario(String usuario, String contraseña) {
 
 		Usuario usu = null;

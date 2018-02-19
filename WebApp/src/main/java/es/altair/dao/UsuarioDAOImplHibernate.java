@@ -14,8 +14,8 @@ public class UsuarioDAOImplHibernate implements UsuarioDAO {
 	public Usuario comprobarUsuario(String login, String password) {
 		Usuario usu = null;
 
-		// SessionFactory sf = new Configuration().configure().buildSessionFactory();
-		// Session sesion = sf.openSession();
+//		SessionFactory sf = new Configuration().configure().buildSessionFactory();
+//		Session sesion = sf.openSession();
 
 		Session sesion = SessionProvider.getSession();
 		try {

@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
 
 import es.altair.bean.Juego;
 import es.altair.bean.Usuario;
@@ -14,6 +16,7 @@ public class JuegoDAOImplHibernate implements JuegoDAO {
 	public void insertar(Juego j) {
 
 		Session sesion = SessionProvider.getSession();
+		
 		try {
 			sesion.beginTransaction();
 
@@ -24,7 +27,6 @@ public class JuegoDAOImplHibernate implements JuegoDAO {
 			// TODO: handle exception
 		} finally {
 			sesion.close();
-			// sf.close();
 		}
 	}
 
@@ -32,6 +34,7 @@ public class JuegoDAOImplHibernate implements JuegoDAO {
 		List<Juego> juego = new ArrayList<Juego>();
 
 		Session sesion = SessionProvider.getSession();
+		
 		try {
 			sesion.beginTransaction();
 
@@ -42,7 +45,6 @@ public class JuegoDAOImplHibernate implements JuegoDAO {
 			// TODO: handle exception
 		} finally {
 			sesion.close();
-			// sf.close();
 		}
 
 		return juego;
@@ -52,6 +54,7 @@ public class JuegoDAOImplHibernate implements JuegoDAO {
 		byte[] imagen = null;
 
 		Session sesion = SessionProvider.getSession();
+		
 		try {
 			sesion.beginTransaction();
 
@@ -63,7 +66,6 @@ public class JuegoDAOImplHibernate implements JuegoDAO {
 			// TODO: handle exception
 		} finally {
 			sesion.close();
-			// sf.close();
 		}
 
 		return imagen;

@@ -119,10 +119,10 @@
 	<!-- Cartas -->
 
 	<div class="row" id="row">
-		<%
-			for (Juego j : juego) {
-		%>
 		<div class="col-xs-3">
+			<%
+				for (Juego j : juego) {
+			%>
 			<div class="card" style="display: inline-block;">
 				<div class="card-block">
 					<div class="image-flip"
@@ -162,10 +162,10 @@
 					</div>
 				</div>
 			</div>
+			<%
+				}
+			%>
 		</div>
-		<%
-			}
-		%>
 	</div>
 
 	<%

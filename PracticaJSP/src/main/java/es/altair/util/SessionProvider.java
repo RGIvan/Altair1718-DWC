@@ -16,7 +16,7 @@ public class SessionProvider {
 		configuration = new Configuration()
 				.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect")
 				.setProperty("hibernate.connection.driver.class", "com.mysql.jdbc.Driver")
-				.setProperty("hibernate.connection.url", "jdbc:mysql://localhost/dbiroales")
+				.setProperty("hibernate.connection.url", "jdbc:mysql://localhost/bdiroales")
 				.setProperty("hibernate.connection.username", "root")
 				.setProperty("hibernate.connection.password", "root")
 				.setProperty("hibernate.show_sql", "true")
