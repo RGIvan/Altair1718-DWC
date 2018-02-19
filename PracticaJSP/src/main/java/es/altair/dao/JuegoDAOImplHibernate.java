@@ -31,6 +31,7 @@ public class JuegoDAOImplHibernate implements JuegoDAO {
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	public List<Juego> listar(Usuario u) {
 		List<Juego> juego = new ArrayList<Juego>();
 
@@ -40,7 +41,7 @@ public class JuegoDAOImplHibernate implements JuegoDAO {
 		try {
 			sesion.beginTransaction();
 
-			juego = sesion.createQuery("FROM Juego j WHERE Usuario=:usu").setParameter("usu", u).list();
+			juego = sesion.createQuery("FROM Juego j WHERE usuario=:usu").setParameter("usu", u).list();
 
 			sesion.getTransaction().commit();
 		} catch (Exception e) {

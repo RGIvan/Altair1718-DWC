@@ -12,6 +12,7 @@ import es.altair.util.SessionProvider;
 
 public class LibroDAOImplHibernate implements LibroDAO {
 
+	@SuppressWarnings("unchecked")
 	public List<Libro> listar(Usuario u) {
 		List<Libro> libros = new ArrayList<Libro>();
 
