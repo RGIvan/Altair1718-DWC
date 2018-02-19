@@ -18,14 +18,14 @@ import javax.persistence.Table;
 public class Usuario implements Serializable {
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int idUsuario;
 	private String nombre;
 	private String contraseña;
 	private String email;
 	private int tipo;
 
-	@OneToMany
+	@OneToMany(cascade=CascadeType.ALL,mappedBy="usuario",fetch = FetchType.EAGER)
 	private Set<Juego> juego = new HashSet<Juego>();
 	
 	public Usuario() {

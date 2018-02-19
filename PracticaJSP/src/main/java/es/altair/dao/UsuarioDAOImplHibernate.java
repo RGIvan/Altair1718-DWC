@@ -5,7 +5,6 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
 import es.altair.bean.Usuario;
-import es.altair.util.SessionProvider;
 
 public class UsuarioDAOImplHibernate implements UsuarioDAO {
 
@@ -15,7 +14,8 @@ public class UsuarioDAOImplHibernate implements UsuarioDAO {
 
 		int filas = 0;
 
-		Session sesion = SessionProvider.getSession();
+		SessionFactory sf = new Configuration().configure().buildSessionFactory();
+		Session sesion = sf.openSession();
 		try {
 
 			sesion.beginTransaction();
@@ -32,6 +32,7 @@ public class UsuarioDAOImplHibernate implements UsuarioDAO {
 			// TODO: handle exception
 		} finally {
 			sesion.close();
+			sf.close();
 		}
 		return filas;
 	}
@@ -41,7 +42,8 @@ public class UsuarioDAOImplHibernate implements UsuarioDAO {
 
 		Usuario usu = null;
 
-		Session sesion = SessionProvider.getSession();
+		SessionFactory sf = new Configuration().configure().buildSessionFactory();
+		Session sesion = sf.openSession();
 
 		try {
 			sesion.beginTransaction();
@@ -57,6 +59,7 @@ public class UsuarioDAOImplHibernate implements UsuarioDAO {
 			// TODO: handle exception
 		} finally {
 			sesion.close();
+			sf.close();
 		}
 
 		return usu;
@@ -66,7 +69,8 @@ public class UsuarioDAOImplHibernate implements UsuarioDAO {
 
 		boolean correcto = true;
 
-		Session sesion = SessionProvider.getSession();
+		SessionFactory sf = new Configuration().configure().buildSessionFactory();
+		Session sesion = sf.openSession();
 
 		try {
 			sesion.beginTransaction();
@@ -80,6 +84,7 @@ public class UsuarioDAOImplHibernate implements UsuarioDAO {
 			// TODO: handle exception
 		} finally {
 			sesion.close();
+			sf.close();
 		}
 		return correcto;
 	}
@@ -88,7 +93,8 @@ public class UsuarioDAOImplHibernate implements UsuarioDAO {
 		
 		boolean correcto = true;
 
-		Session sesion = SessionProvider.getSession();
+		SessionFactory sf = new Configuration().configure().buildSessionFactory();
+		Session sesion = sf.openSession();
 
 		try {
 			sesion.beginTransaction();
@@ -102,6 +108,7 @@ public class UsuarioDAOImplHibernate implements UsuarioDAO {
 			// TODO: handle exception
 		} finally {
 			sesion.close();
+			sf.close();
 		}
 		return correcto;
 	}

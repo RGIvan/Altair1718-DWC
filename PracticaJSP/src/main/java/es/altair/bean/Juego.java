@@ -21,7 +21,7 @@ import javax.persistence.Table;
 public class Juego implements Serializable {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int idJuego;
 	private String titulo;
 	private String consola;

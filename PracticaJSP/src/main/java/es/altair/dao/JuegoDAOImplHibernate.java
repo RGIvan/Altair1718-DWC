@@ -9,13 +9,13 @@ import org.hibernate.cfg.Configuration;
 
 import es.altair.bean.Juego;
 import es.altair.bean.Usuario;
-import es.altair.util.SessionProvider;
 
 public class JuegoDAOImplHibernate implements JuegoDAO {
 
 	public void insertar(Juego j) {
 
-		Session sesion = SessionProvider.getSession();
+		SessionFactory sf = new Configuration().configure().buildSessionFactory();
+		Session sesion = sf.openSession();
 		
 		try {
 			sesion.beginTransaction();
@@ -27,13 +27,15 @@ public class JuegoDAOImplHibernate implements JuegoDAO {
 			// TODO: handle exception
 		} finally {
 			sesion.close();
+			sf.close();
 		}
 	}
 
 	public List<Juego> listar(Usuario u) {
 		List<Juego> juego = new ArrayList<Juego>();
 
-		Session sesion = SessionProvider.getSession();
+		SessionFactory sf = new Configuration().configure().buildSessionFactory();
+		Session sesion = sf.openSession();
 		
 		try {
 			sesion.beginTransaction();
@@ -45,6 +47,7 @@ public class JuegoDAOImplHibernate implements JuegoDAO {
 			// TODO: handle exception
 		} finally {
 			sesion.close();
+			sf.close();
 		}
 
 		return juego;
@@ -53,7 +56,8 @@ public class JuegoDAOImplHibernate implements JuegoDAO {
 	public byte[] obtenerPortadaPorId(int idJuego) {
 		byte[] imagen = null;
 
-		Session sesion = SessionProvider.getSession();
+		SessionFactory sf = new Configuration().configure().buildSessionFactory();
+		Session sesion = sf.openSession();
 		
 		try {
 			sesion.beginTransaction();
@@ -66,6 +70,7 @@ public class JuegoDAOImplHibernate implements JuegoDAO {
 			// TODO: handle exception
 		} finally {
 			sesion.close();
+			sf.close();
 		}
 
 		return imagen;
