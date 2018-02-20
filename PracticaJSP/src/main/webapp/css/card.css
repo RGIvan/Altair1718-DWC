@@ -81,3 +81,7 @@
     font-weight:lighter;
     color: #ccffff;
 }
+
+.card-body{
+	margin-bottom: 10px;
+}
