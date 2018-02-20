@@ -87,8 +87,8 @@
 #message {
 	margin-left: 150px;
 	margin-top: 15px;
-	padding-left: 300px;
-	padding-right: 300px;
+	padding-left: 50px;
+	padding-right: 50px;
 }
 
 #header {
@@ -134,5 +134,4 @@
 #col {
 	margin-bottom: 400px;
 	margin-top: 80px;
-	border-bottom-style: groove 2px;
 }

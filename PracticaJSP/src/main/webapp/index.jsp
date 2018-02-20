@@ -42,8 +42,7 @@
 		if (error != null) {
 	%>
 
-	<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6" id="message">
-		<div class="row justify-content-center">
+	<div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-4" id="message">
 			<div class="alert alert-warning alert-dismissable fade in" id="error">
 				<button type="button" class="close" data-dismiss="alert"
 					aria-hidden="true">x</button>
@@ -51,7 +50,6 @@
 				<%=error%>
 			</div>
 		</div>
-	</div>
 	<%
 		}
 	%>

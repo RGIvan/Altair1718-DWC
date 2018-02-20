@@ -49,7 +49,6 @@
  %>
 
 	<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6" id="message">
-		<div class="row justify-content-center">
 			<div class="alert alert-warning alert-dismissable fade in" id="error">
 				<button type="button" class="close" data-dismiss="alert"
 					aria-hidden="true">x</button>
@@ -57,7 +56,6 @@
 				<%=error%>
 			</div>
 		</div>
-	</div>
 	<%
 		}
 	%> <!-- Top Nav -->
@@ -123,7 +121,7 @@
 			<%
 				for (Juego j : juego) {
 			%>
-			<div class="col-sm-2 col-md-2 col-xl-2" id="col">
+			<div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-xs-2" id="col">
 				<div class="card">
 					<div class="card-block">
 						<div class="image-flip"
