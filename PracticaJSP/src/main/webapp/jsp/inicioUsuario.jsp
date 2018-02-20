@@ -28,7 +28,7 @@
 
 	<%
 		if (session.getAttribute("usuLogeado") == null || session.isNew()) {
-			response.sendRedirect("index.jsp?mensaje=No te has logeado.");
+			response.sendRedirect("../index.jsp?mensaje=No te has logeado.");
 		} else {
 			JuegoDAO jDAO = new JuegoDAOImplHibernate();
 			List<Juego> juego = jDAO.listar((Usuario) session.getAttribute("usuLogeado"));
@@ -45,7 +45,7 @@
 
 	<!-- Message Error --> <%
  	String error = request.getParameter("mensaje");
- 	if (error != null) {
+ 		if (error != null) {
  %>
 
 	<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6" id="message">
@@ -118,43 +118,45 @@
 
 	<!-- Cartas -->
 
-	<div class="row" id="row">
-		<%
-			for (Juego j : juego) {
-		%>
-		<div class="col-xs-3">
-			<div class="card" style="display: inline-block;">
-				<div class="card-block">
-					<div class="image-flip"
-						ontouchstart="this.classList.toggle('hover');">
-						<div class="mainflip">
-							<div class="frontside">
-								<div class="card" style="width: 20rem;">
-									<img class="card-img-top img- fluid"
-										src="image.jsp?imag=<%=j.getIdJuego()%>" alt="card image"
-										width="200" height="150">
-									<div class="card-body">
-										<h4 class="card-title"><%=j.getTitulo()%></h4>
+	<div class="container-fluid">
+		<div class="row">
+			<%
+				for (Juego j : juego) {
+			%>
+			<div class="col-sm-2 col-md-2 col-xl-2" id="col">
+				<div class="card">
+					<div class="card-block">
+						<div class="image-flip"
+							ontouchstart="this.classList.toggle('hover');">
+							<div class="mainflip">
+								<div class="frontside">
+									<div class="card" style="width: 20rem;">
+										<img class="card-img-top img- fluid"
+											src="image.jsp?imag=<%=j.getIdJuego()%>" alt="card image"
+											width="200" height="150">
+										<div class="card-body">
+											<h4 class="card-title"><%=j.getTitulo()%></h4>
+										</div>
 									</div>
 								</div>
-							</div>
-							<div class="backside">
-								<div class="card" style="width: 20rem;">
-									<div class="card-body" id="card">
-										<h4 class="card-title">Estado</h4>
-										<p class="card-text">
-											<font color="#ffe6cc">Completado</font>
-										</p>
-										<h4 class="card-title">Consola</h4>
-										<p class="card-text"><%=j.getConsola()%></p>
-										<h4 class="card-title">Año</h4>
-										<p class="card-text"><%=j.getAno()%></p>
-										<h4 class="card-title"><%=j.getGenero()%></h4>
-										<p class="card-text">RPG</p>
-										<h4 class="card-title"><%=j.getCompañia()%></h4>
-										<p class="card-text">Capcom</p>
-										<a href="#" class="btn btn-success">Editar</a> <a href="#"
-											class="btn btn-danger">Eliminar</a>
+								<div class="backside">
+									<div class="card" style="width: 20rem;">
+										<div class="card-body">
+											<h4 class="card-title">Estado</h4>
+											<p class="card-text">
+												<font color="#ffe6cc">Completado</font>
+											</p>
+											<h4 class="card-title">Consola</h4>
+											<p class="card-text"><%=j.getConsola()%></p>
+											<h4 class="card-title">Año</h4>
+											<p class="card-text"><%=j.getAno()%></p>
+											<h4 class="card-title"><%=j.getGenero()%></h4>
+											<p class="card-text">RPG</p>
+											<h4 class="card-title"><%=j.getCompañia()%></h4>
+											<p class="card-text">Capcom</p>
+											<a href="#" class="btn btn-success">Editar</a> <a href="#"
+												class="btn btn-danger">Eliminar</a>
+										</div>
 									</div>
 								</div>
 							</div>
@@ -162,10 +164,10 @@
 					</div>
 				</div>
 			</div>
+			<%
+				}
+			%>
 		</div>
-		<%
-			}
-		%>
 	</div>
 
 	<!-- Modal crear Juego -->
@@ -280,7 +282,7 @@
 			</div>
 		</div>
 	</div>
-	
+
 	<%
 		}
 	%>

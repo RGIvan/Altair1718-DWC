@@ -130,3 +130,9 @@
     color:white;
     background-color:olive;
 }
+
+#col {
+	margin-bottom: 400px;
+	margin-top: 80px;
+	border-bottom-style: groove 2px;
+}
