@@ -84,7 +84,9 @@ public class AnadirJuego extends HttpServlet {
 				((Usuario) sesion.getAttribute("usuLogeado")));
 		
 		jDAO.insertar(j);
-
+		
+		
+		
 		response.sendRedirect("jsp/inicioUsuario.jsp");
 	}
 	
