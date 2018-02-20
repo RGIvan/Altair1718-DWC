@@ -2,30 +2,34 @@ package es.altair.bean;
 
 import java.io.Serializable;
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "juego")
+@Table(name = "juegos")
 public class Juego implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idJuego;
-	private String nombre;
+	private String titulo;
 	private String consola;
-	private int año;
+	private int ano;
 	private String genero;
-	private String estado;
 	private String compañia;
 	private byte[] portada;
-	
+
 	@ManyToOne
 	@JoinColumn(name="idUsuario")
 	private Usuario usuario;
@@ -35,24 +39,24 @@ public class Juego implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Juego(String nombre, String consola, int año, String genero, String estado, String compañia, byte[] portada, Usuario usuario) {
+	public Juego(String titulo, String consola, int ano, String genero, String compañia, byte[] portada,
+			Usuario usuario) {
 		super();
-		this.nombre = nombre;
+		this.titulo = titulo;
 		this.consola = consola;
-		this.año = año;
+		this.ano = ano;
 		this.genero = genero;
-		this.estado = estado;
 		this.compañia = compañia;
 		this.portada = portada;
 		this.usuario = usuario;
 	}
 
-	public String getNombre() {
-		return nombre;
+	public String getTitulo() {
+		return titulo;
 	}
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setTitulo(String titulo) {
+		this.titulo= titulo;
 	}
 
 	public int getIdJuego() {
@@ -71,12 +75,12 @@ public class Juego implements Serializable {
 		this.consola = consola;
 	}
 
-	public int getAño() {
-		return año;
+	public int getAno() {
+		return ano;
 	}
 
-	public void setAño(int año) {
-		this.año = año;
+	public void setAno(int ano) {
+		this.ano = ano;
 	}
 
 	public String getGenero() {
@@ -85,14 +89,6 @@ public class Juego implements Serializable {
 
 	public void setGenero(String genero) {
 		this.genero = genero;
-	}
-
-	public String getEstado() {
-		return estado;
-	}
-
-	public void setEstado(String estado) {
-		this.estado = estado;
 	}
 
 	public String getCompañia() {
@@ -110,7 +106,7 @@ public class Juego implements Serializable {
 	public void setPortada(byte[] portada) {
 		this.portada = portada;
 	}
-	
+
 	public Usuario getUsuario() {
 		return usuario;
 	}
@@ -121,8 +117,8 @@ public class Juego implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Juego [idJuego=" + idJuego + ", nombre=" + nombre + ", consola=" + consola
-				+ ", año=" + año + ", genero=" + genero + ", estado=" + estado + ", compañia=" + compañia + ", portada="
-				+ Arrays.toString(portada) + ", usuario=" + usuario + "]";
+		return "Juego [idJuego=" + idJuego + ", titulo=" + titulo + ", consola=" + consola + ", ano=" + ano
+				+ ", genero=" + genero + ", compañia=" + compañia + ", portada=" + Arrays.toString(portada)
+				+ ", usuario=" + usuario + "]";
 	}
 }

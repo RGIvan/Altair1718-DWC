@@ -1,7 +1,9 @@
 @media ( min-width :768px) {
 	body {
 		margin-top: 50px;
-		background: url("https://static.planetminecraft.com/files/profile_banner/846467_0.jpg") fixed center;
+		background:
+			url("https://static.planetminecraft.com/files/profile_banner/1575058_8.gif")
+			fixed center;
 	}
 }
 
@@ -21,6 +23,7 @@
 	line-height: 20px;
 	color: buttonshadow;
 	right: 25px;
+	font-family: ‘Lucida Console’, Monaco, monospace;
 }
 
 .top-nav>li>a:hover, .top-nav>li>a:focus, .top-nav>.open>a, .top-nav>.open>a:hover,
@@ -29,27 +32,11 @@
 	background-color: #1a242f;
 }
 
-.top-nav>.open>.dropdown-menu {
-	float: left;
-	position: absolute;
-	margin-top: 0;
-	/*border: 1px solid rgba(0,0,0,.15);*/
-	border-top-left-radius: 0;
-	border-top-right-radius: 0;
-	background-color: #fff;
-	-webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
-	box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
-}
-
-.top-nav>.open>.dropdown-menu>li>a {
-	white-space: normal;
-}
-
 /* Side Navigation */
 @media ( min-width :768px) {
 	.side-nav {
 		position: fixed;
-		top: 76px;
+		top: 90px;
 		left: 225px;
 		width: 225px;
 		margin-left: -225px;
@@ -62,10 +49,10 @@
 		overflow-x: hidden;
 		padding-bottom: 40px;
 	}
-	
 	.side-nav>li>a {
 		width: 225px;
 		border-bottom: 1px rgba(0, 0, 0, .3) solid;
+		font-family: Verdana, Geneva, sans-serif;
 	}
 	.side-nav li a:hover, .side-nav li a:focus {
 		outline: none;
@@ -97,7 +84,55 @@
 	padding: 5px 80px;
 }
 
-.container {
+#message {
+	margin-left: 150px;
+	margin-top: 15px;
+	padding-left: 300px;
+	padding-right: 300px;
+}
+
+#header {
 	margin-top: 100px;
-	margin-right: 100px;
+	margin-left: 230px;
+}
+
+.alphabet {
+    list-style-type: none;
+    margin:100px auto 0;
+    margin-left: 350px;
+    cursor: pointer;
+    width:70%;
+    text-align:center;
+}
+
+.alphabet li {
+    float:left;
+    margin:0;
+    padding:0;
+    border-right:1px solid darkgrey;
+    font-size: 30px;
+    -moz-box-sizing:border-box;
+    color:black;
+    display:inline-block;
+    -webkit-box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    box-sizing:border-box;
+    width:3.84%;
+    font-family: ‘Lucida Console’, Monaco, monospace;
+    font-weight:bold;
+}
+
+.alphabet li:last-child {
+    border-right: none;
+}
+
+.alphabet li:hover {
+    color:white;
+    background-color:olive;
+}
+
+#col {
+	margin-bottom: 400px;
+	margin-top: 80px;
+	border-bottom-style: groove 2px;
 }

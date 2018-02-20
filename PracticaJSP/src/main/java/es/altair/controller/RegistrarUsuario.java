@@ -40,35 +40,40 @@ public class RegistrarUsuario extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-
-		String nombre = request.getParameter("nombre");
-		String contraseña = request.getParameter("contraseña");
+		String login = request.getParameter("login");
+		String password = request.getParameter("password");
 		String email = request.getParameter("email");
 
-		Usuario usu = new Usuario(nombre, contraseña, email, 1);
+		Usuario usu = new Usuario(login, password, email, 1);
 
 		UsuarioDAO uDAO = new UsuarioDAOImplHibernate();
 
 		int filas = 0;
 		String msg = "";
 
-		if (uDAO.validarEmail(usu)) {
-			filas = uDAO.insertar(usu);
-			if (filas == 1) {
+		if (uDAO.validarUsuario(usu)) {
+			if (uDAO.validarEmail(usu)) {
+				filas = uDAO.insertar(usu);
+				if (filas == 1) {
 
-				msg = "¡Usuario registrado con éxito!";
+					msg = "Usuario registrado.";
 
-				response.sendRedirect("index.jsp?mensaje=" + msg);
+					response.sendRedirect("index.jsp?mensaje=" + msg);
 
+				} else {
+
+					msg = "El usuario no ha sido registrado.";
+
+					response.sendRedirect("index.jsp?mensaje=" + msg);
+				}
 			} else {
-
-				msg = "¡El usuario no ha sido registrado!";
+				msg = "El email ya existe. Prueba otra vez.";
 
 				response.sendRedirect("index.jsp?mensaje=" + msg);
 			}
 		} else {
-			msg = "El email ya está registrado. Inténtelo con otro email.";
-
+			msg = "Ya existe un usuario con el mismo nombre.";
+			
 			response.sendRedirect("index.jsp?mensaje=" + msg);
 		}
 	}
