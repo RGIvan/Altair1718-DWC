@@ -1,9 +1,0 @@
-altair2.altair.edu.es:8080/manager/html
-
-tom123$%cat
-
-altair2.altair.edu.es/phpmyadmin
-
-root
-
-my123$%sql
