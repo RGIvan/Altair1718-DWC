@@ -32,6 +32,7 @@ public class JuegoDAOImplHibernate implements JuegoDAO {
 		}
 	}
 	
+	@SuppressWarnings("unchecked")
 	public List<Juego> listar(Usuario u) {
 		List<Juego> juego = new ArrayList<Juego>();
 

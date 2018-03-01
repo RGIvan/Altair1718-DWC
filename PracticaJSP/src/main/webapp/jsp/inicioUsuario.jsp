@@ -31,7 +31,7 @@
 			response.sendRedirect("../index.jsp?mensaje=No te has logeado.");
 		} else {
 			JuegoDAO jDAO = new JuegoDAOImplHibernate();
-			List<Juego> juego = jDAO.listar((Usuario) session.getAttribute("usuLogeado"));
+			List<Juego> juegos = jDAO.listar((Usuario) session.getAttribute("usuLogeado"));
 	%>
 
 	<!-- Aquí empieza el nav -->
@@ -89,7 +89,7 @@
 	<div class="container-fluid">
 		<div class="row">
 			<%
-				for (Juego j : juego) {
+				for (Juego j : juegos) {
 			%>
 			<div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-4" id="col">
 				<div class="card">
