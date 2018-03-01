@@ -243,7 +243,7 @@
 									</div>
 								</div>
 							</div>
-							
+
 							<div class="form-group">
 								<label for="uuid" class="cols-sm-2 control-label">UUID</label>
 								<div class="cols-sm-10">
@@ -266,7 +266,7 @@
 			</div>
 		</div>
 	</div>
-	
+
 	<!-- Modal editar Juego -->
 
 	<div id="modalEditarJuego" class="modal fade" role="dialog">
@@ -368,7 +368,7 @@
 									</div>
 								</div>
 							</div>
-							
+
 							<div class="form-group">
 								<label for="uuid" class="cols-sm-2 control-label">UUID</label>
 								<div class="cols-sm-10">

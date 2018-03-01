@@ -34,6 +34,11 @@ public class Juego implements Serializable {
 	@ManyToOne
 	@JoinColumn(name="idUsuario")
 	private Usuario usuario;
+	
+	public Juego() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	public Juego(String titulo, String uuid, String consola, int ano, String genero, String compañia, byte[] portada, Usuario usuario) {
 		super();

@@ -19,7 +19,6 @@
 <title>Inicio</title>
 </head>
 <body>
-	
 	<!-- Header -->
 
 	<div id="header">
