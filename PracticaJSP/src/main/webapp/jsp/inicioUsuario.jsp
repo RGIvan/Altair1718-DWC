@@ -83,37 +83,6 @@
 	</div>
 	</nav>
 
-	<!-- Alfabeto -->
-
-	<ul class="alphabet">
-		<li>A</li>
-		<li>B</li>
-		<li>C</li>
-		<li>D</li>
-		<li>E</li>
-		<li>F</li>
-		<li>G</li>
-		<li>H</li>
-		<li>I</li>
-		<li>J</li>
-		<li>K</li>
-		<li>L</li>
-		<li>M</li>
-		<li>N</li>
-		<li>O</li>
-		<li>P</li>
-		<li>Q</li>
-		<li>R</li>
-		<li>S</li>
-		<li>T</li>
-		<li>U</li>
-		<li>V</li>
-		<li>W</li>
-		<li>X</li>
-		<li>Y</li>
-		<li>Z</li>
-	</ul>
-
 	<!-- Cartas -->
 
 	<div class="container-fluid">
@@ -269,21 +238,6 @@
 									</div>
 								</div>
 							</div>
-<<<<<<< HEAD
-
-							<div class="form-group">
-								<label for="uuid" class="cols-sm-2 control-label">UUID</label>
-								<div class="cols-sm-10">
-									<div class="input-group">
-										<span class="input-group-addon"><i class="fa fa-edit"
-											aria-hidden="true"></i></span> <input type="number"
-											class="form-control" name="uuid" id="uuid"
-											placeholder="Introduce el UUID" required />
-									</div>
-								</div>
-							</div>
-=======
->>>>>>> parent of d15f6d2... VS
 
 							<div class="form-group ">
 								<input type="submit" value="Crear" id="button"
@@ -295,7 +249,6 @@
 			</div>
 		</div>
 	</div>
-<<<<<<< HEAD
 
 	<!-- Modal editar Juego -->
 
@@ -399,18 +352,6 @@
 								</div>
 							</div>
 
-							<div class="form-group">
-								<label for="uuid" class="cols-sm-2 control-label">UUID</label>
-								<div class="cols-sm-10">
-									<div class="input-group">
-										<span class="input-group-addon"><i class="fa fa-edit"
-											aria-hidden="true"></i></span> <input type="number"
-											class="form-control" name="uuid" id="uuid"
-											placeholder="Introduce el UUID" required />
-									</div>
-								</div>
-							</div>
-
 							<div class="form-group ">
 								<input type="submit" value="Editar" id="button"
 									class="btn btn-primary btn-lg btn-block login-button">
@@ -421,9 +362,7 @@
 			</div>
 		</div>
 	</div>
-=======
->>>>>>> parent of d15f6d2... VS
-
+	
 	<%
 		}
 	%>

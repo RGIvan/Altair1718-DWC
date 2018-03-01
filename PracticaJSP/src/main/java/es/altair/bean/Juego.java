@@ -39,11 +39,6 @@ public class Juego implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Juego() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
 	public Juego(String titulo, String consola, int ano, String genero, String compañia, byte[] portada,
 			Usuario usuario) {
 		super();
