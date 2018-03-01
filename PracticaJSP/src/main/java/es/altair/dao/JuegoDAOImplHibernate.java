@@ -1,5 +1,6 @@
 package es.altair.dao;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,7 +31,7 @@ public class JuegoDAOImplHibernate implements JuegoDAO {
 			sf.close();
 		}
 	}
-
+	
 	@SuppressWarnings("unchecked")
 	public List<Juego> listar(Usuario u) {
 		List<Juego> juego = new ArrayList<Juego>();
@@ -75,5 +76,44 @@ public class JuegoDAOImplHibernate implements JuegoDAO {
 		}
 
 		return imagen;
+	}
+
+	public void actualizar(String titulo, String uuid, String consola, int ano, String genero, String compañia,
+			ByteArrayOutputStream os, Usuario usuario) {
+		
+		SessionFactory sf = new Configuration().configure().buildSessionFactory();
+		Session sesion = sf.openSession();
+		
+		try {
+			sesion.beginTransaction();
+
+			if (os != null) {
+				sesion.createQuery("UPDATE Juego SET titulo=:t, consola=:c, ano=:a, " 
+						+ "portada=:p WHERE uuid=:u")
+						.setParameter("t", titulo)
+						.setParameter("a", consola)
+						.setParameter("i", ano)
+						.setParameter("p", os.toByteArray())
+						.setParameter("g", genero)
+						.setParameter("d", uuid)
+						.executeUpdate();
+			} else {
+				sesion.createQuery("UPDATE Juego SET titulo=:t, consola=:c, genero=:g, ano=:a" 
+						+ " WHERE uuid=:u")
+						.setParameter("t", titulo)
+						.setParameter("c", consola)
+						.setParameter("g", genero)
+						.setParameter("u", uuid)
+						.setParameter("a", ano)
+						.executeUpdate();
+			}
+
+			sesion.getTransaction().commit();
+		} catch (Exception e) {
+			// TODO: handle exception
+		} finally {
+			sesion.close();
+			// sf.close();
+		}
 	}
 }

@@ -49,20 +49,21 @@
  %>
 
 	<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6" id="message">
-			<div class="alert alert-warning alert-dismissable fade in" id="error">
-				<button type="button" class="close" data-dismiss="alert"
-					aria-hidden="true">x</button>
-				<strong>Info!</strong>
-				<%=error%>
-			</div>
+		<div class="alert alert-warning alert-dismissable fade in" id="error">
+			<button type="button" class="close" data-dismiss="alert"
+				aria-hidden="true">x</button>
+			<strong>Info!</strong>
+			<%=error%>
 		</div>
+	</div>
 	<%
 		}
 	%> <!-- Top Nav -->
 
 	<ul class="nav navbar-right top-nav">
 		<li class="btn btn-toolbar"><a data-toggle="modal"
-			data-target="#"><b class="fa fa-user-circle"></b> Bienvenido, <%=((Usuario) session.getAttribute("usuLogeado")).getLogin()%></a>
+			data-target="#modalEditarUsuario"><b class="fa fa-user-circle"></b>
+				Bienvenido, <%=((Usuario) session.getAttribute("usuLogeado")).getLogin()%></a>
 		<li class="dropdown"><a href="#" class="dropdown-toggle"
 			data-toggle="dropdown"> <b class="fa fa-sort-desc"></b></a>
 			<ul class="dropdown-menu">
@@ -82,37 +83,6 @@
 		</ul>
 	</div>
 	</nav>
-
-	<!-- Alfabeto -->
-
-	<ul class="alphabet">
-		<li>A</li>
-		<li>B</li>
-		<li>C</li>
-		<li>D</li>
-		<li>E</li>
-		<li>F</li>
-		<li>G</li>
-		<li>H</li>
-		<li>I</li>
-		<li>J</li>
-		<li>K</li>
-		<li>L</li>
-		<li>M</li>
-		<li>N</li>
-		<li>O</li>
-		<li>P</li>
-		<li>Q</li>
-		<li>R</li>
-		<li>S</li>
-		<li>T</li>
-		<li>U</li>
-		<li>V</li>
-		<li>W</li>
-		<li>X</li>
-		<li>Y</li>
-		<li>Z</li>
-	</ul>
 
 	<!-- Cartas -->
 
@@ -152,8 +122,12 @@
 											<p class="card-text">RPG</p>
 											<h4 class="card-title"><%=j.getCompañia()%></h4>
 											<p class="card-text">Capcom</p>
-											<a href="#" class="btn btn-success">Editar</a> <a href="#"
-												class="btn btn-danger">Eliminar</a>
+											<h4 class="card-title"><%=j.getUuid()%></h4>
+											<p class="card-text">UUID</p>
+											<a class="btn btn-success" data-toggle="modal"
+												data-target="#modalEditarJuego">Editar</a> <a
+												class="btn btn-danger" data-toggle="modal"
+												data-target="#modalEliminarJuego">Eliminar</a>
 										</div>
 									</div>
 								</div>
@@ -269,9 +243,146 @@
 									</div>
 								</div>
 							</div>
+							
+							<div class="form-group">
+								<label for="uuid" class="cols-sm-2 control-label">UUID</label>
+								<div class="cols-sm-10">
+									<div class="input-group">
+										<span class="input-group-addon"><i class="fa fa-edit"
+											aria-hidden="true"></i></span> <input type="number"
+											class="form-control" name="uuid" id="uuid"
+											placeholder="Introduce el UUID" required />
+									</div>
+								</div>
+							</div>
 
 							<div class="form-group ">
 								<input type="submit" value="Crear" id="button"
+									class="btn btn-primary btn-lg btn-block login-button">
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!-- Modal editar Juego -->
+
+	<div id="modalEditarJuego" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+			<!-- Modal content-->
+			<div class="container">
+				<div class="row main">
+					<div class="main-login main-center">
+						<form role="form" method="POST" action="../EditarJuego"
+							enctype="multipart/form-data">
+							<div>
+								<button type="button" id="close" data-dismiss="modal"
+									class="fa fa-close"></button>
+							</div>
+							<div class="form-group">
+								<label for="titulo" class="cols-sm-2 control-label">Título</label>
+								<div class="cols-sm-10">
+									<div class="input-group">
+										<span class="input-group-addon"><i class="fa fa-edit"
+											aria-hidden="true"></i></span> <input type="text"
+											class="form-control" name="titulo" id="titulo"
+											placeholder="Introduce el título" required />
+									</div>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label for="consola" class="cols-sm-2 control-label">Consola</label>
+								<div class="cols-sm-10">
+									<div class="cols-sm-10">
+										<div class="input-group">
+											<span class="input-group-addon"><i class="fa fa-edit"
+												aria-hidden="true"></i></span> <input type="text"
+												class="form-control" name="consola" id="consola"
+												placeholder="Introduce la consola" required />
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label for="genero" class="cols-sm-2 control-label">Categoría</label>
+								<div class="cols-sm-10">
+									<div class="input-group">
+										<span class="input-group-addon"><i class="fa fa-edit"
+											aria-hidden="true"></i></span> <input type="text"
+											class="form-control" name="genero" id="genero"
+											placeholder="Introduce el género" required />
+									</div>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label for="año" class="cols-sm-2 control-label">Año</label>
+								<div class="cols-sm-10">
+									<div class="input-group">
+										<span class="input-group-addon"><i class="fa fa-edit"
+											aria-hidden="true"></i></span> <input type="number"
+											class="form-control" name="ano" id="año"
+											placeholder="Introduce el año" required />
+									</div>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label for="categoria" class="cols-sm-2 control-label">Estado</label>
+								<div class="cols-sm-10">
+									<div class="input-group">
+										<span class="input-group-addon"><i class="fa fa-edit"
+											aria-hidden="true"></i></span> <select class="form-control">
+											<option>Completado</option>
+											<option>En proceso</option>
+											<option>No completado</option>
+											<option>Finalizado</option>
+										</select>
+									</div>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label for="compañia" class="cols-sm-2 control-label">Compañía</label>
+								<div class="cols-sm-10">
+									<div class="input-group">
+										<span class="input-group-addon"><i class="fa fa-edit"
+											aria-hidden="true"></i></span> <input type="text"
+											class="form-control" name="compañia" id="compañia"
+											placeholder="Introduce la compañía" required />
+									</div>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label for="portada" class="cols-sm-2 control-label">Portada</label>
+								<div class="cols-sm-10">
+									<div class="input-group">
+										<span class="input-group-addon"><i class="fa fa-image"
+											aria-hidden="true"></i></span> <input type="file"
+											class="form-control" id="portada" name="portada">
+									</div>
+								</div>
+							</div>
+							
+							<div class="form-group">
+								<label for="uuid" class="cols-sm-2 control-label">UUID</label>
+								<div class="cols-sm-10">
+									<div class="input-group">
+										<span class="input-group-addon"><i class="fa fa-edit"
+											aria-hidden="true"></i></span> <input type="number"
+											class="form-control" name="uuid" id="uuid"
+											placeholder="Introduce el UUID" required />
+									</div>
+								</div>
+							</div>
+
+							<div class="form-group ">
+								<input type="submit" value="Editar" id="button"
 									class="btn btn-primary btn-lg btn-block login-button">
 							</div>
 						</form>

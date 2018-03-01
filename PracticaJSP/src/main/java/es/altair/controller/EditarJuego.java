@@ -24,43 +24,47 @@ import es.altair.bean.Juego;
  * Servlet implementation class AnadirJuego
  */
 @MultipartConfig
-public class AnadirJuego extends HttpServlet {
+public class EditarJuego extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public AnadirJuego() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public EditarJuego() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doPost(request, response);
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
+
 		String titulo = request.getParameter("titulo");
-		
+
 		String consola = request.getParameter("consola");
-		
+
 		int ano = Integer.parseInt(request.getParameter("ano"));
-		
+
 		String genero = request.getParameter("genero");
-		
+
 		String compañia = request.getParameter("compañia");
-		
+
 		String uuid = request.getParameter("uuid");
-		
+
 		Part filePart = request.getPart("portada");
 
 		InputStream inputS = null;
@@ -68,6 +72,7 @@ public class AnadirJuego extends HttpServlet {
 		if (!getFileName(filePart).equals("")) {
 			inputS = filePart.getInputStream();
 
+			// Escalar la imagen
 			BufferedImage imageBuffer = ImageIO.read(inputS);
 			Image tmp = imageBuffer.getScaledInstance(640, 640, BufferedImage.SCALE_FAST);
 			BufferedImage buffered = new BufferedImage(640, 640, BufferedImage.TYPE_INT_RGB);
@@ -76,19 +81,17 @@ public class AnadirJuego extends HttpServlet {
 			os = new ByteArrayOutputStream();
 			ImageIO.write(buffered, "jpg", os);
 		}
-		
+
 		HttpSession sesion = request.getSession();
-		
+
 		JuegoDAO jDAO = new JuegoDAOImplHibernate();
-		
-		Juego j = new Juego(titulo, uuid, consola, ano, genero, compañia, os.toByteArray(),
+
+		jDAO.actualizar(titulo, uuid, consola, ano, genero, compañia, os,
 				((Usuario) sesion.getAttribute("usuLogeado")));
-		
-		jDAO.insertar(j);
-		
+
 		response.sendRedirect("jsp/inicioUsuario.jsp");
 	}
-	
+
 	private String getFileName(Part filePart) {
 		for (String content : filePart.getHeader("content-disposition").split(";")) {
 			if (content.trim().startsWith("filename"))

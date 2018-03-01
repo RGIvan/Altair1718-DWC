@@ -29,18 +29,13 @@ public class Juego implements Serializable {
 	private String genero;
 	private String compañia;
 	private byte[] portada;
+	private String uuid;
 
 	@ManyToOne
 	@JoinColumn(name="idUsuario")
 	private Usuario usuario;
 
-	public Juego() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
-	public Juego(String titulo, String consola, int ano, String genero, String compañia, byte[] portada,
-			Usuario usuario) {
+	public Juego(String titulo, String uuid, String consola, int ano, String genero, String compañia, byte[] portada, Usuario usuario) {
 		super();
 		this.titulo = titulo;
 		this.consola = consola;
@@ -48,6 +43,7 @@ public class Juego implements Serializable {
 		this.genero = genero;
 		this.compañia = compañia;
 		this.portada = portada;
+		this.uuid = uuid;
 		this.usuario = usuario;
 	}
 
@@ -114,11 +110,19 @@ public class Juego implements Serializable {
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
+	
+	public String getUuid() {
+		return uuid;
+	}
+
+	public void setUuid(String uuid) {
+		this.uuid = uuid;
+	}
 
 	@Override
 	public String toString() {
 		return "Juego [idJuego=" + idJuego + ", titulo=" + titulo + ", consola=" + consola + ", ano=" + ano
-				+ ", genero=" + genero + ", compañia=" + compañia + ", portada=" + Arrays.toString(portada)
-				+ ", usuario=" + usuario + "]";
+				+ ", genero=" + genero + ", compañia=" + compañia + ", portada=" + Arrays.toString(portada) + ", uuid="
+				+ uuid + ", usuario=" + usuario + "]";
 	}
 }
