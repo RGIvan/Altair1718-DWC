@@ -7,7 +7,7 @@
 .main {
 	position: absolute;
 	float: left;
-	transform: translate(10%, 1%);
+	transform: translate(10%, 5%);
 }
 
 #close {

@@ -59,8 +59,6 @@ public class AnadirJuego extends HttpServlet {
 		
 		String compañia = request.getParameter("compañia");
 		
-		String uuid = request.getParameter("uuid");
-		
 		Part filePart = request.getPart("portada");
 
 		InputStream inputS = null;
@@ -68,6 +66,7 @@ public class AnadirJuego extends HttpServlet {
 		if (!getFileName(filePart).equals("")) {
 			inputS = filePart.getInputStream();
 
+			// Escalar la imagen
 			BufferedImage imageBuffer = ImageIO.read(inputS);
 			Image tmp = imageBuffer.getScaledInstance(640, 640, BufferedImage.SCALE_FAST);
 			BufferedImage buffered = new BufferedImage(640, 640, BufferedImage.TYPE_INT_RGB);
@@ -81,10 +80,12 @@ public class AnadirJuego extends HttpServlet {
 		
 		JuegoDAO jDAO = new JuegoDAOImplHibernate();
 		
-		Juego j = new Juego(titulo, uuid, consola, ano, genero, compañia, os.toByteArray(),
+		Juego j = new Juego(titulo, consola, ano, genero, compañia,  os.toByteArray(), 
 				((Usuario) sesion.getAttribute("usuLogeado")));
 		
 		jDAO.insertar(j);
+		
+		
 		
 		response.sendRedirect("jsp/inicioUsuario.jsp");
 	}
