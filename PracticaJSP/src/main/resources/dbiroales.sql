@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 CREATE DATABASE  IF NOT EXISTS `bdiroales` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `bdiroales`;
 -- MySQL dump 10.13  Distrib 5.7.16, for Win64 (x86_64)
@@ -87,6 +88,8 @@ UNLOCK TABLES;
 
 -- Dump completed on 2018-03-01 12:47:43
 =======
+=======
+>>>>>>> parent of d15f6d2... VS
 CREATE DATABASE  IF NOT EXISTS `bdiroales` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `bdiroales`;
 -- MySQL dump 10.13  Distrib 5.7.16, for Win64 (x86_64)
@@ -175,4 +178,7 @@ UNLOCK TABLES;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
 -- Dump completed on 2018-02-20  1:57:44
+<<<<<<< HEAD
+>>>>>>> parent of d15f6d2... VS
+=======
 >>>>>>> parent of d15f6d2... VS
