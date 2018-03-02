@@ -25,13 +25,12 @@
 <title>Menú</title>
 </head>
 <body>
-
 	<%
 		if (session.getAttribute("usuLogeado") == null || session.isNew()) {
 			response.sendRedirect("../index.jsp?mensaje=No te has logeado.");
 		} else {
 			JuegoDAO jDAO = new JuegoDAOImplHibernate();
-			List<Juego> juego = jDAO.listar((Usuario) session.getAttribute("usuLogeado"));
+			List<Juego> juego = jDAO.listarJuegos();
 	%>
 
 	<!-- Aquí empieza el nav -->
@@ -74,8 +73,8 @@
 
 	<div class="collapse navbar-collapse navbar-ex1-collapse">
 		<ul class="nav navbar-nav side-nav">
-			<li><a data-toggle="modal" data-target="#modalCrear"><i
-					class="fa fa fa-plus-square"></i> Crear juego</a></li>
+			<li><a href="inicioAdmin.jsp"><i class="fa fa fa-backward">
+				</i> Menú Admin</a></li>
 		</ul>
 	</div>
 	</nav>
@@ -116,8 +115,7 @@
 											<p class="card-text"><%=j.getCompania()%></p>
 											<h4 class="card-title">UUID</h4>
 											<p class="card-text"><%=j.getUuid()%></p>
-											<a data-toggle="modal" data-target="#modalEditarJuego"
-												class="btn btn-success">Editar</a> <a data-toggle="modal"
+											<a data-toggle="modal"
 												data-target="#modalBorrarJuego<%=j.getIdJuego()%>"
 												class="btn btn-danger">Eliminar</a>
 										</div>

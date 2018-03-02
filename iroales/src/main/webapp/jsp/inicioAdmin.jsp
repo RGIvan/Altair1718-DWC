@@ -74,8 +74,10 @@
 
 	<div class="collapse navbar-collapse navbar-ex1-collapse">
 		<ul class="nav navbar-nav side-nav">
-			<li><a data-toggle="modal" data-target="#modalCrear"><i
-					class="fa fa fa-plus-square"></i> Crear juego</a></li>
+			<li><a href="coleccionJuegos.jsp"><i
+					class="fa fa fa-dashboard"> </i> Colección de juegos</a></li>
+			<li><a href="coleccionUsuarios.jsp"><i
+					class="fa fa fa-user-circle-o"> </i> Usuarios</a></li>
 		</ul>
 	</div>
 	</nav>
@@ -87,7 +89,7 @@
 			<%
 				for (Juego j : juego) {
 			%>
-			<div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-4" id="col">
+			<div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-xs-2" id="col">
 				<div class="card">
 					<div class="card-block">
 						<div class="image-flip"
@@ -106,6 +108,10 @@
 								<div class="backside">
 									<div class="card" style="width: 20rem;">
 										<div class="card-body">
+											<h4 class="card-title">Estado</h4>
+											<p class="card-text">
+												<font color="#ffe6cc">Completado</font>
+											</p>
 											<h4 class="card-title">Consola</h4>
 											<p class="card-text"><%=j.getConsola()%></p>
 											<h4 class="card-title">Año</h4>
@@ -194,6 +200,21 @@
 											aria-hidden="true"></i></span> <input type="number"
 											class="form-control" name="ano" id="año"
 											placeholder="Introduce el año" required />
+									</div>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label for="categoria" class="cols-sm-2 control-label">Estado</label>
+								<div class="cols-sm-10">
+									<div class="input-group">
+										<span class="input-group-addon"><i class="fa fa-edit"
+											aria-hidden="true"></i></span> <select class="form-control">
+											<option>Completado</option>
+											<option>En proceso</option>
+											<option>No completado</option>
+											<option>Finalizado</option>
+										</select>
 									</div>
 								</div>
 							</div>
@@ -304,6 +325,21 @@
 											aria-hidden="true"></i></span> <input type="number"
 											class="form-control" name="ano" id="año"
 											placeholder="Introduce el año" required />
+									</div>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label for="categoria" class="cols-sm-2 control-label">Estado</label>
+								<div class="cols-sm-10">
+									<div class="input-group">
+										<span class="input-group-addon"><i class="fa fa-edit"
+											aria-hidden="true"></i></span> <select class="form-control">
+											<option>Completado</option>
+											<option>En proceso</option>
+											<option>No completado</option>
+											<option>Finalizado</option>
+										</select>
 									</div>
 								</div>
 							</div>

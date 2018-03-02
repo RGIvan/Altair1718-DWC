@@ -1,9 +1,13 @@
 package es.altair.dao;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
+import es.altair.bean.Juego;
 import es.altair.bean.Usuario;
 
 public class UsuarioDAOImplHibernate implements UsuarioDAO {
@@ -36,8 +40,30 @@ public class UsuarioDAOImplHibernate implements UsuarioDAO {
 		}
 		return filas;
 	}
-
 	
+	@SuppressWarnings("unchecked")
+	public List<Usuario> listarUsuarios() {
+		List<Usuario> usuario = new ArrayList<Usuario>();
+
+		SessionFactory sf = new Configuration().configure().buildSessionFactory();
+		Session sesion = sf.openSession();
+
+		try {
+			sesion.beginTransaction();
+
+			usuario = (List<Usuario>) sesion.createQuery("FROM Usuario WHERE tipo=1").list();
+
+			sesion.getTransaction().commit();
+		} catch (Exception e) {
+			// TODO: handle exception
+		} finally {
+			sesion.close();
+			sf.close();
+		}
+
+		return usuario;
+	}
+
 	public Usuario comprobarUsuario(String login, String password) {
 
 		Usuario usu = null;
@@ -90,7 +116,7 @@ public class UsuarioDAOImplHibernate implements UsuarioDAO {
 	}
 
 	public boolean validarUsuario(Usuario usu) {
-		
+
 		boolean correcto = true;
 
 		SessionFactory sf = new Configuration().configure().buildSessionFactory();
@@ -110,5 +136,54 @@ public class UsuarioDAOImplHibernate implements UsuarioDAO {
 			sf.close();
 		}
 		return correcto;
+	}
+
+	public boolean actualizar(Usuario usu) {
+		
+		boolean verdadero = false;
+
+		SessionFactory sf = new Configuration().configure().buildSessionFactory();
+		Session sesion = sf.openSession();
+
+		try {
+			sesion.beginTransaction();
+
+			sesion.update(usu);
+
+			sesion.getTransaction().commit();
+			verdadero = true;
+		} catch (Exception e) {
+			
+		} finally {
+			sesion.close();
+			sf.close();
+		}
+		return verdadero;
+	}
+
+	public Usuario getUsuario(String email) {
+		Usuario usu = null;
+
+		SessionFactory sf = new Configuration().configure().buildSessionFactory();
+		Session sesion = sf.openSession();
+
+		try {
+			sesion.beginTransaction();
+
+			usu = (Usuario) sesion
+					.createQuery(
+							"SELECT u FROM Usuario u WHERE email=:e")
+					.setParameter("e", email)
+					.uniqueResult();
+
+			sesion.getTransaction().commit();
+		} catch (Exception e) {
+			// TODO: handle exception
+		} finally {
+			sesion.close();
+			sf.close();
+		}
+
+		return usu;
 	}
 }

@@ -1,3 +1,8 @@
+<%@page import="es.altair.dao.JuegoDAOImplHibernate"%>
+<%@page import="java.util.List"%>
+<%@page import="es.altair.dao.JuegoDAO"%>
+<%@page import="es.altair.bean.Usuario"%>
+<%@page import="es.altair.bean.Juego"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -12,19 +17,25 @@
 <link rel="stylesheet" href="fonts/font-awesome.min.css">
 <link rel="stylesheet" href="css/body.css">
 <link rel="stylesheet" href="css/modal.css">
+<link rel="stylesheet" href="css/card.css">
 <link
 	href="http://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
 	rel="stylesheet">
-
 <title>Inicio</title>
 </head>
 <body>
+
+	<%
+		JuegoDAO jDAO = new JuegoDAOImplHibernate();
+		List<Juego> juego = jDAO.listarJuegos();
+	%>
+	
 	<!-- Header -->
 
 	<div id="header">
 		<img src="images/backloggery.gif" alt="The Backloggery">
 	</div>
-	
+
 	<!-- Aquí empieza el nav -->
 
 	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -34,26 +45,22 @@
 			src="images/Joystick.png" width="70" height="70" alt="Logo"> </a>
 	</div>
 
-	<!-- Message Error -->
-
-	<%
-		String error = request.getParameter("mensaje");
-		if (error != null) {
-	%>
+	<!-- Message Error --> <%
+ 	String error = request.getParameter("mensaje");
+ 	if (error != null) {
+ %>
 
 	<div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-4" id="message">
-			<div class="alert alert-warning alert-dismissable fade in" id="error">
-				<button type="button" class="close" data-dismiss="alert"
-					aria-hidden="true">x</button>
-				<strong>Info!</strong>
-				<%=error%>
-			</div>
+		<div class="alert alert-warning alert-dismissable fade in" id="error">
+			<button type="button" class="close" data-dismiss="alert"
+				aria-hidden="true">x</button>
+			<strong>Info!</strong>
+			<%=error%>
 		</div>
+	</div>
 	<%
 		}
-	%>
-
-	<!-- Top Nav -->
+	%> <!-- Top Nav -->
 
 	<ul class="nav navbar-right top-nav">
 		<li class="btn btn-toolbar"><a data-toggle="modal"
@@ -66,11 +73,58 @@
 
 	<div class="collapse navbar-collapse navbar-ex1-collapse">
 		<ul class="nav navbar-nav side-nav">
-			<li><a data-toggle="modal" data-target="#"><i
-					class="fa fa-fw fa-dashboard"></i> Colección de juegos</a></li>
+
 		</ul>
 	</div>
 	</nav>
+
+	<!-- Cartas -->
+
+	<div class="container-fluid">
+		<div class="row" id="row">
+			<%
+				for (Juego j : juego) {
+			%>
+			<div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-4" id="col">
+				<div class="card">
+					<div class="card-block">
+						<div class="image-flip"
+							ontouchstart="this.classList.toggle('hover');">
+							<div class="mainflip">
+								<div class="frontside">
+									<div class="card" style="width: 20rem;">
+										<img class="card-img-top img- fluid"
+											src="image.jsp?imag=<%=j.getIdJuego()%>" alt="card image"
+											width="200" height="150">
+										<div class="card-body">
+											<h4 class="card-title"><%=j.getTitulo()%></h4>
+										</div>
+									</div>
+								</div>
+								<div class="backside">
+									<div class="card" style="width: 20rem;">
+										<div class="card-body">
+											<h4 class="card-title">Consola</h4>
+											<p class="card-text"><%=j.getConsola()%></p>
+											<h4 class="card-title">Año</h4>
+											<p class="card-text"><%=j.getAno()%></p>
+											<h4 class="card-title">Categoría</h4>
+											<p class="card-text"><%=j.getGenero()%></p>
+											<h4 class="card-title">Compañía</h4>
+											<p class="card-text"><%=j.getCompania()%></p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<%
+				}
+			%>
+		</div>
+	</div>
 
 	<!-- Modal Registro -->
 
@@ -132,7 +186,7 @@
 			</div>
 		</div>
 	</div>
-	
+
 	<!-- Modal Registro -->
 
 	<div id="modalSession" class="modal fade" role="dialog">

@@ -49,11 +49,11 @@ public class LoginUsuario extends HttpServlet {
 			sesion.setAttribute("usuLogeado", usu);
 			
 			switch (usu.getTipo()) {
-			case 0:
-				response.sendRedirect("jsp/inicioAdmin.jsp");
-				break;
 			case 1:
 				response.sendRedirect("jsp/inicioUsuario.jsp");
+				break;
+			case 2:
+				response.sendRedirect("jsp/inicioAdmin.jsp");
 				break;
 
 			default:

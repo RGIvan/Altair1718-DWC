@@ -54,6 +54,29 @@ public class JuegoDAOImplHibernate implements JuegoDAO {
 
 		return juego;
 	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Juego> listarJuegos() {
+		List<Juego> juego = new ArrayList<Juego>();
+
+		SessionFactory sf = new Configuration().configure().buildSessionFactory();
+		Session sesion = sf.openSession();
+
+		try {
+			sesion.beginTransaction();
+
+			juego = (List<Juego>) sesion.createQuery("FROM Juego").list();
+
+			sesion.getTransaction().commit();
+		} catch (Exception e) {
+			// TODO: handle exception
+		} finally {
+			sesion.close();
+			sf.close();
+		}
+
+		return juego;
+	}
 
 	public byte[] obtenerPortadaPorId(int idJuego) {
 		byte[] imagen = null;

@@ -17,4 +17,6 @@ public interface JuegoDAO {
 	void actualizar(String titulo, String consola, int ano, ByteArrayOutputStream os, String uuid, String genero, String compania, Usuario usuario);
 	
 	void borrar(String uuid);
+	
+	List<Juego> listarJuegos ();
 }
