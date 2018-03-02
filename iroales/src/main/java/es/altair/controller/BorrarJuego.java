@@ -12,13 +12,13 @@ import es.altair.dao.JuegoDAOImplHibernate;
 /**
  * Servlet implementation class BorrarLibro
  */
-public class BorrarLibro extends HttpServlet {
+public class BorrarJuego extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BorrarLibro() {
+    public BorrarJuego() {
         super();
         // TODO Auto-generated constructor stub
     }
