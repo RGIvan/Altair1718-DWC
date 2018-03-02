@@ -123,7 +123,8 @@
 											<p class="card-text"><%=j.getUuid()%></p>
 											<a data-toggle="modal" data-target="#modalEditarJuego"
 												class="btn btn-success">Editar</a> <a data-toggle="modal"
-												data-target="#modalBorrarJuego" class="btn btn-danger">Eliminar</a>
+												data-target="#modalBorrarJuego<%=j.getIdJuego()%>"
+												class="btn btn-danger">Eliminar</a>
 										</div>
 									</div>
 								</div>
@@ -396,24 +397,21 @@
 
 	<div class="modal fade" id="modalBorrarJuego<%=j.getIdJuego()%>"
 		role="dialog" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">Borrar Juego</h5>
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				<div class="modal-body">
-					¿Desea borrar el juego
-					<%=j.getTitulo()%>?
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary"
-						data-dismiss="modal">No</button>
-					<button type="button" class="btn btn-primary"
-						onclick="location.href='../BorrarJuego?uuid=<%=j.getUuid()%>'">Sí</button>
+		<div class="modal-dialog">
+			<div class="container">
+				<div class="row main">
+					<div class="main-login main-center">
+						<div class="modal-body">
+							¿Desea borrar
+							<%=j.getTitulo()%>?
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-primary"
+								data-dismiss="modal">No</button>
+							<button type="button" class="btn btn-info"
+								onclick="location.href='../BorrarJuego?uuid=<%=j.getUuid()%>'">Sí</button>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
