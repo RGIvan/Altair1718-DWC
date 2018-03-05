@@ -129,7 +129,7 @@ public class JuegoDAOImplHibernate implements JuegoDAO {
 			// TODO: handle exception
 		} finally {
 			sesion.close();
-			// sf.close();
+			sf.close();
 		}
 	}
 
@@ -147,7 +147,7 @@ public class JuegoDAOImplHibernate implements JuegoDAO {
 			// TODO: handle exception
 		} finally {
 			sesion.close();
-			// sf.close();
+			sf.close();
 		}
 	}
 }

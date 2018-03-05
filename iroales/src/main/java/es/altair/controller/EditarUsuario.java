@@ -45,8 +45,8 @@ public class EditarUsuario extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 
-		String password = request.getParameter("passwordc");
-		String email = request.getParameter("emailc");
+		String password = request.getParameter("password");
+		String email = request.getParameter("email");
 
 		UsuarioDAO uDAO = new UsuarioDAOImplHibernate();
 		
