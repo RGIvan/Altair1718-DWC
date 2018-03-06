@@ -47,7 +47,10 @@ public class EditarUsuario extends HttpServlet {
 
 		String password = request.getParameter("password");
 		String email = request.getParameter("email");
+<<<<<<< HEAD
 		String uuid = UUID.randomUUID().toString();
+=======
+>>>>>>> 0fa411028690f9b62b5bb4cc464488e61df2105f
 
 		UsuarioDAO uDAO = new UsuarioDAOImplHibernate();
 
