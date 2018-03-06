@@ -32,7 +32,7 @@
 		} else {
 			JuegoDAO jDAO = new JuegoDAOImplHibernate();
 			List<Juego> juego = jDAO.listar((Usuario) session.getAttribute("usuLogeado"));
-			Juego j = jDAO.obtenerJuegoPorUUID(request.getParameter("uuid"));
+			Juego game = jDAO.obtenerJuegoPorUUID(request.getParameter("uuid"));
 	%>
 
 	<!-- Aquí empieza el nav -->
@@ -97,10 +97,10 @@
 								<div class="frontside">
 									<div class="card" style="width: 20rem;">
 										<img class="card-img-top img- fluid"
-											src="image.jsp?imag=<%=j.getIdJuego()%>" alt="card image"
+											src="image.jsp?imag=<%=game.getIdJuego()%>" alt="card image"
 											width="200" height="150">
 										<div class="card-body">
-											<h4 class="card-title"><%=j.getTitulo()%></h4>
+											<h4 class="card-title"><%=game.getTitulo()%></h4>
 										</div>
 									</div>
 								</div>
@@ -108,16 +108,16 @@
 									<div class="card" style="width: 20rem;">
 										<div class="card-body">
 											<h4 class="card-title">Consola</h4>
-											<p class="card-text"><%=j.getConsola()%></p>
+											<p class="card-text"><%=game.getConsola()%></p>
 											<h4 class="card-title">Año</h4>
-											<p class="card-text"><%=j.getAno()%></p>
+											<p class="card-text"><%=game.getAno()%></p>
 											<h4 class="card-title">Categoría</h4>
-											<p class="card-text"><%=j.getGenero()%></p>
+											<p class="card-text"><%=game.getGenero()%></p>
 											<h4 class="card-title">Compañía</h4>
-											<p class="card-text"><%=j.getCompania()%></p>
+											<p class="card-text"><%=game.getCompania()%></p>
 											<a data-toggle="modal" data-target="#modalEditarJuego"
 												class="btn btn-success">Editar</a> <a data-toggle="modal"
-												data-target="#modalBorrarJuego<%=j.getIdJuego()%>"
+												data-target="#modalBorrarJuego<%=game.getIdJuego()%>"
 												class="btn btn-danger">Eliminar</a>
 										</div>
 									</div>
@@ -247,7 +247,7 @@
 							</div>
 
 							<input type="hidden" name="uuid" id="uuid"
-								value="<%=j.getUuid()%>">
+								value="<%=game.getUuid()%>">
 
 							<div class="form-group">
 								<label for="titulo" class="cols-sm-2 control-label">Título</label>
@@ -256,7 +256,7 @@
 										<span class="input-group-addon"><i class="fa fa-edit"
 											aria-hidden="true"></i></span> <input type="text"
 											class="form-control" name="titulo" id="titulo"
-											value="<%=j.getTitulo()%>" placeholder="Introduce el título"
+											value="<%=game.getTitulo()%>" placeholder="Introduce el título"
 											required />
 
 									</div>
@@ -271,7 +271,7 @@
 											<span class="input-group-addon"><i class="fa fa-edit"
 												aria-hidden="true"></i></span> <input type="text"
 												class="form-control" name="consola" id="consola"
-												value="<%=j.getConsola()%>"
+												value="<%=game.getConsola()%>"
 												placeholder="Introduce la consola" required />
 										</div>
 									</div>
@@ -285,7 +285,7 @@
 										<span class="input-group-addon"><i class="fa fa-edit"
 											aria-hidden="true"></i></span> <input type="text"
 											class="form-control" name="genero" id="genero"
-											value="<%=j.getCategoria()%>"
+											value="<%=game.getGenero()%>"
 											placeholder="Introduce el género" required />
 									</div>
 								</div>
@@ -298,7 +298,7 @@
 										<span class="input-group-addon"><i class="fa fa-edit"
 											aria-hidden="true"></i></span> <input type="number"
 											class="form-control" name="ano" id="año"
-											value="<%=j.getAno()%>" placeholder="Introduce el año"
+											value="<%=game.getAno()%>" placeholder="Introduce el año"
 											required />
 									</div>
 								</div>
@@ -311,7 +311,7 @@
 										<span class="input-group-addon"><i class="fa fa-edit"
 											aria-hidden="true"></i></span> <input type="text"
 											class="form-control" name="compania" id="compania"
-											value="<%=j.getCompania()%>"
+											value="<%=game.getCompania()%>"
 											placeholder="Introduce la compañía" required />
 									</div>
 								</div>
@@ -321,7 +321,7 @@
 								<label for="portada" class="cols-sm-2 control-label">Portada</label>
 								<div class="cols-sm-10">
 									<div class="input-group">
-										<img alt="Portada" src="image.jsp?imag=<%=j.getIdJuego()%>"
+										<img alt="Portada" src="image.jsp?imag=<%=game.getIdJuego()%>"
 											class="img-thumbnail" width="50" height="50"> <input
 											type="file" class="form-control" id="portada" name="portada">
 									</div>
@@ -332,9 +332,6 @@
 								<input type="submit" value="Editar" id="button"
 									class="btn btn-primary btn-lg btn-block login-button">
 							</div>
-							<%
-								}
-							%>
 						</form>
 					</div>
 				</div>
@@ -429,7 +426,6 @@
 	<%
 		}
 	%>
-
 	<script src="../js/jquery-3.2.1.slim.min.js"></script>
 	<script src="../js/popper.min.js"></script>
 	<script src="../js/bootstrap.min.js"></script>

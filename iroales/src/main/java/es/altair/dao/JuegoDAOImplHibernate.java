@@ -153,7 +153,6 @@ public class JuegoDAOImplHibernate implements JuegoDAO {
 		} finally {
 			sesion.close();
 			sf.close();
-<<<<<<< HEAD
 		}
 	}
 
@@ -175,8 +174,6 @@ public class JuegoDAOImplHibernate implements JuegoDAO {
 		} finally {
 			sesion.close();
 			sf.close();
-=======
->>>>>>> 0fa411028690f9b62b5bb4cc464488e61df2105f
 		}
 		return j;
 	}
