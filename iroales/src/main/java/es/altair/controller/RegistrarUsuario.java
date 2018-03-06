@@ -1,6 +1,8 @@
 package es.altair.controller;
 
 import java.io.IOException;
+import java.util.UUID;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -43,8 +45,9 @@ public class RegistrarUsuario extends HttpServlet {
 		String login = request.getParameter("login");
 		String password = request.getParameter("password");
 		String email = request.getParameter("email");
+		String uuid = UUID.randomUUID().toString();
 
-		Usuario usu = new Usuario(login, password, email, 1);
+		Usuario usu = new Usuario(login, password, email, 1, uuid);
 
 		UsuarioDAO uDAO = new UsuarioDAOImplHibernate();
 

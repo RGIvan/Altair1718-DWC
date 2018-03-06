@@ -54,7 +54,7 @@ public class JuegoDAOImplHibernate implements JuegoDAO {
 
 		return juego;
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	public List<Juego> listarJuegos() {
 		List<Juego> juego = new ArrayList<Juego>();
@@ -101,8 +101,10 @@ public class JuegoDAOImplHibernate implements JuegoDAO {
 		return imagen;
 	}
 
-	public void actualizar(String titulo, String consola, int ano, ByteArrayOutputStream os, String uuid, String genero,
-			String compania, Usuario usuario) {
+	public boolean actualizar(String titulo, String consola, int ano, ByteArrayOutputStream os, String uuid,
+			String genero, String compania, Usuario usuario) {
+
+		boolean verdadero = false;
 
 		SessionFactory sf = new Configuration().configure().buildSessionFactory();
 		Session sesion = sf.openSession();
@@ -118,25 +120,28 @@ public class JuegoDAOImplHibernate implements JuegoDAO {
 						.executeUpdate();
 			} else {
 				sesion.createQuery(
-						"UPDATE Juego SET titulo=:t, consola=:c, ano=:a, genero=:g, compania=:i" + " WHERE uuid=:clave")
+						"UPDATE Juego SET titulo=:t, consola=:c, ano=:a, genero=:g, compania=:i WHERE uuid=:clave")
 						.setParameter("t", titulo).setParameter("c", consola).setParameter("a", ano)
 						.setParameter("g", genero).setParameter("i", compania).setParameter("clave", uuid)
 						.executeUpdate();
 			}
 
 			sesion.getTransaction().commit();
+			verdadero = true;
 		} catch (Exception e) {
 			// TODO: handle exception
 		} finally {
 			sesion.close();
-			// sf.close();
+			sf.close();
 		}
+		return verdadero;
 	}
 
 	public void borrar(String uuid) {
+
 		SessionFactory sf = new Configuration().configure().buildSessionFactory();
 		Session sesion = sf.openSession();
-		
+
 		try {
 			sesion.beginTransaction();
 
@@ -147,7 +152,29 @@ public class JuegoDAOImplHibernate implements JuegoDAO {
 			// TODO: handle exception
 		} finally {
 			sesion.close();
-			// sf.close();
+			sf.close();
 		}
+	}
+
+	public Juego obtenerJuegoPorUUID(String uuid) {
+		Juego j = new Juego();
+
+		SessionFactory sf = new Configuration().configure().buildSessionFactory();
+		Session sesion = sf.openSession();
+
+		try {
+			sesion.beginTransaction();
+
+			j = (Juego) sesion.createQuery("FROM Juego j WHERE j.uuid=:clave").setParameter("clave", uuid)
+					.uniqueResult();
+
+			sesion.getTransaction().commit();
+		} catch (Exception e) {
+			// TODO: handle exception
+		} finally {
+			sesion.close();
+			sf.close();
+		}
+		return j;
 	}
 }

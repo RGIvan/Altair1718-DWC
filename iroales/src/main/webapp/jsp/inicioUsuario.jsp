@@ -32,6 +32,7 @@
 		} else {
 			JuegoDAO jDAO = new JuegoDAOImplHibernate();
 			List<Juego> juego = jDAO.listar((Usuario) session.getAttribute("usuLogeado"));
+			Juego j = jDAO.obtenerJuegoPorUUID(request.getParameter("uuid"));
 	%>
 
 	<!-- Aquí empieza el nav -->
@@ -114,8 +115,6 @@
 											<p class="card-text"><%=j.getGenero()%></p>
 											<h4 class="card-title">Compañía</h4>
 											<p class="card-text"><%=j.getCompania()%></p>
-											<h4 class="card-title">UUID</h4>
-											<p class="card-text"><%=j.getUuid()%></p>
 											<a data-toggle="modal" data-target="#modalEditarJuego"
 												class="btn btn-success">Editar</a> <a data-toggle="modal"
 												data-target="#modalBorrarJuego<%=j.getIdJuego()%>"
@@ -211,18 +210,6 @@
 							</div>
 
 							<div class="form-group">
-								<label for="uuid" class="cols-sm-2 control-label">UUID</label>
-								<div class="cols-sm-10">
-									<div class="input-group">
-										<span class="input-group-addon"><i class="fa fa-edit"
-											aria-hidden="true"></i></span> <input type="number"
-											class="form-control" name="uuid" id="uuid"
-											placeholder="Introduce un UUID" required />
-									</div>
-								</div>
-							</div>
-
-							<div class="form-group">
 								<label for="portada" class="cols-sm-2 control-label">Portada</label>
 								<div class="cols-sm-10">
 									<div class="input-group">
@@ -258,6 +245,10 @@
 								<button type="button" id="close" data-dismiss="modal"
 									class="fa fa-close"></button>
 							</div>
+
+							<input type="hidden" name="uuid" id="uuid"
+								value="<%=j.getUuid()%>">
+
 							<div class="form-group">
 								<label for="titulo" class="cols-sm-2 control-label">Título</label>
 								<div class="cols-sm-10">
@@ -265,7 +256,9 @@
 										<span class="input-group-addon"><i class="fa fa-edit"
 											aria-hidden="true"></i></span> <input type="text"
 											class="form-control" name="titulo" id="titulo"
-											placeholder="Introduce el título" required />
+											value="<%=j.getTitulo()%>" placeholder="Introduce el título"
+											required />
+
 									</div>
 								</div>
 							</div>
@@ -278,6 +271,7 @@
 											<span class="input-group-addon"><i class="fa fa-edit"
 												aria-hidden="true"></i></span> <input type="text"
 												class="form-control" name="consola" id="consola"
+												value="<%=j.getConsola()%>"
 												placeholder="Introduce la consola" required />
 										</div>
 									</div>
@@ -291,6 +285,7 @@
 										<span class="input-group-addon"><i class="fa fa-edit"
 											aria-hidden="true"></i></span> <input type="text"
 											class="form-control" name="genero" id="genero"
+											value="<%=j.getCategoria()%>"
 											placeholder="Introduce el género" required />
 									</div>
 								</div>
@@ -303,7 +298,8 @@
 										<span class="input-group-addon"><i class="fa fa-edit"
 											aria-hidden="true"></i></span> <input type="number"
 											class="form-control" name="ano" id="año"
-											placeholder="Introduce el año" required />
+											value="<%=j.getAno()%>" placeholder="Introduce el año"
+											required />
 									</div>
 								</div>
 							</div>
@@ -315,6 +311,7 @@
 										<span class="input-group-addon"><i class="fa fa-edit"
 											aria-hidden="true"></i></span> <input type="text"
 											class="form-control" name="compania" id="compania"
+											value="<%=j.getCompania()%>"
 											placeholder="Introduce la compañía" required />
 									</div>
 								</div>
@@ -324,9 +321,9 @@
 								<label for="portada" class="cols-sm-2 control-label">Portada</label>
 								<div class="cols-sm-10">
 									<div class="input-group">
-										<span class="input-group-addon"><i class="fa fa-image"
-											aria-hidden="true"></i></span> <input type="file"
-											class="form-control" id="portada" name="portada">
+										<img alt="Portada" src="image.jsp?imag=<%=j.getIdJuego()%>"
+											class="img-thumbnail" width="50" height="50"> <input
+											type="file" class="form-control" id="portada" name="portada">
 									</div>
 								</div>
 							</div>
@@ -335,6 +332,9 @@
 								<input type="submit" value="Editar" id="button"
 									class="btn btn-primary btn-lg btn-block login-button">
 							</div>
+							<%
+								}
+							%>
 						</form>
 					</div>
 				</div>
@@ -425,7 +425,7 @@
 			</div>
 		</div>
 	</div>
-
+	
 	<%
 		}
 	%>

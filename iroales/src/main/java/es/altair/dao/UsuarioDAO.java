@@ -10,14 +10,12 @@ public interface UsuarioDAO {
 	int insertar(Usuario usu);
 
 	Usuario comprobarUsuario(String login, String password);
-	
-	Usuario getUsuario(String email);
 
 	boolean validarEmail(Usuario usu);
 
 	boolean validarUsuario(Usuario usu);
 	
-	boolean actualizar(Usuario usu);
+	boolean actualizar(String password, String email, String uuid, Usuario usu);
 	
 	List<Usuario> listarUsuarios ();
 }

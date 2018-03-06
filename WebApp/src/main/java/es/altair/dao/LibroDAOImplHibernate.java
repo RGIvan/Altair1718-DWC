@@ -29,7 +29,6 @@ public class LibroDAOImplHibernate implements LibroDAO {
 			sesion.close();
 			// sf.close();
 		}
-
 		return libros;
 	}
 
@@ -139,5 +138,4 @@ public class LibroDAOImplHibernate implements LibroDAO {
 			// sf.close();
 		}
 	}
-
 }
