@@ -40,7 +40,7 @@ public class UsuarioDAOImplHibernate implements UsuarioDAO {
 		}
 		return filas;
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	public List<Usuario> listarUsuarios() {
 		List<Usuario> usuario = new ArrayList<Usuario>();
@@ -138,7 +138,7 @@ public class UsuarioDAOImplHibernate implements UsuarioDAO {
 		return correcto;
 	}
 
-	public boolean actualizar(Usuario usu) {
+	public boolean actualizar(String password, String email, String uuid, Usuario usu) {
 		
 		boolean verdadero = false;
 
@@ -153,37 +153,11 @@ public class UsuarioDAOImplHibernate implements UsuarioDAO {
 			sesion.getTransaction().commit();
 			verdadero = true;
 		} catch (Exception e) {
-			
+
 		} finally {
 			sesion.close();
 			sf.close();
 		}
 		return verdadero;
-	}
-
-	public Usuario getUsuario(String email) {
-		Usuario usu = null;
-
-		SessionFactory sf = new Configuration().configure().buildSessionFactory();
-		Session sesion = sf.openSession();
-
-		try {
-			sesion.beginTransaction();
-
-			usu = (Usuario) sesion
-					.createQuery(
-							"SELECT u FROM Usuario u WHERE email=:e")
-					.setParameter("e", email)
-					.uniqueResult();
-
-			sesion.getTransaction().commit();
-		} catch (Exception e) {
-			// TODO: handle exception
-		} finally {
-			sesion.close();
-			sf.close();
-		}
-
-		return usu;
 	}
 }

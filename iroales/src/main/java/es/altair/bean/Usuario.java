@@ -24,6 +24,7 @@ public class Usuario implements Serializable {
 	private String password;
 	private String email;
 	private int tipo;
+	private String uuid;
 
 	@OneToMany(mappedBy="usuario", cascade=CascadeType.ALL)
 	private Set<Juego> juego = new HashSet<Juego>();
@@ -33,12 +34,13 @@ public class Usuario implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Usuario(String login, String password, String email, int tipo) {
+	public Usuario(String login, String password, String email, int tipo, String uuid) {
 		super();
 		this.login = login;
 		this.password = password;
 		this.email = email;
 		this.tipo = tipo;
+		this.uuid = uuid;
 	}
 
 	public int getIdUsuario() {
@@ -61,8 +63,16 @@ public class Usuario implements Serializable {
 		return password;
 	}
 
-	public void setContraseña(String password) {
+	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public String getUuid() {
+		return uuid;
+	}
+
+	public void setUuid(String uuid) {
+		this.uuid = uuid;
 	}
 
 	public String getEmail() {

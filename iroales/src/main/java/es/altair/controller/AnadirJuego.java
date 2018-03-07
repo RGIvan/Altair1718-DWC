@@ -5,6 +5,7 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.UUID;
 
 import javax.imageio.ImageIO;
 import javax.servlet.ServletException;
@@ -59,7 +60,7 @@ public class AnadirJuego extends HttpServlet {
 		
 		String compania = request.getParameter("compania");
 		
-		String uuid = request.getParameter("uuid");
+		String uuid = UUID.randomUUID().toString();
 		
 		Part filePart = request.getPart("portada");
 

@@ -85,10 +85,21 @@ public class EditarJuego extends HttpServlet {
 
 		JuegoDAO jDAO = new JuegoDAOImplHibernate();
 
-		jDAO.actualizar(titulo, consola, ano, os, uuid, genero, compania,
-				((Usuario) sesion.getAttribute("usuLogeado")));
+		String msg = "";
 
-		response.sendRedirect("jsp/inicioUsuario.jsp");
+		if (jDAO.actualizar(titulo, consola, ano, os, uuid, genero, compania,
+				((Usuario) sesion.getAttribute("usuLogeado")))) {
+
+			msg = "Cambio de datos realizado.";
+
+			response.sendRedirect("jsp/inicioUsuario.jsp?mensaje=" + msg);
+
+		} else {
+
+			msg = "No se pudieron actualizar los datos.";
+
+			response.sendRedirect("jsp/inicioUsuario.jsp?mensaje=" + msg);
+		}
 	}
 
 	private String getFileName(Part filePart) {
