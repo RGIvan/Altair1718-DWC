@@ -32,7 +32,7 @@
 		} else {
 			JuegoDAO jDAO = new JuegoDAOImplHibernate();
 			List<Juego> juego = jDAO.listar((Usuario) session.getAttribute("usuLogeado"));
-			Juego gu = jDAO.obtenerJuegoPorUUID((request.getParameter("uuid")));
+			Juego gu = jDAO.obtenerJuegoPorUUID(request.getParameter("uuid"));	
 	%>
 
 	<!-- Aquí empieza el nav -->
