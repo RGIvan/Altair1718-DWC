@@ -30,10 +30,10 @@
 		if (session.getAttribute("usuLogeado") == null || session.isNew()) {
 			response.sendRedirect("../index.jsp?mensaje=No te has logeado.");
 		} else {
-			
+
 			JuegoDAO jDAO = new JuegoDAOImplHibernate();
 			List<Juego> juego = jDAO.listar((Usuario) session.getAttribute("usuLogeado"));
-			
+
 			Juego gu = jDAO.obtenerJuegoPorUUID(request.getParameter("uuid"));
 	%>
 
@@ -117,7 +117,8 @@
 											<p class="card-text"><%=j.getGenero()%></p>
 											<h4 class="card-title">Compañía</h4>
 											<p class="card-text"><%=j.getCompania()%></p>
-											<a data-toggle="modal" data-target="#modalEditarJuego<%=j.getIdJuego()%>"
+											<a data-toggle="modal"
+												data-target="#modalEditarJuego<%=j.getIdJuego()%>"
 												class="btn btn-success">Editar</a> <a data-toggle="modal"
 												data-target="#modalBorrarJuego<%=j.getIdJuego()%>"
 												class="btn btn-danger">Eliminar</a>
@@ -260,7 +261,7 @@
 			</div>
 		</div>
 	</div>
-	
+
 	<%
 		}
 	%>
@@ -316,10 +317,11 @@
 			</div>
 		</div>
 	</div>
-	
+
 	<!-- Modal editar Juego -->
-	
-	<div id="modalEditarJuego"<%=gu.getIdJuego()%> class="modal fade" role="dialog">
+
+	<div id="modalEditarJuego" <%=gu.getIdJuego()%> class="modal fade"
+		role="dialog">
 		<div class="modal-dialog">
 			<!-- Modal content-->
 			<div class="container">
@@ -339,7 +341,8 @@
 										<span class="input-group-addon"><i class="fa fa-edit"
 											aria-hidden="true"></i></span> <input type="text"
 											class="form-control" name="titulo" id="titulo"
-											value="<%=gu.getTitulo()%>" placeholder="Introduce el título"  required />
+											value="<%=gu.getTitulo()%>" placeholder="Introduce el título"
+											required />
 									</div>
 								</div>
 							</div>
@@ -352,7 +355,8 @@
 											<span class="input-group-addon"><i class="fa fa-edit"
 												aria-hidden="true"></i></span> <input type="text"
 												class="form-control" name="consola" id="consola"
-												value="<%=gu.getConsola()%>" placeholder="Introduce la consola" required />
+												value="<%=gu.getConsola()%>"
+												placeholder="Introduce la consola" required />
 										</div>
 									</div>
 								</div>
@@ -365,7 +369,8 @@
 										<span class="input-group-addon"><i class="fa fa-edit"
 											aria-hidden="true"></i></span> <input type="text"
 											class="form-control" name="genero" id="genero"
-											value="<%=gu.getGenero()%>" placeholder="Introduce el género" required />
+											value="<%=gu.getGenero()%>" placeholder="Introduce el género"
+											required />
 									</div>
 								</div>
 							</div>
@@ -377,7 +382,8 @@
 										<span class="input-group-addon"><i class="fa fa-edit"
 											aria-hidden="true"></i></span> <input type="number"
 											class="form-control" name="ano" id="año"
-											value="<%=gu.getAno()%>" placeholder="Introduce el año" required />
+											value="<%=gu.getAno()%>" placeholder="Introduce el año"
+											required />
 									</div>
 								</div>
 							</div>
@@ -389,7 +395,8 @@
 										<span class="input-group-addon"><i class="fa fa-edit"
 											aria-hidden="true"></i></span> <input type="text"
 											class="form-control" name="compania" id="compania"
-											value="<%=gu.getCompania()%>" placeholder="Introduce la compañía" required />
+											value="<%=gu.getCompania()%>"
+											placeholder="Introduce la compañía" required />
 									</div>
 								</div>
 							</div>
@@ -400,9 +407,8 @@
 									<div class="input-group">
 										<span class="input-group-addon"><i class="fa fa-image"
 											aria-hidden="true"></i></span> <input type="file"
-											class="form-control" id="portada" name="portada">
-
-										<img alt="Portada" src="image.jsp?imag=<%=gu.getPortada() %>"
+											class="form-control" id="portada" name="portada"> <img
+											alt="Portada" src="image.jsp?imag=<%=gu.getPortada()%>"
 											class="img-thumbnail" width="50" height="50"> <input
 											type="file" class="form-control" id="portada" name="portada">
 									</div>
@@ -507,7 +513,7 @@
 	<%
 		}
 	%>
-	
+
 	<script src="../js/jquery-3.2.1.slim.min.js"></script>
 	<script src="../js/popper.min.js"></script>
 	<script src="../js/bootstrap.min.js"></script>
