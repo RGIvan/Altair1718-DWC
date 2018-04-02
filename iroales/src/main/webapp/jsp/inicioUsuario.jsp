@@ -32,7 +32,6 @@
 		} else {
 			JuegoDAO jDAO = new JuegoDAOImplHibernate();
 			List<Juego> juego = jDAO.listar((Usuario) session.getAttribute("usuLogeado"));
-			Juego gu = jDAO.obtenerJuegoPorUUID(request.getParameter("uuid"));	
 	%>
 
 	<!-- Aquí empieza el nav -->
@@ -115,7 +114,7 @@
 											<p class="card-text"><%=j.getGenero()%></p>
 											<h4 class="card-title">Compañía</h4>
 											<p class="card-text"><%=j.getCompania()%></p>
-											<a data-toggle="modal" data-target="#modalEditarJuego"
+											<a data-toggle="modal" data-target="#modalEditarJuego<%=j.getIdJuego()%>"
 												class="btn btn-success">Editar</a> <a data-toggle="modal"
 												data-target="#modalBorrarJuego<%=j.getIdJuego()%>"
 												class="btn btn-danger">Eliminar</a>
@@ -232,8 +231,12 @@
 	</div>
 
 	<!-- Modal editar Juego -->
-
-	<div id="modalEditarJuego" class="modal fade" role="dialog">
+	
+	<%
+		for (Juego j : juego) {
+	%>
+	
+	<div id="modalEditarJuego"<%=j.getIdJuego()%> class="modal fade" role="dialog">
 		<div class="modal-dialog">
 			<!-- Modal content-->
 			<div class="container">
@@ -241,8 +244,6 @@
 					<div class="main-login main-center">
 						<form role="form" method="POST" action="../EditarJuego"
 							enctype="multipart/form-data">
-							<input type="hidden" name="uuid" id="uuid"
-								value="<%=gu.getUuid()%>">
 							<div>
 								<button type="button" id="close" data-dismiss="modal"
 									class="fa fa-close"></button>
@@ -255,9 +256,7 @@
 										<span class="input-group-addon"><i class="fa fa-edit"
 											aria-hidden="true"></i></span> <input type="text"
 											class="form-control" name="titulo" id="titulo"
-											value="<%=gu.getTitulo()%>" placeholder="Introduce el título"
-											required />
-
+											value="<%=j.getTitulo()%>" placeholder="Introduce el título"  required />
 									</div>
 								</div>
 							</div>
@@ -270,8 +269,7 @@
 											<span class="input-group-addon"><i class="fa fa-edit"
 												aria-hidden="true"></i></span> <input type="text"
 												class="form-control" name="consola" id="consola"
-												value="<%=gu.getConsola()%>"
-												placeholder="Introduce la consola" required />
+												value="<%=j.getConsola()%>" placeholder="Introduce la consola" required />
 										</div>
 									</div>
 								</div>
@@ -284,8 +282,7 @@
 										<span class="input-group-addon"><i class="fa fa-edit"
 											aria-hidden="true"></i></span> <input type="text"
 											class="form-control" name="genero" id="genero"
-											value="<%=gu.getGenero()%>" placeholder="Introduce el género"
-											required />
+											value="<%=j.getGenero()%>" placeholder="Introduce el género" required />
 									</div>
 								</div>
 							</div>
@@ -297,8 +294,7 @@
 										<span class="input-group-addon"><i class="fa fa-edit"
 											aria-hidden="true"></i></span> <input type="number"
 											class="form-control" name="ano" id="año"
-											value="<%=gu.getAno()%>" placeholder="Introduce el año"
-											required />
+											value="<%=j.getAno()%>" placeholder="Introduce el año" required />
 									</div>
 								</div>
 							</div>
@@ -310,8 +306,7 @@
 										<span class="input-group-addon"><i class="fa fa-edit"
 											aria-hidden="true"></i></span> <input type="text"
 											class="form-control" name="compania" id="compania"
-											value="<%=gu.getCompania()%>"
-											placeholder="Introduce la compañía" required />
+											value="<%=j.getCompania()%>" placeholder="Introduce la compañía" required />
 									</div>
 								</div>
 							</div>
@@ -320,9 +315,9 @@
 								<label for="portada" class="cols-sm-2 control-label">Portada</label>
 								<div class="cols-sm-10">
 									<div class="input-group">
-										<img alt="Portada" src="image.jsp?imag=<%=gu.getIdJuego()%>"
-											class="img-thumbnail" width="50" height="50"> <input
-											type="file" class="form-control" id="portada" name="portada">
+										<span class="input-group-addon"><i class="fa fa-image"
+											aria-hidden="true"></i></span> <input type="file"
+											class="form-control" id="portada" name="portada">
 									</div>
 								</div>
 							</div>
@@ -337,6 +332,10 @@
 			</div>
 		</div>
 	</div>
+	
+	<%
+		}
+	%>
 
 	<!-- Modal Borrar Juego -->
 
