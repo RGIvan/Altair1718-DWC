@@ -32,6 +32,14 @@
 		} else {
 			JuegoDAO jDAO = new JuegoDAOImplHibernate();
 			List<Juego> juego = jDAO.listar((Usuario) session.getAttribute("usuLogeado"));
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+			Juego gu = jDAO.obtenerJuegoPorUUID(request.getParameter("uuid"));
+=======
+			Juego gu = jDAO.obtenerJuegoPorUUID(request.getParameter("uuid"));	
+>>>>>>> 8d955d868dcf2a3eb67a02df5e5ed509bed8ff24
+>>>>>>> 4ee3e6a3ac642fd3cc30dfbd453aef9179c4e3f9
 	%>
 
 	<!-- Aquí empieza el nav -->
@@ -230,6 +238,90 @@
 		</div>
 	</div>
 
+	<!-- Modal Borrar Juego -->
+
+	<%
+		for (Juego j : juego) {
+	%>
+
+	<div class="modal fade" id="modalBorrarJuego<%=j.getIdJuego()%>"
+		role="dialog" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="container">
+				<div class="row main">
+					<div class="main-login main-center">
+						<div class="modal-body">
+							¿Desea borrar
+							<%=j.getTitulo()%>?
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-primary"
+								data-dismiss="modal">No</button>
+							<button type="button" class="btn btn-info"
+								onclick="location.href='../BorrarJuego?uuid=<%=j.getUuid()%>'">Sí</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<%
+		}
+	%>
+
+	<!-- Modal editar Usuario -->
+
+	<div id="modalEditarUsuario" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+			<!-- Modal content-->
+			<div class="container">
+				<div class="row main">
+					<div class="main-login main-center">
+						<form role="form" method="POST" action="../EditarUsuario"
+							enctype="multipart/form-data">
+							<div>
+								<button type="button" id="close" data-dismiss="modal"
+									class="fa fa-close"></button>
+							</div>
+
+							<div class="form-group">
+								<label for="contraseña" class="cols-sm-2 control-label">Contraseña</label>
+								<div class="cols-sm-10">
+									<div class="cols-sm-10">
+										<div class="input-group">
+											<span class="input-group-addon"><i class="fa fa-edit"
+												aria-hidden="true"></i></span> <input type="password"
+												class="form-control" name="password" id="password"
+												placeholder="Introduce tu contraseña" required />
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label for="email" class="cols-sm-2 control-label">E-mail</label>
+								<div class="cols-sm-10">
+									<div class="input-group">
+										<span class="input-group-addon"><i class="fa fa-edit"
+											aria-hidden="true"></i></span> <input type="text"
+											class="form-control" name="email" id="email"
+											placeholder="Introduce tu e-mail" required />
+									</div>
+								</div>
+							</div>
+
+							<div class="form-group ">
+								<input type="submit" value="Editar" id="button"
+									class="btn btn-primary btn-lg btn-block login-button">
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
 	<!-- Modal editar Juego -->
 	
 	<%
@@ -315,9 +407,15 @@
 								<label for="portada" class="cols-sm-2 control-label">Portada</label>
 								<div class="cols-sm-10">
 									<div class="input-group">
+<<<<<<< HEAD
 										<span class="input-group-addon"><i class="fa fa-image"
 											aria-hidden="true"></i></span> <input type="file"
 											class="form-control" id="portada" name="portada">
+=======
+										<img alt="Portada" src="image.jsp?imag=<%=gu.getPortada() %>"
+											class="img-thumbnail" width="50" height="50"> <input
+											type="file" class="form-control" id="portada" name="portada">
+>>>>>>> 4ee3e6a3ac642fd3cc30dfbd453aef9179c4e3f9
 									</div>
 								</div>
 							</div>
@@ -333,6 +431,7 @@
 		</div>
 	</div>
 	
+<<<<<<< HEAD
 	<%
 		}
 	%>
@@ -420,9 +519,12 @@
 			</div>
 		</div>
 	</div>
+=======
+>>>>>>> 4ee3e6a3ac642fd3cc30dfbd453aef9179c4e3f9
 	<%
 		}
 	%>
+	
 	<script src="../js/jquery-3.2.1.slim.min.js"></script>
 	<script src="../js/popper.min.js"></script>
 	<script src="../js/bootstrap.min.js"></script>

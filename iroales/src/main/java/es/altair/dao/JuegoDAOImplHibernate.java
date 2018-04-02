@@ -165,7 +165,7 @@ public class JuegoDAOImplHibernate implements JuegoDAO {
 		try {
 			sesion.beginTransaction();
 
-			j = (Juego) sesion.createQuery("FROM Juego j WHERE uuid=:clave").setParameter("clave", uuid)
+			j = (Juego) sesion.createQuery("FROM Juego j WHERE j.uuid=:clave").setParameter("clave", uuid)
 					.uniqueResult();
 
 			sesion.getTransaction().commit();
