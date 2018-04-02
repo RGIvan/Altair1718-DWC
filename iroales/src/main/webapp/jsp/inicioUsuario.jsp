@@ -30,6 +30,7 @@
 		if (session.getAttribute("usuLogeado") == null || session.isNew()) {
 			response.sendRedirect("../index.jsp?mensaje=No te has logeado.");
 		} else {
+			
 			JuegoDAO jDAO = new JuegoDAOImplHibernate();
 			List<Juego> juego = jDAO.listar((Usuario) session.getAttribute("usuLogeado"));
 			
