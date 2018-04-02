@@ -32,14 +32,8 @@
 		} else {
 			JuegoDAO jDAO = new JuegoDAOImplHibernate();
 			List<Juego> juego = jDAO.listar((Usuario) session.getAttribute("usuLogeado"));
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
+			
 			Juego gu = jDAO.obtenerJuegoPorUUID(request.getParameter("uuid"));
-=======
-			Juego gu = jDAO.obtenerJuegoPorUUID(request.getParameter("uuid"));	
->>>>>>> 8d955d868dcf2a3eb67a02df5e5ed509bed8ff24
->>>>>>> 4ee3e6a3ac642fd3cc30dfbd453aef9179c4e3f9
 	%>
 
 	<!-- Aquí empieza el nav -->
@@ -324,11 +318,7 @@
 	
 	<!-- Modal editar Juego -->
 	
-	<%
-		for (Juego j : juego) {
-	%>
-	
-	<div id="modalEditarJuego"<%=j.getIdJuego()%> class="modal fade" role="dialog">
+	<div id="modalEditarJuego"<%=gu.getIdJuego()%> class="modal fade" role="dialog">
 		<div class="modal-dialog">
 			<!-- Modal content-->
 			<div class="container">
@@ -348,7 +338,7 @@
 										<span class="input-group-addon"><i class="fa fa-edit"
 											aria-hidden="true"></i></span> <input type="text"
 											class="form-control" name="titulo" id="titulo"
-											value="<%=j.getTitulo()%>" placeholder="Introduce el título"  required />
+											value="<%=gu.getTitulo()%>" placeholder="Introduce el título"  required />
 									</div>
 								</div>
 							</div>
@@ -361,7 +351,7 @@
 											<span class="input-group-addon"><i class="fa fa-edit"
 												aria-hidden="true"></i></span> <input type="text"
 												class="form-control" name="consola" id="consola"
-												value="<%=j.getConsola()%>" placeholder="Introduce la consola" required />
+												value="<%=gu.getConsola()%>" placeholder="Introduce la consola" required />
 										</div>
 									</div>
 								</div>
@@ -374,7 +364,7 @@
 										<span class="input-group-addon"><i class="fa fa-edit"
 											aria-hidden="true"></i></span> <input type="text"
 											class="form-control" name="genero" id="genero"
-											value="<%=j.getGenero()%>" placeholder="Introduce el género" required />
+											value="<%=gu.getGenero()%>" placeholder="Introduce el género" required />
 									</div>
 								</div>
 							</div>
@@ -386,7 +376,7 @@
 										<span class="input-group-addon"><i class="fa fa-edit"
 											aria-hidden="true"></i></span> <input type="number"
 											class="form-control" name="ano" id="año"
-											value="<%=j.getAno()%>" placeholder="Introduce el año" required />
+											value="<%=gu.getAno()%>" placeholder="Introduce el año" required />
 									</div>
 								</div>
 							</div>
@@ -398,7 +388,7 @@
 										<span class="input-group-addon"><i class="fa fa-edit"
 											aria-hidden="true"></i></span> <input type="text"
 											class="form-control" name="compania" id="compania"
-											value="<%=j.getCompania()%>" placeholder="Introduce la compañía" required />
+											value="<%=gu.getCompania()%>" placeholder="Introduce la compañía" required />
 									</div>
 								</div>
 							</div>
@@ -407,15 +397,13 @@
 								<label for="portada" class="cols-sm-2 control-label">Portada</label>
 								<div class="cols-sm-10">
 									<div class="input-group">
-<<<<<<< HEAD
 										<span class="input-group-addon"><i class="fa fa-image"
 											aria-hidden="true"></i></span> <input type="file"
 											class="form-control" id="portada" name="portada">
-=======
+
 										<img alt="Portada" src="image.jsp?imag=<%=gu.getPortada() %>"
 											class="img-thumbnail" width="50" height="50"> <input
 											type="file" class="form-control" id="portada" name="portada">
->>>>>>> 4ee3e6a3ac642fd3cc30dfbd453aef9179c4e3f9
 									</div>
 								</div>
 							</div>
@@ -430,11 +418,6 @@
 			</div>
 		</div>
 	</div>
-	
-<<<<<<< HEAD
-	<%
-		}
-	%>
 
 	<!-- Modal Borrar Juego -->
 
@@ -519,8 +502,7 @@
 			</div>
 		</div>
 	</div>
-=======
->>>>>>> 4ee3e6a3ac642fd3cc30dfbd453aef9179c4e3f9
+
 	<%
 		}
 	%>
