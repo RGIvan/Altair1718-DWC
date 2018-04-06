@@ -30,8 +30,13 @@
 		if (session.getAttribute("usuLogeado") == null || session.isNew()) {
 			response.sendRedirect("../index.jsp?mensaje=No te has logeado.");
 		} else {
+
 			JuegoDAO jDAO = new JuegoDAOImplHibernate();
 			List<Juego> juego = jDAO.listar((Usuario) session.getAttribute("usuLogeado"));
+<<<<<<< HEAD
+=======
+
+>>>>>>> e63898fd030fe2ef096bdb039967805eb93fc859
 			Juego gu = jDAO.obtenerJuegoPorUUID(request.getParameter("uuid"));
 	%>
 
@@ -115,7 +120,8 @@
 											<p class="card-text"><%=j.getGenero()%></p>
 											<h4 class="card-title">Compañía</h4>
 											<p class="card-text"><%=j.getCompania()%></p>
-											<a data-toggle="modal" data-target="#modalEditarJuego"
+											<a data-toggle="modal"
+												data-target="#modalEditarJuego<%=j.getIdJuego()%>"
 												class="btn btn-success">Editar</a> <a data-toggle="modal"
 												data-target="#modalBorrarJuego<%=j.getIdJuego()%>"
 												class="btn btn-danger">Eliminar</a>
@@ -258,7 +264,7 @@
 			</div>
 		</div>
 	</div>
-	
+
 	<%
 		}
 	%>
@@ -314,10 +320,11 @@
 			</div>
 		</div>
 	</div>
-	
+
 	<!-- Modal editar Juego -->
 
-	<div id="modalEditarJuego" class="modal fade" role="dialog">
+	<div id="modalEditarJuego" <%=gu.getIdJuego()%> class="modal fade"
+		role="dialog">
 		<div class="modal-dialog">
 			<!-- Modal content-->
 			<div class="container">
@@ -325,8 +332,6 @@
 					<div class="main-login main-center">
 						<form role="form" method="POST" action="../EditarJuego"
 							enctype="multipart/form-data">
-							<input type="hidden" name="uuid" id="uuid"
-								value="<%=gu.getUuid()%>">
 							<div>
 								<button type="button" id="close" data-dismiss="modal"
 									class="fa fa-close"></button>
@@ -341,7 +346,6 @@
 											class="form-control" name="titulo" id="titulo"
 											value="<%=gu.getTitulo()%>" placeholder="Introduce el título"
 											required />
-
 									</div>
 								</div>
 							</div>
@@ -404,7 +408,10 @@
 								<label for="portada" class="cols-sm-2 control-label">Portada</label>
 								<div class="cols-sm-10">
 									<div class="input-group">
-										<img alt="Portada" src="image.jsp?imag=<%=gu.getPortada() %>"
+										<span class="input-group-addon"><i class="fa fa-image"
+											aria-hidden="true"></i></span> <input type="file"
+											class="form-control" id="portada" name="portada"> <img
+											alt="Portada" src="image.jsp?imag=<%=gu.getPortada()%>"
 											class="img-thumbnail" width="50" height="50"> <input
 											type="file" class="form-control" id="portada" name="portada">
 									</div>
@@ -421,11 +428,95 @@
 			</div>
 		</div>
 	</div>
-	
+
+	<!-- Modal Borrar Juego -->
+
+	<%
+		for (Juego j : juego) {
+	%>
+
+	<div class="modal fade" id="modalBorrarJuego<%=j.getIdJuego()%>"
+		role="dialog" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="container">
+				<div class="row main">
+					<div class="main-login main-center">
+						<div class="modal-body">
+							¿Desea borrar
+							<%=j.getTitulo()%>?
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-primary"
+								data-dismiss="modal">No</button>
+							<button type="button" class="btn btn-info"
+								onclick="location.href='../BorrarJuego?uuid=<%=j.getUuid()%>'">Sí</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
 	<%
 		}
 	%>
-	
+
+	<!-- Modal editar Usuario -->
+
+	<div id="modalEditarUsuario" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+			<!-- Modal content-->
+			<div class="container">
+				<div class="row main">
+					<div class="main-login main-center">
+						<form role="form" method="POST" action="../EditarUsuario"
+							enctype="multipart/form-data">
+							<div>
+								<button type="button" id="close" data-dismiss="modal"
+									class="fa fa-close"></button>
+							</div>
+
+							<div class="form-group">
+								<label for="contraseña" class="cols-sm-2 control-label">Contraseña</label>
+								<div class="cols-sm-10">
+									<div class="cols-sm-10">
+										<div class="input-group">
+											<span class="input-group-addon"><i class="fa fa-edit"
+												aria-hidden="true"></i></span> <input type="password"
+												class="form-control" name="password" id="password"
+												placeholder="Introduce tu contraseña" required />
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="form-group">
+								<label for="email" class="cols-sm-2 control-label">E-mail</label>
+								<div class="cols-sm-10">
+									<div class="input-group">
+										<span class="input-group-addon"><i class="fa fa-edit"
+											aria-hidden="true"></i></span> <input type="text"
+											class="form-control" name="email" id="email"
+											placeholder="Introduce tu e-mail" required />
+									</div>
+								</div>
+							</div>
+
+							<div class="form-group ">
+								<input type="submit" value="Editar" id="button"
+									class="btn btn-primary btn-lg btn-block login-button">
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<%
+		}
+	%>
+
 	<script src="../js/jquery-3.2.1.slim.min.js"></script>
 	<script src="../js/popper.min.js"></script>
 	<script src="../js/bootstrap.min.js"></script>
