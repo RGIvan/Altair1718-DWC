@@ -33,10 +33,7 @@
 
 			JuegoDAO jDAO = new JuegoDAOImplHibernate();
 			List<Juego> juego = jDAO.listar((Usuario) session.getAttribute("usuLogeado"));
-<<<<<<< HEAD
-=======
 
->>>>>>> e63898fd030fe2ef096bdb039967805eb93fc859
 			Juego gu = jDAO.obtenerJuegoPorUUID(request.getParameter("uuid"));
 	%>
 
