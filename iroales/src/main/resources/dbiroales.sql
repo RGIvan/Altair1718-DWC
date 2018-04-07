@@ -27,10 +27,10 @@ CREATE TABLE `juegos` (
   `idusuario` int(11) DEFAULT NULL,
   `nombre` varchar(45) DEFAULT NULL,
   `consola` varchar(45) DEFAULT NULL,
-  `año` varchar(45) DEFAULT NULL,
+  `ano` varchar(45) DEFAULT NULL,
   `genero` varchar(45) DEFAULT NULL,
   `estado` varchar(45) DEFAULT NULL,
-  `compañia` varchar(45) DEFAULT NULL,
+  `compania` varchar(45) DEFAULT NULL,
   `portada` varchar(45) DEFAULT NULL,
   `uuid` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`idjuego`),
@@ -84,4 +84,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-04-07 21:22:36
+-- Dump completed on 2018-04-07 21:26:51
