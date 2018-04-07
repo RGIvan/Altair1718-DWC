@@ -25,7 +25,7 @@ DROP TABLE IF EXISTS `juegos`;
 CREATE TABLE `juegos` (
   `idjuego` int(11) NOT NULL AUTO_INCREMENT,
   `idusuario` int(11) DEFAULT NULL,
-  `nombre` varchar(45) DEFAULT NULL,
+  `titulo` varchar(45) DEFAULT NULL,
   `consola` varchar(45) DEFAULT NULL,
   `ano` varchar(45) DEFAULT NULL,
   `genero` varchar(45) DEFAULT NULL,
@@ -84,4 +84,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-04-07 21:26:51
+-- Dump completed on 2018-04-07 21:30:06
